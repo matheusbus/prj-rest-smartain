@@ -13,6 +13,7 @@ public class TestEnvironmentConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         Logger
                 .getAnonymousLogger()
                 .info("Test Environment Working...");

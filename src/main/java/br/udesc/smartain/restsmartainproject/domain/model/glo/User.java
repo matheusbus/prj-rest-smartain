@@ -5,38 +5,42 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(schema = "glo",
-        name = "tbusuario",
-        uniqueConstraints = {@UniqueConstraint(name = "unique_login", columnNames = {"usulogin"})})
-public class User {
+@Table(schema = "glo", name = "tbusuario", uniqueConstraints = {@UniqueConstraint(name = "unique_login", columnNames = {"usulogin"})})
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usucodigo")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "grucodigo")
     private UserGroup userGroup;
 
     @Column(name = "usulogin", unique = true)
     @NotBlank(message = "O login não pode ser nulo ou estar em branco.")
-    @Min(value = 8, message = "O login deve conter pelo menos 8 caracteres.")
-    @Max(value = 30, message = "O login deve conter no máximo 30 caracteres.")
+    @Size(min = 8, max = 30, message = "O login deve conter ao menos 8 caracteres e no máximo 30 caracteres.")
     private String login;
 
     @Column(name = "ususenha")
     private String password;
+
+    @Column(name = "usuemail", nullable = false, length = 100)
+    @NotBlank(message = "O e-mail não pode ser nulo ou estar em branco.")
+    @Size(min = 5, max = 100, message = "O e-mail não possui a quantidade de caracteres válida.")
+    private String email;
 
     @Column(name = "usudatcad")
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,11 +55,12 @@ public class User {
     @Column(name = "usuativo")
     private short active;
 
-    public User(Long id, UserGroup userGroup, String login, String password, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterDataState active) {
+    public User(Long id, UserGroup userGroup, String login, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterDataState active) {
         this.id = id;
         this.userGroup = userGroup;
         this.login = login;
         this.password = password;
+        this.email = email;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
         this.active = active.getValue();
@@ -92,6 +97,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getEmail() { return email; };
+
+    public void setEmail(String email) { this.email = email; };
 
     public LocalDateTime getCreatedDate() {
         return createdDate;

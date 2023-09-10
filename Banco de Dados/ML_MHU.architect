@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.9">
+ <project-name>ML_MHU</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="94a73164-9a87-4446-99d3-155b956ae42d" name="tbusuario" objectType="TABLE" physicalName="tbusuario" >
+   <remarks>Tabela que armazena informações dos usuários do sistema</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="d9acd058-31d3-4094-a1cd-3fef3241b114" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do usuário</remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="c5fe181b-deb8-46ba-a153-e8740aff23e5" autoIncrement="false" autoIncrementSequenceName="tbusuario_usulogin_seq" defaultValue="" name="usulogin" nullable="0" physicalName="usulogin" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Login do usuário</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="370ef5a8-8ebd-47c3-bb44-50aa7321ca1c" autoIncrement="false" autoIncrementSequenceName="tbusuario_ususenha_seq" defaultValue="" name="ususenha" nullable="0" physicalName="ususenha" precision="32" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Senha do usuário</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="bf27f297-4159-45ff-b1fb-b35b3e785f1c" autoIncrement="false" autoIncrementSequenceName="tbusuario_usudatcad_seq" defaultValue="" name="usudatcad" nullable="0" physicalName="usudatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data de cadastro do usuário</remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="11d19923-ef71-4147-be3b-501c7cc00549" autoIncrement="false" autoIncrementSequenceName="tbusuario_usudatalt_seq" defaultValue="" name="usudatalt" nullable="1" physicalName="usudatalt" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data da última alteração do usuário</remarks>
+    </column>
+    <column id="COL7" populated="true" UUID="e1cfa765-9d2e-48c3-93a2-d62d6623ca18" autoIncrement="false" autoIncrementSequenceName="tbusuario_usuativo_seq" defaultValue="" name="usuativo" nullable="0" physicalName="usuativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do usuário (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX8" populated="true" UUID="40a6b42a-a055-423e-a05d-6e576b91068f" clustered="false" name="tbusuario_pkey" physicalName="tbusuario_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC9" populated="true" UUID="b8d50fb1-2f93-45e9-90ca-3dbd3745bdf8" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="usucodigo" physicalName="usucodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB10" populated="true" UUID="190e3c32-2770-4d87-bb4c-004a2af55cc7" name="tbcliente" objectType="TABLE" physicalName="tbcliente" >
+   <remarks>Tabbela das informações do cliente que utiliza o sistema</remarks>
+   <folder id="FOLTAB101" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL11" populated="true" UUID="15e7ee87-5fe8-4cf9-baac-b3c3c089b7ac" autoIncrement="false" autoIncrementSequenceName="tbcliente_clicodigo_seq" defaultValue="" name="clicodigo" nullable="0" physicalName="clicodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cliente</remarks>
+    </column>
+    <column id="COL12" populated="true" UUID="023ac93f-0897-4098-81fa-c3824ab4e8a9" autoIncrement="false" autoIncrementSequenceName="tbcliente_clirazaosocial_seq" defaultValue="" name="clirazaosocial" nullable="0" physicalName="clirazaosocial" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Razão social do cliente</remarks>
+    </column>
+    <column id="COL13" populated="true" UUID="18016b54-f4a1-46c1-911e-8ddb590a2cd4" autoIncrement="false" autoIncrementSequenceName="tbcliente_clicnpjprincipal_seq" defaultValue="" name="clicnpjprincipal" nullable="0" physicalName="clicnpjprincipal" precision="16" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>CNPJ principal do cliente</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB103" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB102" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB104" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX14" populated="true" UUID="278ab532-abdd-4963-bb14-5b708a17dbdc" clustered="false" name="tbcliente_pkey" physicalName="tbcliente_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC15" populated="true" UUID="89358e63-9256-41d6-96a8-fc8492b6814c" ascendingOrDescending="UNSPECIFIED" column-ref="COL11" name="clicodigo" physicalName="clicodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB16" populated="true" UUID="c6d57729-2e87-4f6a-98d1-597cafe64309" name="tbunidadefabril" objectType="TABLE" physicalName="tbunidadefabril" >
+   <remarks>Tabela de unidades fabris do cliente.</remarks>
+   <folder id="FOLTAB161" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL17" populated="true" UUID="84a2ba41-26af-4f61-952e-87118725b3e0" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_unfcodigo_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL18" populated="true" UUID="bfe7daf1-d8f1-48ae-81ee-be253265a277" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_clicodigo_seq" defaultValue="" name="clicodigo" nullable="0" physicalName="clicodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL11" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cliente</remarks>
+    </column>
+    <column id="COL19" populated="true" UUID="cce4b5a6-4362-4a29-be88-f3f351ed3ee3" autoIncrement="false" autoIncrementSequenceName="tbtipounidade_tiucodigo_seq" defaultValue="" name="tiucodigo" nullable="0" physicalName="tiucodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do tipo de unidade</remarks>
+    </column>
+    <column id="COL20" populated="true" UUID="72ee43a0-562c-405b-8d25-29206ad532b4" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcodigo_seq" defaultValue="" name="prfcodigo" nullable="0" physicalName="prfcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do profissional de manutenção responsável (Gestor)</remarks>
+    </column>
+    <column id="COL21" populated="true" UUID="73aea74c-471f-416e-b6f0-78eebeee9966" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL2" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do usuário</remarks>
+    </column>
+    <column id="COL22" populated="true" UUID="f4decb8b-d2e4-46a2-9adf-7fb46db42e1b" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_unftag_seq" defaultValue="" name="unftag" nullable="1" physicalName="unftag" precision="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tag da unidade fabril (Ex.: XX)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB163" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB162" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB164" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX23" populated="true" UUID="beea7902-1be6-4bfe-8bce-a25b8c15c923" clustered="false" name="tbunidadefabril_pkey" physicalName="tbunidadefabril_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC24" populated="true" UUID="cc9cd5e1-2007-4ec7-b5b3-211b7c27a8ea" ascendingOrDescending="UNSPECIFIED" column-ref="COL17" name="unfcodigo" physicalName="unfcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB25" populated="true" UUID="8d639992-b0ca-46b8-b190-78635754607f" name="tbtipounidade" objectType="TABLE" physicalName="tbtipounidade" >
+   <remarks>Tabela domínio de tipo de unidade</remarks>
+   <folder id="FOLTAB251" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL26" populated="true" UUID="73ca9772-9666-4a95-b694-5c7cd1bb98fa" autoIncrement="false" autoIncrementSequenceName="tbtipounidade_tiucodigo_seq" defaultValue="" name="tiucodigo" nullable="0" physicalName="tiucodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do tipo de unidade</remarks>
+    </column>
+    <column id="COL27" populated="true" UUID="1c02c593-79a9-4962-8dca-62ff0a6516cd" autoIncrement="false" autoIncrementSequenceName="tbtipounidade_tiucodfaz_seq" defaultValue="" name="tiucodfaz" nullable="0" physicalName="tiucodfaz" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do tipo de unidade de acordo com o ministério da fazenda</remarks>
+    </column>
+    <column id="COL28" populated="true" UUID="0e52289b-58ef-440f-b6b0-9b4fa3969e2d" autoIncrement="false" autoIncrementSequenceName="tbtipounidade_tiunome_seq" defaultValue="" name="tiunome" nullable="0" physicalName="tiunome" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do tipo de unidade</remarks>
+    </column>
+    <column id="COL29" populated="true" UUID="35c6ab3c-a9c0-401d-a940-5ed00a9adbf3" autoIncrement="false" autoIncrementSequenceName="tbtipounidade_tiudescricao_seq" defaultValue="" name="tiudescricao" nullable="0" physicalName="tiudescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição do tipo de undiade</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB253" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB252" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB254" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX30" populated="true" UUID="22dfee21-631d-42f4-838e-cb6a3869f45a" clustered="false" name="tbtipounidade_pkey" physicalName="tbtipounidade_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC31" populated="true" UUID="85ea3b59-5ea3-4420-beff-832496c996f8" ascendingOrDescending="UNSPECIFIED" column-ref="COL26" name="tiucodigo" physicalName="tiucodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB32" populated="true" UUID="770196e6-2163-43eb-8443-d411fd564cf1" name="tbprofissional" objectType="TABLE" physicalName="tbprofissional" >
+   <remarks>Tabela de cadastro dos profissionais</remarks>
+   <folder id="FOLTAB321" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL33" populated="true" UUID="066b16bf-f2fa-40a4-9ce9-5c632d01a3ad" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcodigo_seq" defaultValue="" name="prfcodigo" nullable="0" physicalName="prfcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do profissional</remarks>
+    </column>
+    <column id="COL34" populated="true" UUID="dd0ae57b-f49b-4ea8-ba6f-c764613e0f97" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfnome_seq" defaultValue="" name="prfnome" nullable="0" physicalName="prfnome" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do profissional</remarks>
+    </column>
+    <column id="COL35" populated="true" UUID="81ec03d0-fbaa-46f5-a348-6abb6e3363ce" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfdatnasc_seq" defaultValue="" name="prfdatnasc" nullable="1" physicalName="prfdatnasc" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data de nascimento do profissional</remarks>
+    </column>
+    <column id="COL36" populated="true" UUID="8e0940eb-2d37-4189-90cf-84af7a971bbe" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfdatcad_seq" defaultValue="" name="prfdatcad" nullable="0" physicalName="prfdatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data/hora de cadastro do profissional</remarks>
+    </column>
+    <column id="COL37" populated="true" UUID="e2674e7a-e933-4bfa-87d4-3672e8add0e7" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcpf_seq" defaultValue="" name="prfcpf" nullable="0" physicalName="prfcpf" precision="11" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>CPF do profissional</remarks>
+    </column>
+    <column id="COL38" populated="true" UUID="b2dc52f4-ba2b-4978-8b48-19aba5835f5b" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfstatus_seq" defaultValue="" name="prfstatus" nullable="0" physicalName="prfstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Status do profissional (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL39" populated="true" UUID="6c648e8d-7faf-41cd-9834-aa12176159b6" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL2" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário atrelado ao profissional</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB323" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB322" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB324" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX40" populated="true" UUID="e9a832c2-a22e-4881-89ab-2cc3d38517ab" clustered="false" name="tbprofissional_pkey" physicalName="tbprofissional_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC41" populated="true" UUID="93b99a5b-4a05-4395-bef2-fc4c0ec28dbc" ascendingOrDescending="UNSPECIFIED" column-ref="COL33" name="prfcodigo" physicalName="prfcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB42" populated="true" UUID="2f2dd033-c68c-4fcd-bf0e-c891812b2db8" name="tbcargo" objectType="TABLE" physicalName="tbcargo" >
+   <remarks>Tabela de cadastro dos cargos dos profissionais</remarks>
+   <folder id="FOLTAB421" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL43" populated="true" UUID="97063236-2499-4ec2-9d73-e08c8acd7b24" autoIncrement="false" autoIncrementSequenceName="tbcargo_carcodigo_seq" defaultValue="" name="carcodigo" nullable="0" physicalName="carcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cargo</remarks>
+    </column>
+    <column id="COL44" populated="true" UUID="09098b47-2e94-45a4-996a-f447f50e2da3" autoIncrement="false" autoIncrementSequenceName="tbcargo_carnome_seq" defaultValue="" name="carnome" nullable="0" physicalName="carnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do cargo</remarks>
+    </column>
+    <column id="COL45" populated="true" UUID="7ef00935-03cb-4ce7-a5a3-7c60d4c896f7" autoIncrement="false" autoIncrementSequenceName="tbcargo_cardescricao_seq" defaultValue="" name="cardescricao" nullable="1" physicalName="cardescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Breve descrição do cargo</remarks>
+    </column>
+    <column id="COL46" populated="true" UUID="df2e3b68-4ae9-427c-82c9-7c92f43d52d7" autoIncrement="false" autoIncrementSequenceName="tbcargo_carstatus_seq" defaultValue="" name="carstatus" nullable="0" physicalName="carstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Status do cargo (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB423" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB422" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB424" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX47" populated="true" UUID="5b74d840-b29b-47e3-999b-63301c882ca6" clustered="false" name="tbcargo_pkey" physicalName="tbcargo_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC48" populated="true" UUID="f007129a-e743-4752-b6a2-14a7712dd547" ascendingOrDescending="UNSPECIFIED" column-ref="COL43" name="carcodigo" physicalName="carcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB49" populated="true" UUID="65ffc33f-f595-4f4c-bb94-6d29cc52c7c6" name="tbprofissionalvinculo" objectType="TABLE" physicalName="tbprofissionalvinculo" >
+   <remarks>Tabela do vínculo do profissional com unidade</remarks>
+   <folder id="FOLTAB491" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL50" populated="true" UUID="cd0c8b99-9431-41a1-88d5-9293e188b3f9" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcodigo_seq" defaultValue="" name="prfcodigo" nullable="0" physicalName="prfcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL33" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do profissional</remarks>
+    </column>
+    <column id="COL51" populated="true" UUID="945b50a0-f5f0-4d90-a010-8f0f6faae2e5" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL52" populated="true" UUID="e2ec0a20-b8e7-4341-b8e5-f5aa19d66699" autoIncrement="false" autoIncrementSequenceName="tbcargo_carcodigo_seq" defaultValue="" name="carcodigo" nullable="0" physicalName="carcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL43" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cargo</remarks>
+    </column>
+    <column id="COL53" populated="true" UUID="3f4ab606-01f9-45f4-b1b7-34ad161505f8" autoIncrement="false" autoIncrementSequenceName="tbprofissionalvinculo_prvstatus_seq" defaultValue="" name="prvstatus" nullable="0" physicalName="prvstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do vínculo (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL54" populated="true" UUID="ee2790d6-8223-4c5a-8453-6ba8f2d4fca9" autoIncrement="false" autoIncrementSequenceName="tbturno_turcodigo_seq" defaultValue="" name="turcodigo" nullable="0" physicalName="turcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do turno</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB493" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB492" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB494" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX55" populated="true" UUID="aad3743d-4922-44f0-a02f-b50b9b221fbc" clustered="false" name="tbprofissionalvinculo_pkey" physicalName="tbprofissionalvinculo_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC56" populated="true" UUID="16b759e3-32ce-4dc2-a9ff-2130be5d9b5b" ascendingOrDescending="UNSPECIFIED" column-ref="COL50" name="prfcodigo" physicalName="prfcodigo" />
+     <index-column id="IDC57" populated="true" UUID="aad5fd9a-9562-4570-b716-0e22a2ca7215" ascendingOrDescending="UNSPECIFIED" column-ref="COL51" name="unfcodigo" physicalName="unfcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB58" populated="true" UUID="9a6029d2-fa57-47b7-a9b1-031e93b14354" name="tbequipe" objectType="TABLE" physicalName="tbequipe" >
+   <remarks>Tabela de cadastro das equipes de manutenção</remarks>
+   <folder id="FOLTAB581" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL59" populated="true" UUID="7d474fc4-7181-4427-8ae5-d7dd571d26f0" autoIncrement="false" autoIncrementSequenceName="tbequipe_eqpcodigo_seq" defaultValue="" name="eqpcodigo" nullable="0" physicalName="eqpcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da equipe</remarks>
+    </column>
+    <column id="COL60" populated="true" UUID="b9276223-80bb-4b98-b2e3-26893fdefedf" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL61" populated="true" UUID="edeec71f-6027-4d3f-8e32-83dc4fae72b4" autoIncrement="false" autoIncrementSequenceName="tbequipe_eqpnome_seq" defaultValue="" name="eqpnome" nullable="0" physicalName="eqpnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da equipe</remarks>
+    </column>
+    <column id="COL62" populated="true" UUID="195d566a-a345-4033-8fcf-982f6ff566ea" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcodigo_seq" defaultValue="" name="prfcodigo" nullable="0" physicalName="prfcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL33" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do profissional responsável</remarks>
+    </column>
+    <column id="COL63" populated="true" UUID="94f16b40-31ad-4a60-81bf-950326925035" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL2" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário que cadastrou a equipe</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB583" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB582" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB584" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX64" populated="true" UUID="f2ffb724-209b-4f5d-88fa-7619cbb6bd80" clustered="false" name="tbequipe_pkey" physicalName="tbequipe_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC65" populated="true" UUID="602ab6ed-1dcb-45a6-9bfc-289c6e6ff979" ascendingOrDescending="UNSPECIFIED" column-ref="COL59" name="eqpcodigo" physicalName="eqpcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB66" populated="true" UUID="cc928c63-edd6-4476-9e9f-c483e923e4e0" name="tbturno" objectType="TABLE" physicalName="tbturno" >
+   <remarks>Tabela de cadastros dos turnos de trabalho</remarks>
+   <folder id="FOLTAB661" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL67" populated="true" UUID="d7037af6-6034-4908-ae46-50b730a75083" autoIncrement="false" autoIncrementSequenceName="tbturno_turcodigo_seq" defaultValue="" name="turcodigo" nullable="0" physicalName="turcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do turno</remarks>
+    </column>
+    <column id="COL68" populated="true" UUID="c0bcfd3e-6870-4af9-b755-2493d3eef72a" autoIncrement="false" autoIncrementSequenceName="tbturno_turdescri_seq" defaultValue="" name="turdescri" nullable="0" physicalName="turdescri" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição do turno</remarks>
+    </column>
+    <column id="COL69" populated="true" UUID="6f0c5ba3-ede9-4203-bf0d-c8095121a5e1" autoIncrement="false" autoIncrementSequenceName="tbturno_turstatus_seq" defaultValue="" name="turstatus" nullable="0" physicalName="turstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do turno (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL70" populated="true" UUID="3b5edb29-5955-4419-bb12-d04c674b19a0" autoIncrement="false" autoIncrementSequenceName="tbturno_turhoraini_seq" defaultValue="" name="turhoraini" nullable="0" physicalName="turhoraini" precision="5" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Hora de início do turno (Formato HH:mm)</remarks>
+    </column>
+    <column id="COL71" populated="true" UUID="9bf1de6f-ede0-4f01-9468-20dc5f43633d" autoIncrement="false" autoIncrementSequenceName="tbturno_turhorafim_seq" defaultValue="" name="turhorafim" nullable="0" physicalName="turhorafim" precision="5" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Hora de término do turno (Formato HH:mm)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB663" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB662" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB664" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX72" populated="true" UUID="b85f5375-4c9e-408d-8a6f-ecd956a0ee4d" clustered="false" name="tbturno_pkey" physicalName="tbturno_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC73" populated="true" UUID="eca0c737-564d-4e56-84b2-d97567ff1a8b" ascendingOrDescending="UNSPECIFIED" column-ref="COL67" name="turcodigo" physicalName="turcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB74" populated="true" UUID="3db5e66d-19b1-4969-9d14-86bb2c36a8e3" name="tbimportacaopessoa" objectType="TABLE" physicalName="tbimportacaopessoa" >
+   <remarks>Tabela de cadastros das pessoas oriundas de integração com ERP.</remarks>
+   <folder id="FOLTAB741" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL75" populated="true" UUID="6a1d3062-0dac-43e3-bbb7-b01fcfe24bb2" autoIncrement="false" autoIncrementSequenceName="tbimportacao_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    <column id="COL76" populated="true" UUID="239f5036-1af5-4a2f-adf4-25dd03960f57" autoIncrement="false" autoIncrementSequenceName="tbimportacaopessoa_ipsinfo_seq" defaultValue="" name="ipsinfo" nullable="1" physicalName="ipsinfo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Informações da pessoa (JSON ou XML)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB743" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB742" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB744" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX77" populated="true" UUID="d3be84cc-8ab1-4b46-95a3-fe90edbce68f" clustered="false" name="tbimportacaopessoa_pkey" physicalName="tbimportacaopessoa_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC78" populated="true" UUID="eb01556b-ad03-4098-8a85-6e1d66f5906c" ascendingOrDescending="UNSPECIFIED" column-ref="COL75" name="impcodigo" physicalName="impcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB79" populated="true" UUID="a22806a1-51ac-4b8f-be4c-f4431911575f" name="tbimportacao" objectType="TABLE" physicalName="tbimportacao" >
+   <remarks>Tabela de importação dos dados do ERP.</remarks>
+   <folder id="FOLTAB791" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL80" populated="true" UUID="7fcde5b9-303c-478a-8c88-d021b504edef" autoIncrement="false" autoIncrementSequenceName="tbimportacao_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    <column id="COL81" populated="true" UUID="5cbf2f17-1bb7-4ecb-9ae4-29352530fd80" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL2" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário que realizou a importação</remarks>
+    </column>
+    <column id="COL82" populated="true" UUID="404f7345-d023-47e0-96ae-145cea09831c" autoIncrement="false" autoIncrementSequenceName="tbimportacao_impdatahora_seq" defaultValue="" name="impdatahora" nullable="0" physicalName="impdatahora" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data/hora da importação</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB793" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB792" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB794" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX83" populated="true" UUID="b4f31265-b9a6-47ce-9c26-7063d31a00fb" clustered="false" name="tbimportacao_pkey" physicalName="tbimportacao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC84" populated="true" UUID="d1c9ddb8-1578-4d42-ac1e-48e41aa9227b" ascendingOrDescending="UNSPECIFIED" column-ref="COL80" name="impcodigo" physicalName="impcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB85" populated="true" UUID="69ce3792-f6f9-44d0-8fc1-bf45e3841e97" name="tbequipeprofis" objectType="TABLE" physicalName="tbequipeprofis" >
+   <remarks>Tabela dos profissionais das equipes</remarks>
+   <folder id="FOLTAB851" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL86" populated="true" UUID="fc1eaed0-27bb-4f13-9e06-68d6a0e7837e" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL87" populated="true" UUID="dad26f0e-6ae5-48e1-8f45-86e0124df38c" autoIncrement="false" autoIncrementSequenceName="tbequipe_eqpcodigo_seq" defaultValue="" name="eqpcodigo" nullable="0" physicalName="eqpcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" source-column-ref="COL59" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da equipe</remarks>
+    </column>
+    <column id="COL88" populated="true" UUID="80ee84ba-7b83-46f8-a772-f398200c7d72" autoIncrement="false" autoIncrementSequenceName="tbprofissional_prfcodigo_seq" defaultValue="" name="prfcodigo" nullable="0" physicalName="prfcodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" source-column-ref="COL33" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do profissional</remarks>
+    </column>
+    <column id="COL89" populated="true" UUID="51b6ebd0-455d-4fd7-bc72-ba470f06e1ba" autoIncrement="false" autoIncrementSequenceName="tbequipeprofis_epfstatus_seq" defaultValue="" name="epfstatus" nullable="0" physicalName="epfstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do profissional na equipe (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB853" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB852" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB854" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX90" populated="true" UUID="afe43954-ee7f-4679-9a29-541f7fa0b10e" clustered="false" name="tbequipeprofis_pkey" physicalName="tbequipeprofis_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC91" populated="true" UUID="4bcff142-aca3-429e-bfdc-70f5113104dd" ascendingOrDescending="UNSPECIFIED" column-ref="COL86" name="unfcodigo" physicalName="unfcodigo" />
+     <index-column id="IDC92" populated="true" UUID="ce24e9b2-a8bb-437b-a730-586a33c1f5b2" ascendingOrDescending="UNSPECIFIED" column-ref="COL87" name="eqpcodigo" physicalName="eqpcodigo" />
+     <index-column id="IDC93" populated="true" UUID="19a9aa33-cbe0-412d-9608-da48d18cad64" ascendingOrDescending="UNSPECIFIED" column-ref="COL88" name="prfcodigo" physicalName="prfcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB94" populated="true" UUID="9533030d-b8e7-4834-878f-9ea70979821f" name="tbfabricante" objectType="TABLE" physicalName="tbfabricante" >
+   <remarks>Tabela de cadastro dos fabricantes de máquinas/equipamentos/componentes</remarks>
+   <folder id="FOLTAB941" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL95" populated="true" UUID="1bfa8c12-05b1-48c8-a311-a137fd5ff4d7" autoIncrement="false" autoIncrementSequenceName="tbfabricante_fabcodigo_seq" defaultValue="" name="fabcodigo" nullable="0" physicalName="fabcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do fabricante</remarks>
+    </column>
+    <column id="COL96" populated="true" UUID="28ccb769-0c58-4edf-8df3-ace98fed4e36" autoIncrement="false" autoIncrementSequenceName="tbfabricante_fabrazaosocial_seq" defaultValue="" name="fabrazaosocial" nullable="0" physicalName="fabrazaosocial" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Razão social do fabricante</remarks>
+    </column>
+    <column id="COL97" populated="true" UUID="101a61ed-bdfd-4a62-bf9f-fe5b39e80e08" autoIncrement="false" autoIncrementSequenceName="tbfabricante_fabcnpj_seq" defaultValue="" name="fabcnpj" nullable="0" physicalName="fabcnpj" precision="16" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>CNPJ do fabricante</remarks>
+    </column>
+    <column id="COL98" populated="true" UUID="935643ba-bc23-4d69-9230-4fdace426f5a" autoIncrement="false" autoIncrementSequenceName="tbfabricante_fabstatus_seq" defaultValue="" name="fabstatus" nullable="0" physicalName="fabstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do fabricante (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL99" populated="true" UUID="721c9784-0d3e-4377-9db9-e358e74a08d0" autoIncrement="false" autoIncrementSequenceName="tbimportacao_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB943" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB942" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB944" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX100" populated="true" UUID="f37b9e29-42eb-4d5f-a2d5-22d47a7d77b3" clustered="false" name="tbfabricante_pkey" physicalName="tbfabricante_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC101" populated="true" UUID="05cf0d9c-35c0-4f5a-8e60-276886cc0884" ascendingOrDescending="UNSPECIFIED" column-ref="COL95" name="fabcodigo" physicalName="fabcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB102" populated="true" UUID="11c8b31a-c4a9-431b-b3a2-b46140a5a013" name="tbimportacaofabricante" objectType="TABLE" physicalName="tbimportacaofabricante" >
+   <remarks>Tabela de cadastros dos fabricantes oriundos de integração com ERP.</remarks>
+   <folder id="FOLTAB1021" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL103" populated="true" UUID="dc41fed3-8fcc-4e78-8b43-fa48a8798a77" autoIncrement="false" autoIncrementSequenceName="tbimportacao_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    <column id="COL104" populated="true" UUID="4db02f1e-e890-4b33-aa8a-7b94d1039535" autoIncrement="false" autoIncrementSequenceName="tbimportacaofabricante_ipfdados_seq" defaultValue="" name="ipfdados" nullable="0" physicalName="ipfdados" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dados (JSON) das informações do fabricante</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1023" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1022" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1024" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX105" populated="true" UUID="11b6862f-c7d9-4bc7-b006-85a247def315" clustered="false" name="tbimportacaofabricante_pkey" physicalName="tbimportacaofabricante_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC106" populated="true" UUID="ddcf814f-6211-4d21-a82b-e0f4829f2762" ascendingOrDescending="UNSPECIFIED" column-ref="COL103" name="impcodigo" physicalName="impcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB107" populated="true" UUID="900de3ac-abe1-4567-a981-55641195bf15" name="tbsetor" objectType="TABLE" physicalName="tbsetor" >
+   <remarks>Tabela de cadastro dos setores das unidades fabris.</remarks>
+   <folder id="FOLTAB1071" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL108" populated="true" UUID="7fbc28a9-81b4-4687-bd98-8228cc0679eb" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL109" populated="true" UUID="0a4421bb-507e-40e2-ab30-562ad4c0d36e" autoIncrement="false" autoIncrementSequenceName="tbsetor_setcodigo_seq" defaultValue="" name="setcodigo" nullable="0" physicalName="setcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do setor</remarks>
+    </column>
+    <column id="COL110" populated="true" UUID="cc7ef98a-a840-4a0d-a864-dcc319031dd7" autoIncrement="false" autoIncrementSequenceName="tbsetor_setnome_seq" defaultValue="" name="setnome" nullable="0" physicalName="setnome" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do setor</remarks>
+    </column>
+    <column id="COL111" populated="true" UUID="efe819d8-40c0-4484-998d-68526aa4043b" autoIncrement="false" autoIncrementSequenceName="tbsetor_setdescricao_seq" defaultValue="" name="setdescricao" nullable="0" physicalName="setdescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição das atvididades desempenhadas no setor</remarks>
+    </column>
+    <column id="COL112" populated="true" UUID="5d505bb6-a1f7-4586-a435-1959ee2bb374" autoIncrement="false" autoIncrementSequenceName="tbsetor_setativo_seq" defaultValue="" name="setativo" nullable="0" physicalName="setativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do setor (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL113" populated="true" UUID="36423fea-1300-4a85-833c-fc0ba2972826" autoIncrement="false" autoIncrementSequenceName="tbsetor_setdatcad_seq" defaultValue="" name="setdatcad" nullable="0" physicalName="setdatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data de cadastro do setor</remarks>
+    </column>
+    <column id="COL114" populated="true" UUID="67a6faae-d543-47d2-af06-4c7ddc1848f1" autoIncrement="false" autoIncrementSequenceName="tbsetor_settag_seq" defaultValue="" name="settag" nullable="1" physicalName="settag" precision="7" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tag do setor (Ex.: ABC-001)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1073" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1072" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1074" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX115" populated="true" UUID="207af7c7-127c-4c3d-b15c-29d5afb21c17" clustered="false" name="tbsetor_pkey" physicalName="tbsetor_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC116" populated="true" UUID="02452f05-0e81-4c45-ae43-1bb2e7c5c980" ascendingOrDescending="UNSPECIFIED" column-ref="COL108" name="unfcodigo" physicalName="unfcodigo" />
+     <index-column id="IDC117" populated="true" UUID="59a6de6a-f076-4383-876d-eff7c9014222" ascendingOrDescending="UNSPECIFIED" column-ref="COL109" name="setcodigo" physicalName="setcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB118" populated="true" UUID="8609e8a6-f488-47c3-9367-d3918d28ef37" name="tbcelulaproducao" objectType="TABLE" physicalName="tbcelulaproducao" >
+   <remarks>Tabela de células de produção de um setor</remarks>
+   <folder id="FOLTAB1181" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL119" populated="true" UUID="c07f2596-3f07-4190-b1f3-381493b366cb" autoIncrement="false" autoIncrementSequenceName="tbcelulaproducao_clpcodigo_seq" defaultValue="" name="clpcodigo" nullable="0" physicalName="clpcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da célula de produção</remarks>
+    </column>
+    <column id="COL120" populated="true" UUID="ba932be1-9283-4da9-8fbe-c1518e0d3a6f" autoIncrement="false" autoIncrementSequenceName="tbcelulaproducao_clpnome_seq" defaultValue="" name="clpnome" nullable="0" physicalName="clpnome" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da célula de produção</remarks>
+    </column>
+    <column id="COL121" populated="true" UUID="966b341b-9b41-41c8-9f8e-f30830e31acf" autoIncrement="false" autoIncrementSequenceName="tbcelulaproducao_clpdescricao_seq" defaultValue="" name="clpdescricao" nullable="1" physicalName="clpdescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição da função da célula de produção</remarks>
+    </column>
+    <column id="COL122" populated="true" UUID="19a8780e-4023-42b8-beba-72dc9e8841e5" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="1" physicalName="unfcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL123" populated="true" UUID="784b9a62-cc77-4b3e-999f-461e0d4c1fb5" autoIncrement="false" autoIncrementSequenceName="tbsetor_clpativo_seq" defaultValue="" name="clpativo" nullable="0" physicalName="clpativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status da célula de produção (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    <column id="COL124" populated="true" UUID="ab4f1621-0f0c-4399-94bd-160c0f52f3df" autoIncrement="false" autoIncrementSequenceName="tbsetor_clpdatcad_seq" defaultValue="" name="clpdatcad" nullable="0" physicalName="clpdatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data de cadastro da célula de produção</remarks>
+    </column>
+    <column id="COL125" populated="true" UUID="073c8a3d-fdf9-4d01-9351-8ef357c582e8" autoIncrement="false" autoIncrementSequenceName="tbsetor_setcodigo_seq" defaultValue="" name="setcodigo" nullable="1" physicalName="setcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do setor</remarks>
+    </column>
+    <column id="COL126" populated="true" UUID="f0124c9b-3a32-4e00-9e4e-f9e10232f998" autoIncrement="false" autoIncrementSequenceName="tbcelulaproducao_clptag_seq" defaultValue="" name="clptag" nullable="1" physicalName="clptag" precision="7" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tag da célula de produção (Ex.: ABC-001) 3 primeiros dígitos livres e 3 últimos dígitos iguais do setor a qual pertence</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1183" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1182" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1184" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX127" populated="true" UUID="7f38cec6-2853-4e7d-b7a6-bf6a06ae4e93" clustered="false" name="tbcelulaproducao_pkey" physicalName="tbcelulaproducao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC128" populated="true" UUID="64118db8-1d69-4c94-a1c6-549041e32f19" ascendingOrDescending="UNSPECIFIED" column-ref="COL119" name="clpcodigo" physicalName="clpcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB129" populated="true" UUID="82fa73c6-2724-4dd1-b04c-c1d2c085c90e" name="tbmaquina" objectType="TABLE" physicalName="tbmaquina" >
+   <remarks>Tabela de cadastros de máquinas dos setores/células de produção</remarks>
+   <folder id="FOLTAB1291" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL130" populated="true" UUID="72be4c7c-aa0a-4948-961d-5833116edc97" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqcodigo_seq" defaultValue="" name="maqcodigo" nullable="0" physicalName="maqcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da máquina</remarks>
+    </column>
+    <column id="COL131" populated="true" UUID="2cb130a1-c058-4ed7-a2e8-fd03118ec559" autoIncrement="false" autoIncrementSequenceName="tbsetor_setcodigo_seq" defaultValue="" name="setcodigo" nullable="0" physicalName="setcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do setor</remarks>
+    </column>
+    <column id="COL132" populated="true" UUID="5eacad92-9c7b-4b0e-a0ee-f257b9cb823b" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL17" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL133" populated="true" UUID="cf2738bb-8bfc-48fd-9d20-c2fa26ab36f1" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqdadostec_seq" defaultValue="" name="maqdadostec" nullable="0" physicalName="maqdadostec" precision="1000" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dados técnicos do modelo de máquina</remarks>
+    </column>
+    <column id="COL134" populated="true" UUID="e9bdda02-09cf-433d-9a43-909f79365ebc" autoIncrement="false" autoIncrementSequenceName="tbmodelomaquina_momcodigo_seq" defaultValue="" name="momcodigo" nullable="0" physicalName="momcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do modelo de máquina</remarks>
+    </column>
+    <column id="COL135" populated="true" UUID="d82ae77d-612a-46c3-98ea-cdc572c92a42" autoIncrement="false" autoIncrementSequenceName="tbcelulaproducao_clpcodigo_seq" defaultValue="" name="clpcodigo" nullable="1" physicalName="clpcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da célula de produção</remarks>
+    </column>
+    <column id="COL136" populated="true" UUID="3f1e2142-39c5-405a-8a70-852d61b20b15" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqtag_seq" defaultValue="" name="maqtag" nullable="0" physicalName="maqtag" precision="7" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Tag da máquina (Ex.: ABC-001)</remarks>
+    </column>
+    <column id="COL137" populated="true" UUID="407e511a-32b3-4e48-9c50-f407fdb5cd2c" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqdataaquisicao_seq" defaultValue="" name="maqdataaquisicao" nullable="0" physicalName="maqdataaquisicao" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data de aquisição da máquina</remarks>
+    </column>
+    <column id="COL138" populated="true" UUID="6d50c0bc-3b80-4bab-8430-086c828383f0" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqdatcad_seq" defaultValue="" name="maqdatcad" nullable="0" physicalName="maqdatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data de cadastro da máquina</remarks>
+    </column>
+    <column id="COL139" populated="true" UUID="3b3be05f-7296-447c-8780-a40f423420ec" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqdatexpiragarantia_seq" defaultValue="" name="maqdatexpiragarantia" nullable="1" physicalName="maqdatexpiragarantia" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data de expiração da garantia da máquina</remarks>
+    </column>
+    <column id="COL140" populated="true" UUID="f6d622e2-0dfe-4e66-8d24-9b2a81aec4a6" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqgarantia_seq" defaultValue="" name="maqgarantia" nullable="0" physicalName="maqgarantia" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Indica de a máquina está na garantia (0-Não, 1-Sim)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1293" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1292" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1294" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX141" populated="true" UUID="1492a880-4978-4f3f-bf63-08696c8c3216" clustered="false" name="tbmaquina_pkey" physicalName="tbmaquina_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC142" populated="true" UUID="5053922d-72a2-48e3-8452-6b0e2d153ab1" ascendingOrDescending="UNSPECIFIED" column-ref="COL130" name="maqcodigo" physicalName="maqcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB143" populated="true" UUID="eeb5694b-5827-4df5-865a-5d6a381336bf" name="tbmodelomaquina" objectType="TABLE" physicalName="tbmodelomaquina" >
+   <remarks>Tabela de cadastros de modelos de máquinas</remarks>
+   <folder id="FOLTAB1431" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL144" populated="true" UUID="46d156a7-d14c-4f04-b974-2ff70c6dcc30" autoIncrement="false" autoIncrementSequenceName="tbmodelomaquina_momcodigo_seq" defaultValue="" name="momcodigo" nullable="0" physicalName="momcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do modelo de máquina</remarks>
+    </column>
+    <column id="COL145" populated="true" UUID="d5ee5411-3845-4236-8f98-d6d1d433478e" autoIncrement="false" autoIncrementSequenceName="tbfabricante_fabcodigo_seq" defaultValue="" name="fabcodigo" nullable="1" physicalName="fabcodigo" precision="0" referenceCount="1" scale="0" source-column-ref="COL95" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do fabricante</remarks>
+    </column>
+    <column id="COL146" populated="true" UUID="51188390-44f6-48ce-a333-9cfea6e93400" autoIncrement="false" autoIncrementSequenceName="tbmodelomaquina_mommodelo_seq" defaultValue="" name="mommodelo" nullable="0" physicalName="mommodelo" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Modelo da máquina</remarks>
+    </column>
+    <column id="COL147" populated="true" UUID="2ed7c293-f349-405b-b1d1-3fabdd93ec1e" autoIncrement="false" autoIncrementSequenceName="tbmodelomaquina_momdimensoes_seq" defaultValue="" name="momdimensoes" nullable="0" physicalName="momdimensoes" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dimensões do modelo de máquina</remarks>
+    </column>
+    <column id="COL148" populated="true" UUID="ee55fa09-fe27-4306-ab90-dcfeb8967b6b" autoIncrement="false" autoIncrementSequenceName="tbtipomodelomaquina_tmmcodigo_seq" defaultValue="" name="tmmcodigo" nullable="0" physicalName="tmmcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do tipo de máquina</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1433" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1432" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1434" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX149" populated="true" UUID="d512cc90-4320-4092-927b-2d8ed4560c95" clustered="false" name="tbmodelomaquina_pkey" physicalName="tbmodelomaquina_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC150" populated="true" UUID="c101ec08-82c4-4772-b4a3-aabaf5d8eec4" ascendingOrDescending="UNSPECIFIED" column-ref="COL144" name="momcodigo" physicalName="momcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB151" populated="true" UUID="a8188c65-b692-4b2b-8c48-f196927d1795" name="tbmaquinamanual" objectType="TABLE" physicalName="tbmaquinamanual" >
+   <remarks>Tabela que armazena os manuais da máquina</remarks>
+   <folder id="FOLTAB1511" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL152" populated="true" UUID="a206737e-8ee2-4b9e-85d1-4b3b70bdbc89" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqcodigo_seq" defaultValue="" name="maqcodigo" nullable="0" physicalName="maqcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da máquina</remarks>
+    </column>
+    <column id="COL153" populated="true" UUID="a480b6a7-53e7-4b14-9b57-7e55a1879257" autoIncrement="false" autoIncrementSequenceName="tbmaquinamanual_mqmcodigo_seq" defaultValue="" name="mqmcodigo" nullable="0" physicalName="mqmcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do manual da máquina</remarks>
+    </column>
+    <column id="COL154" populated="true" UUID="b4b9ae97-943b-4013-a130-d48e989321d0" autoIncrement="false" autoIncrementSequenceName="tbmaquinamanual_mqmcaminhoarquivo_seq" defaultValue="" name="mqmcaminhoarquivo" nullable="0" physicalName="mqmcaminhoarquivo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Caminho do arquivo do manual no servidor</remarks>
+    </column>
+    <column id="COL155" populated="true" UUID="bf5dac3a-69c9-4c88-85a8-6bacc2f9261f" autoIncrement="false" autoIncrementSequenceName="tbmaquinamanual_mqmtipo_seq" defaultValue="" name="mqmtipo" nullable="0" physicalName="mqmtipo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Tipo de manual (0-Manual de operação, 1-Manual de manutenção)</remarks>
+    </column>
+    <column id="COL156" populated="true" UUID="9c005a12-302c-4826-b3b0-ce6d8a48210d" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário que cadastrou</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1513" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1512" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1514" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX157" populated="true" UUID="dc25fa06-7873-42e7-8653-874f01abef86" clustered="false" name="tbmaquinamanual_pkey" physicalName="tbmaquinamanual_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC158" populated="true" UUID="17867868-0e5d-4315-bfde-c20669c8e259" ascendingOrDescending="UNSPECIFIED" column-ref="COL152" name="maqcodigo" physicalName="maqcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB159" populated="true" UUID="636a02d8-a122-49dd-8b58-a712a4ad482a" name="tbtipomodelomaquina" objectType="TABLE" physicalName="tbtipomodelomaquina" >
+   <remarks>Tabela dos tipos de máquinas</remarks>
+   <folder id="FOLTAB1591" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL160" populated="true" UUID="871e2f0d-b75c-4033-8410-c0999c8fcaa1" autoIncrement="false" autoIncrementSequenceName="tbtipomodelomaquina_tmmcodigo_seq" defaultValue="" name="tmmcodigo" nullable="0" physicalName="tmmcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do tipo de máquina</remarks>
+    </column>
+    <column id="COL161" populated="true" UUID="00534346-c275-4eb9-91c1-17522ed24cb5" autoIncrement="false" autoIncrementSequenceName="tbtipomodelomaquina_tmmdescricao_seq" defaultValue="" name="tmmdescricao" nullable="0" physicalName="tmmdescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição do tipo de máquina</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1593" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1592" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1594" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX162" populated="true" UUID="779ae9de-91ed-46d6-848e-98bf05769505" clustered="false" name="tbtipomodelomaquina_pkey" physicalName="tbtipomodelomaquina_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC163" populated="true" UUID="e52eb478-1ea7-439e-825c-aa514fa7496a" ascendingOrDescending="UNSPECIFIED" column-ref="COL160" name="tmmcodigo" physicalName="tmmcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB164" populated="true" UUID="99a4b89b-1def-432c-bbd0-bc96c6a3ce8d" name="tbmaquinacomponente" objectType="TABLE" physicalName="tbmaquinacomponente" >
+   <remarks>Tabela dos componentes das máquinas</remarks>
+   <folder id="FOLTAB1641" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL165" populated="true" UUID="b586712a-d689-4b07-a3bf-b98e70dc3d29" autoIncrement="false" autoIncrementSequenceName="tbmaquina_maqcodigo_seq" defaultValue="" name="maqcodigo" nullable="0" physicalName="maqcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da máquina</remarks>
+    </column>
+    <column id="COL166" populated="true" UUID="bc02892f-03aa-42b7-9b52-f284dc4d2141" autoIncrement="false" autoIncrementSequenceName="tbmaquinacomponente_maccodigo_seq" defaultValue="" name="maccodigo" nullable="0" physicalName="maccodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL167" populated="true" UUID="2979a07e-c865-4e90-8445-a63804615a5f" autoIncrement="false" autoIncrementSequenceName="tbcomponente_comcodigo_seq" defaultValue="" name="comcodigo" nullable="0" physicalName="comcodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do componente</remarks>
+    </column>
+    <column id="COL168" populated="true" UUID="b2b189ee-3f0d-42bc-bb0e-06f9bb58cfa4" autoIncrement="false" autoIncrementSequenceName="tbmaquinacomponente_macstatus_seq" defaultValue="" name="macstatus" nullable="0" physicalName="macstatus" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Status do componente da máquina (0-Inativo, 1-Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1643" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1642" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1644" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX169" populated="true" UUID="e0a8bdbd-9a7a-4049-a547-e0429078e528" clustered="false" name="tbmaquinacomponente_pkey" physicalName="tbmaquinacomponente_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC170" populated="true" UUID="183ab275-d8f1-4a01-8696-27a474694cbf" ascendingOrDescending="UNSPECIFIED" column-ref="COL165" name="maqcodigo" physicalName="maqcodigo" />
+     <index-column id="IDC171" populated="true" UUID="f445883a-060e-4ece-a359-d7b5ba74a8aa" ascendingOrDescending="UNSPECIFIED" column-ref="COL166" name="maccodigo" physicalName="maccodigo" />
+     <index-column id="IDC172" populated="true" UUID="e4a88101-6aa1-4545-bf62-ed6f680c42cd" ascendingOrDescending="UNSPECIFIED" column-ref="COL167" name="comcodigo" physicalName="comcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB173" populated="true" UUID="c7448b45-eba4-49cb-8ad7-212d444207b8" name="tbcomponente" objectType="TABLE" physicalName="tbcomponente" >
+   <remarks>Tabela de cadastro dos componentes das máquinas</remarks>
+   <folder id="FOLTAB1731" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL174" populated="true" UUID="16d5e303-c47e-4803-bc0c-21e4c092a17b" autoIncrement="false" autoIncrementSequenceName="tbcomponente_comcodigo_seq" defaultValue="" name="comcodigo" nullable="0" physicalName="comcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do componente</remarks>
+    </column>
+    <column id="COL175" populated="true" UUID="e024339e-aebb-4e79-9913-d1de91e1db1f" autoIncrement="false" autoIncrementSequenceName="tbcomponente_comnome_seq" defaultValue="" name="comnome" nullable="0" physicalName="comnome" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do componente</remarks>
+    </column>
+    <column id="COL176" populated="true" UUID="b3e84582-e01b-4204-9724-60716eaffdf4" autoIncrement="false" autoIncrementSequenceName="tbcomponente_comdadostec_seq" defaultValue="" name="comdadostec" nullable="0" physicalName="comdadostec" precision="1000" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dados e especificações técnicas do componente</remarks>
+    </column>
+    <column id="COL177" populated="true" UUID="a5c71433-b098-4155-bccd-8f17279e56d5" autoIncrement="false" autoIncrementSequenceName="tbmarca_marcodigo_seq" defaultValue="" name="marcodigo" nullable="0" physicalName="marcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da marca</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1733" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1732" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1734" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX178" populated="true" UUID="9c7098fe-5272-45b5-9384-20a6577ee394" clustered="false" name="tbcomponente_pkey" physicalName="tbcomponente_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC179" populated="true" UUID="61e22663-c1db-4b7d-92eb-8829d6118b63" ascendingOrDescending="UNSPECIFIED" column-ref="COL174" name="comcodigo" physicalName="comcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB180" populated="true" UUID="6476b49d-d4bd-48b9-80d9-fc79d289a289" name="tbfornecedor" objectType="TABLE" physicalName="tbfornecedor" >
+   <remarks>Tabela de cadastros dos fornecedores</remarks>
+   <folder id="FOLTAB1801" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL181" populated="true" UUID="71fe7667-7407-42c3-b965-887f0f059f24" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forcodigo_seq" defaultValue="" name="forcodigo" nullable="0" physicalName="forcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do fornecedor</remarks>
+    </column>
+    <column id="COL182" populated="true" UUID="b95a087e-c628-4ac6-9994-9390f2bebf78" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forrazaosocial_seq" defaultValue="" name="forrazaosocial" nullable="0" physicalName="forrazaosocial" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Razão social do fornecedor</remarks>
+    </column>
+    <column id="COL183" populated="true" UUID="1e23c88d-28e1-4b70-a5e1-bc26e0867ea7" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forcnpj_seq" defaultValue="" name="forcnpj" nullable="0" physicalName="forcnpj" precision="16" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>CNPJ do fornecedor</remarks>
+    </column>
+    <column id="COL184" populated="true" UUID="636a6772-693f-40da-b4d7-4e67a040a8fd" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forcontatotelefone_seq" defaultValue="" name="forcontatotelefone" nullable="1" physicalName="forcontatotelefone" precision="20" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Telefone de contato do fornecedor</remarks>
+    </column>
+    <column id="COL185" populated="true" UUID="161a8051-2216-4f08-b4d7-6f381ad29257" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forcontatoemail_seq" defaultValue="" name="forcontatoemail" nullable="1" physicalName="forcontatoemail" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>E-mail de contato do fornecedor</remarks>
+    </column>
+    <column id="COL186" populated="true" UUID="f01df1a3-2e8c-4f7b-8e85-bef404065b62" autoIncrement="false" autoIncrementSequenceName="tbimportacaofornecedor_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1803" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1802" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1804" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX187" populated="true" UUID="315b3551-451f-4700-968e-79c3885336f5" clustered="false" name="tbfornecedor_pkey" physicalName="tbfornecedor_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC188" populated="true" UUID="f3ab3048-89e0-47c7-9ccd-39b37f0e407b" ascendingOrDescending="UNSPECIFIED" column-ref="COL181" name="forcodigo" physicalName="forcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB189" populated="true" UUID="b1e57402-86da-4c61-a52a-b1ebac6754e4" name="tbcomponentefornecedor" objectType="TABLE" physicalName="tbcomponentefornecedor" >
+   <remarks>Tabela de relacionamento dos componentes com os fornecedores</remarks>
+   <folder id="FOLTAB1891" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL190" populated="true" UUID="4bcea51e-7cbf-4089-8cd6-99af00505aee" autoIncrement="false" autoIncrementSequenceName="tbcomponente_comcodigo_seq" defaultValue="" name="comcodigo" nullable="0" physicalName="comcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do componente</remarks>
+    </column>
+    <column id="COL191" populated="true" UUID="ffb47d05-56e2-4c10-a327-b70e233f9278" autoIncrement="false" autoIncrementSequenceName="tbfornecedor_forcodigo_seq" defaultValue="" name="forcodigo" nullable="0" physicalName="forcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do fornecedor</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1893" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1892" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1894" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX192" populated="true" UUID="233e9d3d-3de8-458e-a640-f5bb8cfb44b2" clustered="false" name="tbcomponentefornecedor_pkey" physicalName="tbcomponentefornecedor_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC193" populated="true" UUID="3eacdab5-62df-43f7-9cce-9e31a8958f89" ascendingOrDescending="UNSPECIFIED" column-ref="COL190" name="comcodigo" physicalName="comcodigo" />
+     <index-column id="IDC194" populated="true" UUID="7a165b5d-e554-4b7e-a331-24efbc5bf32f" ascendingOrDescending="UNSPECIFIED" column-ref="COL191" name="forcodigo" physicalName="forcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB195" populated="true" UUID="65ad26de-6017-4059-8a61-152df72896f1" name="tbimportacaofornecedor" objectType="TABLE" physicalName="tbimportacaofornecedor" >
+   <remarks>Tabela de cadastros dos fornecedores oriundos de integração com ERP.</remarks>
+   <folder id="FOLTAB1951" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL196" populated="true" UUID="8cb5dbe1-4ae0-4cae-b7af-45cb3d893487" autoIncrement="false" autoIncrementSequenceName="tbimportacaofornecedor_impcodigo_seq" defaultValue="" name="impcodigo" nullable="0" physicalName="impcodigo" precision="0" primaryKeySeq="0" referenceCount="2" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da importação</remarks>
+    </column>
+    <column id="COL197" populated="true" UUID="de51e2b4-c7fa-4a93-a5c8-8b91d98f1af9" autoIncrement="false" autoIncrementSequenceName="tbimportacaofornecedor_ipfdados_seq" defaultValue="" name="ipfdados" nullable="0" physicalName="ipfdados" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Dados (JSON) das informações do fornecedor</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1953" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1952" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1954" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX198" populated="true" UUID="f8cde96d-3912-4fb9-a959-624a64769089" clustered="false" name="tbimportacaofornecedor_pkey" physicalName="tbimportacaofabricante_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC199" populated="true" UUID="01758baf-b3d1-440a-bb43-995620dd8c26" ascendingOrDescending="UNSPECIFIED" column-ref="COL196" name="impcodigo" physicalName="impcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB200" populated="true" UUID="3de178ce-02c4-4c8a-884b-b56874be4464" name="tbmarca" objectType="TABLE" physicalName="tbmarca" >
+   <remarks>Tabela de cadastro de marcas</remarks>
+   <folder id="FOLTAB2001" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL201" populated="true" UUID="795ca8b0-29d9-4108-9276-708a747ca1c0" autoIncrement="false" autoIncrementSequenceName="tbmarca_marcodigo_seq" defaultValue="" name="marcodigo" nullable="0" physicalName="marcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da marca</remarks>
+    </column>
+    <column id="COL202" populated="true" UUID="a2b59342-1b2d-45c3-b564-4135ef9d3da0" autoIncrement="false" autoIncrementSequenceName="tbmarca_marnome_seq" defaultValue="" name="marnome" nullable="0" physicalName="marnome" precision="150" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da marca</remarks>
+    </column>
+    <column id="COL203" populated="true" UUID="b1a4b079-f1cf-4924-bfed-6f4360627535" autoIncrement="false" autoIncrementSequenceName="tbmarca_mardatcad_seq" defaultValue="" name="mardatcad" nullable="0" physicalName="mardatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks>Data de cadastro da marca</remarks>
+    </column>
+    <column id="COL204" populated="true" UUID="161f85dc-cb56-4fe5-b8cd-ad29ed306ca7" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário de cadastro da marca</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB2003" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB2002" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB2004" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX205" populated="true" UUID="ecbc81c8-2c9f-4bbe-86ee-995a5dcd3ab3" clustered="false" name="tbmarca_pkey" physicalName="tbmarca_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC206" populated="true" UUID="db5f2690-b169-463c-844d-250cefe2effe" ascendingOrDescending="UNSPECIFIED" column-ref="COL201" name="marcodigo" physicalName="marcodigo" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL207" populated="true" UUID="3e25600d-0aaa-47f5-8e0f-09a2f94d684d" deferrability="7" deleteRule="3" fk-table-ref="TAB32" fkCardinality="7" identifying="false" name="tbusuario_tbprofissional_fk" physicalName="tbusuario_tbprofissional_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP208" populated="true" UUID="2e0da8e3-a21d-4374-89ae-a6fda028c794" fk-column-ref="COL39" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL209" populated="true" UUID="cddcd033-2b91-40ce-8c19-8bf9b9255840" deferrability="7" deleteRule="3" fk-table-ref="TAB16" fkCardinality="7" identifying="false" name="tbusuario_tbunidadefabril_fk" physicalName="tbusuario_tbunidadefabril_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP210" populated="true" UUID="ce3bcdbc-00c4-4eb1-9f0e-db5981a671f0" fk-column-ref="COL21" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL211" populated="true" UUID="35567bf0-4e6c-4cff-b55a-f6127170c77d" deferrability="7" deleteRule="3" fk-table-ref="TAB79" fkCardinality="7" identifying="false" name="tbusuario_tbimportacao_fk" physicalName="tbusuario_tbimportacao_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP212" populated="true" UUID="7c277085-91e3-4045-a325-b273e0a93923" fk-column-ref="COL81" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL213" populated="true" UUID="1d44fb66-619f-45d8-a3a6-397ef325ecd8" deferrability="7" deleteRule="3" fk-table-ref="TAB58" fkCardinality="7" identifying="false" name="tbusuario_tbequipe_fk" physicalName="tbusuario_tbequipe_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP214" populated="true" UUID="703ebacf-66e5-4bff-907a-a34984614411" fk-column-ref="COL63" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL215" populated="true" UUID="b587618f-6181-476b-9744-c05355f04e41" deferrability="7" deleteRule="3" fk-table-ref="TAB151" fkCardinality="7" identifying="false" name="tbusuario_tbmaquinamanual_fk" physicalName="tbusuario_tbmaquinamanual_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP216" populated="true" UUID="4d7393e5-3973-453a-9b08-9b7ca20fe994" fk-column-ref="COL156" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL217" populated="true" UUID="a8be5ec1-2e20-4c85-8314-62c1b8ce7daf" deferrability="7" deleteRule="3" fk-table-ref="TAB200" fkCardinality="7" identifying="false" name="tbusuario_tbmarca_fk" physicalName="tbusuario_tbmarca_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP218" populated="true" UUID="95a80b4c-3c2d-4632-8183-f46111c6ecf6" fk-column-ref="COL204" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL219" populated="true" UUID="c94b55e0-d116-4cff-bfec-afc29ed38347" deferrability="7" deleteRule="3" fk-table-ref="TAB16" fkCardinality="7" identifying="false" name="tbcliente_New_Table_fk" physicalName="tbcliente_New_Table_fk" pk-table-ref="TAB10" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP220" populated="true" UUID="0eb7f68e-c51f-4d13-b2c5-d1df004e3a0f" fk-column-ref="COL18" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL11" />
+   </relationship>
+   <relationship id="REL221" populated="true" UUID="4388cb90-8081-4236-8e6e-79599377a900" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="true" name="tbunidadefabril_tbprofissionalvinculo_fk" physicalName="tbunidadefabril_tbprofissionalvinculo_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP222" populated="true" UUID="c701e792-1944-4259-8c7b-256e8908383e" fk-column-ref="COL51" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   </relationship>
+   <relationship id="REL223" populated="true" UUID="0dc92942-4d29-49f4-8f03-193c5c256015" deferrability="7" deleteRule="3" fk-table-ref="TAB58" fkCardinality="7" identifying="false" name="tbunidadefabril_tbequipe_fk" physicalName="tbunidadefabril_tbequipe_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP224" populated="true" UUID="25b1a635-6a49-42b9-bf60-a179e29ae735" fk-column-ref="COL60" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   </relationship>
+   <relationship id="REL225" populated="true" UUID="fc506dbb-4720-424c-b36d-f5a36339d57b" deferrability="7" deleteRule="3" fk-table-ref="TAB107" fkCardinality="7" identifying="true" name="tbunidadefabril_tbsetor_fk" physicalName="tbunidadefabril_tbsetor_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP226" populated="true" UUID="ef66dba9-2d3d-4586-a7c9-f6c1690cd6d1" fk-column-ref="COL108" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   </relationship>
+   <relationship id="REL227" populated="true" UUID="a204b49c-5c7e-45c7-8fdd-26cafd7a879a" deferrability="7" deleteRule="3" fk-table-ref="TAB16" fkCardinality="7" identifying="false" name="tbtipounidade_tbunidadefabril_fk" physicalName="tbtipounidade_tbunidadefabril_fk" pk-table-ref="TAB25" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP228" populated="true" UUID="d6c0c0bd-08f2-4c2e-b26a-d72aa97f41e9" fk-column-ref="COL19" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL26" />
+   </relationship>
+   <relationship id="REL229" populated="true" UUID="65639482-d1cf-4d72-87f4-9a82d37eb52d" deferrability="7" deleteRule="3" fk-table-ref="TAB16" fkCardinality="7" identifying="false" name="tbprofissional_tbunidadefabril_fk" physicalName="tbprofissional_tbunidadefabril_fk" pk-table-ref="TAB32" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP230" populated="true" UUID="a63924b5-1e10-4253-85d3-0f964a987915" fk-column-ref="COL20" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL33" />
+   </relationship>
+   <relationship id="REL231" populated="true" UUID="4a79753c-723e-4642-b844-3abd2610fee5" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="true" name="tbprofissional_tbprofissionalvinculo_fk" physicalName="tbprofissional_tbprofissionalvinculo_fk" pk-table-ref="TAB32" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP232" populated="true" UUID="daf5b4d3-cc51-4bc7-b290-1ec2c1d432bd" fk-column-ref="COL50" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL33" />
+   </relationship>
+   <relationship id="REL233" populated="true" UUID="9bd01ecd-0385-448c-84c1-4ba9c3139b6e" deferrability="7" deleteRule="3" fk-table-ref="TAB58" fkCardinality="7" identifying="false" name="tbprofissional_tbequipe_fk" physicalName="tbprofissional_tbequipe_fk" pk-table-ref="TAB32" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP234" populated="true" UUID="879ad7b4-0b86-46c2-96ae-9833f5126c66" fk-column-ref="COL62" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL33" />
+   </relationship>
+   <relationship id="REL235" populated="true" UUID="18e3608d-54dd-42bd-bc1c-024c0aa072f2" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="false" name="tbcargo_tbprofissionalvinculo_fk" physicalName="tbcargo_tbprofissionalvinculo_fk" pk-table-ref="TAB42" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP236" populated="true" UUID="76ab4c64-de24-43df-86a9-4e3f98326929" fk-column-ref="COL52" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL43" />
+   </relationship>
+   <relationship id="REL237" populated="true" UUID="14f58626-3d72-4dbb-9ada-825fcdc033e6" deferrability="7" deleteRule="3" fk-table-ref="TAB85" fkCardinality="7" identifying="true" name="tbprofissionalvinculo_tbequipeprofis_fk" physicalName="tbprofissionalvinculo_tbequipeprofis_fk" pk-table-ref="TAB49" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP238" populated="true" UUID="cbd2a4df-70ba-4c9a-bcf5-8594323ebad2" fk-column-ref="COL88" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL50" />
+    <column-mapping id="CMP239" populated="true" UUID="1a315815-f9a5-45eb-b29f-8883fae02f45" fk-column-ref="COL86" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL51" />
+   </relationship>
+   <relationship id="REL240" populated="true" UUID="e3a7cfd8-9c12-4bdc-b228-101b6504ba84" deferrability="7" deleteRule="3" fk-table-ref="TAB85" fkCardinality="7" identifying="true" name="tbequipe_tbequipeprofis_fk" physicalName="tbequipe_tbequipeprofis_fk" pk-table-ref="TAB58" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP241" populated="true" UUID="94f7d05f-ab95-41ac-871f-112bb1caf41d" fk-column-ref="COL87" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL59" />
+   </relationship>
+   <relationship id="REL242" populated="true" UUID="523a4dca-52b9-49a7-ae2b-92332d768148" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="false" name="tbturno_tbprofissionalvinculo_fk" physicalName="tbturno_tbprofissionalvinculo_fk" pk-table-ref="TAB66" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP243" populated="true" UUID="55954001-b3d8-481a-8ca7-ae5db4323b01" fk-column-ref="COL54" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL67" />
+   </relationship>
+   <relationship id="REL244" populated="true" UUID="01a06fdf-9f20-4907-a606-627c404fcfc2" deferrability="7" deleteRule="3" fk-table-ref="TAB32" fkCardinality="7" identifying="false" name="tbpessoa_tbprofissional_fk" physicalName="tbpessoa_tbprofissional_fk" pk-table-ref="TAB74" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL245" populated="true" UUID="c44fb264-59fc-4d15-95fa-43283980d493" deferrability="7" deleteRule="3" fk-table-ref="TAB102" fkCardinality="7" identifying="true" name="tbimportacao_tbimportacaofabricante_fk" physicalName="tbimportacao_tbimportacaofabricante_fk" pk-table-ref="TAB79" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP246" populated="true" UUID="8c94b44e-38b5-4385-ab3a-8225b94ee330" fk-column-ref="COL103" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL80" />
+   </relationship>
+   <relationship id="REL247" populated="true" UUID="90d7951f-e097-4975-a106-be5f7d2c649f" deferrability="7" deleteRule="3" fk-table-ref="TAB195" fkCardinality="7" identifying="true" name="tbimportacao_tbimportacaofornecedor_fk" physicalName="tbimportacao_tbimportacaofornecedor_fk" pk-table-ref="TAB79" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP248" populated="true" UUID="86a93381-8965-405c-b9c0-b9aab134a1f4" fk-column-ref="COL196" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL80" />
+   </relationship>
+   <relationship id="REL249" populated="true" UUID="f94cfac8-1108-4341-a6aa-5134322b36d7" deferrability="7" deleteRule="3" fk-table-ref="TAB74" fkCardinality="7" identifying="true" name="tbimportacao_tbimportacaopessoa_fk" physicalName="tbimportacao_tbimportacaopessoa_fk" pk-table-ref="TAB79" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP250" populated="true" UUID="a3c5c5ff-19eb-4ef1-b6fd-e490c4374990" fk-column-ref="COL75" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL80" />
+   </relationship>
+   <relationship id="REL251" populated="true" UUID="a9182e94-7423-43b3-a578-a39347dddf14" deferrability="7" deleteRule="3" fk-table-ref="TAB143" fkCardinality="7" identifying="false" name="tbfabricante_tbmodelomaquina_fk" physicalName="tbfabricante_tbmodelomaquina_fk" pk-table-ref="TAB94" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP252" populated="true" UUID="831cb477-5e5c-4570-a86b-01afbe5d98cb" fk-column-ref="COL145" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL95" />
+   </relationship>
+   <relationship id="REL253" populated="true" UUID="ca282263-5134-47b6-9851-cefe30a5fc89" deferrability="7" deleteRule="3" fk-table-ref="TAB94" fkCardinality="7" identifying="false" name="tbimportacaofabricante_tbfabricante_fk" physicalName="tbimportacaofabricante_tbfabricante_fk" pk-table-ref="TAB102" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP254" populated="true" UUID="5081bdb0-45c4-436a-870a-dca888abeb8f" fk-column-ref="COL99" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL103" />
+   </relationship>
+   <relationship id="REL255" populated="true" UUID="a2ce1c5a-9a1b-48a1-9b56-d2ee4fd02b18" deferrability="7" deleteRule="3" fk-table-ref="TAB118" fkCardinality="7" identifying="false" name="tbsetor_tbcelulaproducao_fk" physicalName="tbsetor_tbcelulaproducao_fk" pk-table-ref="TAB107" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP256" populated="true" UUID="3c1e7559-941e-4c03-a34c-51a357c470de" fk-column-ref="COL125" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL109" />
+    <column-mapping id="CMP257" populated="true" UUID="6c4eaf12-af0e-49c4-86dc-068b5aa2822d" fk-column-ref="COL122" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL108" />
+   </relationship>
+   <relationship id="REL258" populated="true" UUID="79aff089-8a7d-49ba-a35e-220fae0ac213" deferrability="7" deleteRule="3" fk-table-ref="TAB129" fkCardinality="7" identifying="false" name="tbsetor_tbmaquina_fk" physicalName="tbsetor_tbmaquina_fk" pk-table-ref="TAB107" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP259" populated="true" UUID="253ada2d-2690-41bf-899c-9d0637746806" fk-column-ref="COL131" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL109" />
+    <column-mapping id="CMP260" populated="true" UUID="a292f7ea-d2eb-4733-9a3f-36f76d844504" fk-column-ref="COL132" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL108" />
+   </relationship>
+   <relationship id="REL261" populated="true" UUID="02433fee-69f4-4f27-b8b8-286e87f593e8" deferrability="7" deleteRule="3" fk-table-ref="TAB129" fkCardinality="7" identifying="false" name="tbcelulaproducao_tbmaquina_fk" physicalName="tbcelulaproducao_tbmaquina_fk" pk-table-ref="TAB118" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP262" populated="true" UUID="839ef498-2c19-495a-985e-0ae1a91605e4" fk-column-ref="COL135" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL119" />
+   </relationship>
+   <relationship id="REL263" populated="true" UUID="8f050b9f-7393-4876-8a06-a3bf30c48cbb" deferrability="7" deleteRule="3" fk-table-ref="TAB151" fkCardinality="7" identifying="true" name="tbmaquina_tbmaquinamanual_fk" physicalName="tbmaquina_tbmaquinamanual_fk" pk-table-ref="TAB129" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP264" populated="true" UUID="6d9bb825-7b1a-496e-a067-f24a68e83160" fk-column-ref="COL152" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL130" />
+   </relationship>
+   <relationship id="REL265" populated="true" UUID="2c2ebad3-641f-4d41-abec-0a3370734553" deferrability="7" deleteRule="3" fk-table-ref="TAB164" fkCardinality="7" identifying="true" name="tbmaquina_tbmaquinacomponente_fk" physicalName="tbmaquina_tbmaquinacomponente_fk" pk-table-ref="TAB129" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP266" populated="true" UUID="f36cddec-7620-4d5e-980f-e7759a19a905" fk-column-ref="COL165" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL130" />
+   </relationship>
+   <relationship id="REL267" populated="true" UUID="caf10ee5-fa14-48a1-aff6-0a73f77545c9" deferrability="7" deleteRule="3" fk-table-ref="TAB129" fkCardinality="7" identifying="false" name="tbmodelomaquina_tbmaquina_fk" physicalName="tbmodelomaquina_tbmaquina_fk" pk-table-ref="TAB143" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP268" populated="true" UUID="79ec8a5d-2fd0-47a5-95fa-256503837761" fk-column-ref="COL134" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL144" />
+   </relationship>
+   <relationship id="REL269" populated="true" UUID="1a011163-6d8e-40ea-8ea7-d5fe07852d0c" deferrability="7" deleteRule="3" fk-table-ref="TAB143" fkCardinality="7" identifying="false" name="tbtipomodelomaquina_tbmodelomaquina_fk" physicalName="tbtipomodelomaquina_tbmodelomaquina_fk" pk-table-ref="TAB159" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP270" populated="true" UUID="3a17b8cb-9182-46ec-9045-39366ba90854" fk-column-ref="COL148" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL160" />
+   </relationship>
+   <relationship id="REL271" populated="true" UUID="0db60f4e-4ad0-41e4-a321-89e35af170ed" deferrability="7" deleteRule="3" fk-table-ref="TAB189" fkCardinality="7" identifying="true" name="tbcomponente_tbcomponentefornecedor_fk" physicalName="tbcomponente_tbcomponentefornecedor_fk" pk-table-ref="TAB173" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP272" populated="true" UUID="5e0b4cf8-2619-4fae-a445-4854d5dd7dc1" fk-column-ref="COL190" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL174" />
+   </relationship>
+   <relationship id="REL273" populated="true" UUID="9fb10887-7ca0-47aa-a886-2cd916e290ed" deferrability="7" deleteRule="3" fk-table-ref="TAB164" fkCardinality="7" identifying="true" name="tbcomponente_tbmaquinacomponente_fk" physicalName="tbcomponente_tbmaquinacomponente_fk" pk-table-ref="TAB173" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP274" populated="true" UUID="28a0aedf-aa0e-4fe0-9030-9ef9ce254d9b" fk-column-ref="COL167" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL174" />
+   </relationship>
+   <relationship id="REL275" populated="true" UUID="21261fb6-00d0-422f-b850-7691acf8bbdf" deferrability="7" deleteRule="3" fk-table-ref="TAB189" fkCardinality="7" identifying="true" name="tbfornecedor_tbcomponentefornecedor_fk" physicalName="tbfornecedor_tbcomponentefornecedor_fk" pk-table-ref="TAB180" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP276" populated="true" UUID="e5fce737-8d83-40cd-b0c4-71bf474215f1" fk-column-ref="COL191" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL181" />
+   </relationship>
+   <relationship id="REL277" populated="true" UUID="e1d1b815-c89a-4515-80b2-c37674931735" deferrability="7" deleteRule="3" fk-table-ref="TAB180" fkCardinality="7" identifying="false" name="tbimportacaofornecedor_tbfornecedor_fk" physicalName="tbimportacaofornecedor_tbfornecedor_fk" pk-table-ref="TAB195" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP278" populated="true" UUID="a2204b7f-bf85-45da-91ed-26ac130ddf5e" fk-column-ref="COL186" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL196" />
+   </relationship>
+   <relationship id="REL279" populated="true" UUID="61a9c002-3731-4d99-8961-4e482fedf32a" deferrability="7" deleteRule="3" fk-table-ref="TAB173" fkCardinality="7" identifying="false" name="tbmarca_tbcomponente_fk" physicalName="tbmarca_tbcomponente_fk" pk-table-ref="TAB200" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP280" populated="true" UUID="642df6d3-b68e-478f-b260-fb83fdd5c7cc" fk-column-ref="COL177" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL201" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="mhu"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="0.8408964152537145" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="393" y="110" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB10" x="920" y="44" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB16" x="76" y="243" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB25" x="57" y="693" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB32" x="441" y="362" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB42" x="899" y="676" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB49" x="614" y="668" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB58" x="353" y="796" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB66" x="914" y="843" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB74" x="736" y="409" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB79" x="671" y="143" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB85" x="583" y="988" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB94" x="1329" y="147" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB102" x="931" y="143" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB107" x="1025" y="303" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB118" x="1026" y="485" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB129" x="1361" y="554" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB143" x="1384" y="347" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB151" x="1362" y="815" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB159" x="1631" y="190" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB164" x="1642" y="436" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB173" x="1637" y="775" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB180" x="1359" y="985" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB189" x="1680" y="922" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB195" x="976" y="1017" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB200" x="1779" y="586" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL219" pkConnection="0.23943661971830985" fkConnection="0.24892703862660945" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
+  <table-link relationship-ref="REL227" pkConnection="0.5477386934673367" fkConnection="0.4712041884816754" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-link relationship-ref="REL244" pkConnection="0.49295774647887325" fkConnection="0.5106382978723404" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL207" pkConnection="0.6230366492146597" fkConnection="0.3717277486910995" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL229" pkConnection="0.09929078014184398" fkConnection="0.6991150442477876" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL209" pkConnection="0.31413612565445026" fkConnection="0.630901287553648" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL231" pkConnection="0.5602094240837696" fkConnection="0.20465116279069767" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL235" pkConnection="0.49411764705882355" fkConnection="0.5050505050505051" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL221" pkConnection="0.6223175965665236" fkConnection="0.3665158371040724" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL223" pkConnection="0.5579399141630901" fkConnection="0.4325581395348837" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL233" pkConnection="0.27225130890052357" fkConnection="0.7291666666666666" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL242" pkConnection="0.41414141414141414" fkConnection="0.7" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="66"/>
+  <table-link relationship-ref="REL211" pkConnection="0.6017699115044248" fkConnection="0.49295774647887325" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL240" pkConnection="0.6266094420600858" fkConnection="0.2791666666666667" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL237" pkConnection="0.42346938775510207" fkConnection="0.5757575757575758" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL213" pkConnection="0.39790575916230364" fkConnection="0.6041666666666666" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL253" pkConnection="0.4883720930232558" fkConnection="0.26262626262626265" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL225" pkConnection="0.3838383838383838" fkConnection="0.48333333333333334" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="129"/>
+  <table-link relationship-ref="REL255" pkConnection="0.5" fkConnection="0.4854368932038835" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL258" pkConnection="0.7952755905511811" fkConnection="0.352112676056338" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL251" pkConnection="0.6303317535545023" fkConnection="0.33476394849785407" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL267" pkConnection="0.43776824034334766" fkConnection="0.5462555066079295" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL261" pkConnection="0.7038834951456311" fkConnection="0.7256637168141593" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL263" pkConnection="0.5022026431718062" fkConnection="0.4829059829059829" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL269" pkConnection="0.32589285714285715" fkConnection="0.7854077253218884" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL265" pkConnection="0.3825136612021858" fkConnection="0.7294117647058823" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL271" pkConnection="0.460093896713615" fkConnection="0.5045454545454545" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL275" pkConnection="0.504424778761062" fkConnection="0.4954545454545455" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="65"/>
+  <table-link relationship-ref="REL215" pkConnection="0.8708133971291866" fkConnection="0.6161616161616161" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL273" pkConnection="0.504424778761062" fkConnection="0.49321266968325794" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-link relationship-ref="REL245" pkConnection="0.43661971830985913" fkConnection="0.543859649122807" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL217" pkConnection="0.168141592920354" fkConnection="0.7735849056603774" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="129"/>
+  <table-link relationship-ref="REL279" pkConnection="0.4669811320754717" fkConnection="0.6327433628318584" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL277" pkConnection="0.47368421052631576" fkConnection="0.504424778761062" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL247" pkConnection="0.9" fkConnection="0.47368421052631576" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL249" pkConnection="0.5666666666666667" fkConnection="0.23853211009174313" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.9">
+ <project-name>ML_GLO</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="56da2a23-ef16-4a1d-86bc-fd54e10e34e9" name="tbgrupousuario" objectType="TABLE" physicalName="tbgrupousuario" >
+   <remarks>Tabela de domínio dos usuários do sistema</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="08907217-04ef-4b1b-9bd3-c635f923fb13" autoIncrement="false" autoIncrementSequenceName="tbgrupousuario_grucodigo_seq" defaultValue="" name="grucodigo" nullable="0" physicalName="grucodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do grupo</remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="dec85ab0-5d71-483b-ac45-6c09a2eb144a" autoIncrement="false" autoIncrementSequenceName="tbgrupousuario_grunome_seq" defaultValue="" name="grunome" nullable="0" physicalName="grunome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do grupo</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="0fa57cc1-c8b2-4738-a724-91b429ceb01c" autoIncrement="false" autoIncrementSequenceName="tbgrupousuario_grudescricao_seq" defaultValue="" name="grudescricao" nullable="0" physicalName="grudescricao" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição do grupo</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="d1824f12-7dd1-4bb8-988d-f0cef24c4ace" autoIncrement="false" autoIncrementSequenceName="tbgrupousuario_gruativo_seq" defaultValue="" name="gruativo" nullable="0" physicalName="gruativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do grupo (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX6" populated="true" UUID="43fb3576-25fd-4d3c-859f-d6f932b495a8" clustered="false" name="grupousuario_pkey" physicalName="grupousuario_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC7" populated="true" UUID="5a945d02-e170-492a-b066-bcc88d3a0cf2" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="grucodigo" physicalName="grucodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB8" populated="true" UUID="94a73164-9a87-4446-99d3-155b956ae42d" name="tbusuario" objectType="TABLE" physicalName="tbusuario" >
+   <remarks>Tabela que armazena informações dos usuários do sistema</remarks>
+   <folder id="FOLTAB81" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL9" populated="true" UUID="d9acd058-31d3-4094-a1cd-3fef3241b114" autoIncrement="false" autoIncrementSequenceName="tbusuario_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do usuário</remarks>
+    </column>
+    <column id="COL10" populated="true" UUID="fa1443e4-0634-4297-8b89-ed024150a18e" autoIncrement="false" autoIncrementSequenceName="tbusuario_grucodigo_seq" defaultValue="" name="grucodigo" nullable="0" physicalName="grucodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do grupo do usuário</remarks>
+    </column>
+    <column id="COL11" populated="true" UUID="c5fe181b-deb8-46ba-a153-e8740aff23e5" autoIncrement="false" autoIncrementSequenceName="tbusuario_usulogin_seq" defaultValue="" name="usulogin" nullable="0" physicalName="usulogin" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Login do usuário</remarks>
+    </column>
+    <column id="COL12" populated="true" UUID="370ef5a8-8ebd-47c3-bb44-50aa7321ca1c" autoIncrement="false" autoIncrementSequenceName="tbusuario_ususenha_seq" defaultValue="" name="ususenha" nullable="0" physicalName="ususenha" precision="32" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Senha do usuário</remarks>
+    </column>
+    <column id="COL13" populated="true" UUID="bf27f297-4159-45ff-b1fb-b35b3e785f1c" autoIncrement="false" autoIncrementSequenceName="tbusuario_usudatcad_seq" defaultValue="" name="usudatcad" nullable="0" physicalName="usudatcad" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data de cadastro do usuário</remarks>
+    </column>
+    <column id="COL14" populated="true" UUID="11d19923-ef71-4147-be3b-501c7cc00549" autoIncrement="false" autoIncrementSequenceName="tbusuario_usudatalt_seq" defaultValue="" name="usudatalt" nullable="1" physicalName="usudatalt" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data da última alteração do usuário</remarks>
+    </column>
+    <column id="COL15" populated="true" UUID="e1cfa765-9d2e-48c3-93a2-d62d6623ca18" autoIncrement="false" autoIncrementSequenceName="tbusuario_usuativo_seq" defaultValue="" name="usuativo" nullable="0" physicalName="usuativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do usuário (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB83" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB82" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB84" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX16" populated="true" UUID="40a6b42a-a055-423e-a05d-6e576b91068f" clustered="false" name="tbusuario_pkey" physicalName="tbusuario_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC17" populated="true" UUID="b8d50fb1-2f93-45e9-90ca-3dbd3745bdf8" ascendingOrDescending="UNSPECIFIED" column-ref="COL9" name="usucodigo" physicalName="usucodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB18" populated="true" UUID="57456ee8-3351-4bf9-a161-dd118e3bd928" name="tbrotina" objectType="TABLE" physicalName="tbrotina" >
+   <remarks>Tabela de rotinas presentes em cada módulo do sistema.</remarks>
+   <folder id="FOLTAB181" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL19" populated="true" UUID="cd2f6148-9bcc-4651-830b-0fce3ab32b81" autoIncrement="false" autoIncrementSequenceName="tbrotina_rotcodigo_seq" defaultValue="" name="rotcodigo" nullable="0" physicalName="rotcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da rotina</remarks>
+    </column>
+    <column id="COL20" populated="true" UUID="8b782cbf-4986-447c-ab60-0d6c3e7120cc" autoIncrement="false" autoIncrementSequenceName="tbrotina_modcodigo_seq" defaultValue="" name="modcodigo" nullable="0" physicalName="modcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do módulo</remarks>
+    </column>
+    <column id="COL21" populated="true" UUID="01c8b02d-321b-4c54-b46b-abc8362c77f6" autoIncrement="false" autoIncrementSequenceName="tbrotina_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL22" populated="true" UUID="d714f820-0f3f-40ee-b027-d794bca6abf1" autoIncrement="false" autoIncrementSequenceName="tbrotina_rotnome_seq" defaultValue="" name="rotnome" nullable="0" physicalName="rotnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da rotina</remarks>
+    </column>
+    <column id="COL23" populated="true" UUID="9c1ce7d6-3ecf-4b3c-a92c-13b57b4284ec" autoIncrement="false" autoIncrementSequenceName="tbrotina_rotcaminho_seq" defaultValue="" name="rotcaminho" nullable="0" physicalName="rotcaminho" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Caminho (path) da rotina</remarks>
+    </column>
+    <column id="COL24" populated="true" UUID="9779877f-cb39-404a-b155-9fee4226952e" autoIncrement="false" autoIncrementSequenceName="tbrotina_rotdescricao_seq" defaultValue="" name="rotdescricao" nullable="0" physicalName="rotdescricao" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição da rotina</remarks>
+    </column>
+    <column id="COL25" populated="true" UUID="ceac3c72-7f2b-4016-850f-dfb743bc935e" autoIncrement="false" autoIncrementSequenceName="tbrotina_rotativo_seq" defaultValue="" name="rotativo" nullable="0" physicalName="rotativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status da rotina (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB183" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB182" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB184" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX26" populated="true" UUID="171eedb3-663d-4ee6-ae24-fda715c392de" clustered="false" name="tbrotina_pkey" physicalName="tbrotina_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC27" populated="true" UUID="146920dc-3771-4f0b-9b5f-3ae2d96f58fe" ascendingOrDescending="UNSPECIFIED" column-ref="COL19" name="rotcodigo" physicalName="rotcodigo" />
+     <index-column id="IDC28" populated="true" UUID="6e3f6568-a9af-4fc2-b123-f60a2fc09a11" ascendingOrDescending="UNSPECIFIED" column-ref="COL20" name="modcodigo" physicalName="modcodigo" />
+     <index-column id="IDC29" populated="true" UUID="b5fed6c0-406a-4e7b-962e-120d5392071c" ascendingOrDescending="UNSPECIFIED" column-ref="COL21" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB30" populated="true" UUID="2be90d07-c883-4bce-8efa-76042df7b5a6" name="tbsistema" objectType="TABLE" physicalName="tbsistema" >
+   <remarks>Tabela de domínio do sistema</remarks>
+   <folder id="FOLTAB301" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL31" populated="true" UUID="644c54e7-6317-4799-ab18-cab85b95288a" autoIncrement="false" autoIncrementSequenceName="tbsistema_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do sistema</remarks>
+    </column>
+    <column id="COL32" populated="true" UUID="6057bd5b-65c3-4e88-bc46-aacb9cd36321" autoIncrement="false" autoIncrementSequenceName="tbsistema_sisnome_seq" defaultValue="" name="sisnome" nullable="0" physicalName="sisnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do sistema</remarks>
+    </column>
+    <column id="COL33" populated="true" UUID="ad014074-8efa-471d-9e60-f1f427f515ea" autoIncrement="false" autoIncrementSequenceName="tbsistema_sisativo_seq" defaultValue="" name="sisativo" nullable="0" physicalName="sisativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do sistema (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    <column id="COL34" populated="true" UUID="def70dbc-9587-4dd3-8f46-7e5c8273030b" autoIncrement="false" autoIncrementSequenceName="tbcliente_clicodigo_seq" defaultValue="" name="clicodigo" nullable="0" physicalName="clicodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do cliente</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB303" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB302" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB304" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX35" populated="true" UUID="73795226-aaa9-499e-b39d-314b4fa61a3e" clustered="false" name="tbsistema_pkey" physicalName="tbsistema_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC36" populated="true" UUID="8ed2fa4d-5669-4111-9a92-2daa48fedcfa" ascendingOrDescending="UNSPECIFIED" column-ref="COL31" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB37" populated="true" UUID="ebbfae70-0e64-40a7-8be7-c823beda821f" name="tbmodulo" objectType="TABLE" physicalName="tbmodulo" >
+   <remarks>Tabela de domínio dos módulos disponíveis no sistema.</remarks>
+   <folder id="FOLTAB371" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL38" populated="true" UUID="399a9fdf-51f7-4b34-9efc-239841af46ea" autoIncrement="false" autoIncrementSequenceName="tbmodulo_modcodigo_seq" defaultValue="" name="modcodigo" nullable="0" physicalName="modcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do módulo</remarks>
+    </column>
+    <column id="COL39" populated="true" UUID="2f3de2cb-82d2-4085-9612-949ec1f56539" autoIncrement="false" autoIncrementSequenceName="tbmodulo_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL40" populated="true" UUID="1e92c0d8-a6e3-40b7-a0b3-efb09cf241ef" autoIncrement="false" autoIncrementSequenceName="tbmodulo_modsigla_seq" defaultValue="" name="modsigla" nullable="0" physicalName="modsigla" precision="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Sigla do módulo</remarks>
+    </column>
+    <column id="COL41" populated="true" UUID="50c2dbcf-a3c6-4fee-a2a4-ad3adc130851" autoIncrement="false" autoIncrementSequenceName="tbmodulo_modnome_seq" defaultValue="" name="modnome" nullable="0" physicalName="modnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do módulo</remarks>
+    </column>
+    <column id="COL42" populated="true" UUID="d3558f87-6ee1-48b1-ba85-b8eecc725302" autoIncrement="false" autoIncrementSequenceName="tbmodulo_modativo_seq" defaultValue="" name="modativo" nullable="0" physicalName="modativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do módulo (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB373" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB372" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB374" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX43" populated="true" UUID="00a02e62-3773-42b9-9705-24999071e866" clustered="false" name="tbmodulo_pkey" physicalName="tbmodulo_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC44" populated="true" UUID="6dd8b143-e563-4178-835d-20fbe4b2b864" ascendingOrDescending="UNSPECIFIED" column-ref="COL38" name="modcodigo" physicalName="modcodigo" />
+     <index-column id="IDC45" populated="true" UUID="f8ebbeb9-bd41-4af8-acf4-95fcb6bfc65e" ascendingOrDescending="UNSPECIFIED" column-ref="COL39" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB46" populated="true" UUID="8eef09b8-18f2-4cba-a623-198924d2482c" name="tbsistemamanutencao" objectType="TABLE" physicalName="tbsistemamanutencao" >
+   <remarks>Tabela de manutenções do sistema (log de releases)</remarks>
+   <folder id="FOLTAB461" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL47" populated="true" UUID="4eab287e-fc28-45c8-9632-71e7e77c7560" autoIncrement="false" autoIncrementSequenceName="tbsistemamanutencao_simcodigo_seq" defaultValue="" name="simcodigo" nullable="0" physicalName="simcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da manutenção</remarks>
+    </column>
+    <column id="COL48" populated="true" UUID="3a679374-f63e-475e-8e75-7a9bb32f6ec2" autoIncrement="false" autoIncrementSequenceName="tbsistemamanutencao_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL49" populated="true" UUID="ed46098b-abea-4d92-8572-0f99307fdaa8" autoIncrement="false" autoIncrementSequenceName="tbsistemamanutencao_simativo_seq" defaultValue="" name="simativo" nullable="0" physicalName="simativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status da manutenção (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    <column id="COL50" populated="true" UUID="5a7d0d44-e3dc-4d83-a1cc-a5c4bf6007ad" autoIncrement="false" autoIncrementSequenceName="tbsistemamanutencao_simdatinicio_seq" defaultValue="" name="simdatinicio" nullable="0" physicalName="simdatinicio" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data/hora de início da manutenção</remarks>
+    </column>
+    <column id="COL51" populated="true" UUID="b07d160c-df24-420c-a157-220b1527b02e" autoIncrement="false" autoIncrementSequenceName="tbsistemamanutencao_simdatafim_seq" defaultValue="" name="simdatafim" nullable="0" physicalName="simdatafim" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data/hora fim da manutenção</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB463" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB462" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB464" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX52" populated="true" UUID="e4df0785-1442-4dd8-a801-d5ab88393a5f" clustered="false" name="tbsistemamanutencao_pkey" physicalName="tbsistemamanutencao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC53" populated="true" UUID="ec6b435a-822e-4b83-b113-ee4c51e2b3c5" ascendingOrDescending="UNSPECIFIED" column-ref="COL47" name="simcodigo" physicalName="simcodigo" />
+     <index-column id="IDC54" populated="true" UUID="1d5af9c3-5a01-4161-a075-12fb81bb3fa5" ascendingOrDescending="UNSPECIFIED" column-ref="COL48" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB55" populated="true" UUID="8bd27f99-87d6-447b-9505-6348019f6394" name="tbsistemaconfiguracao" objectType="TABLE" physicalName="tbsistemaconfiguracao" >
+   <remarks>Tabela de configuração dos parâmetros globais do sistema.</remarks>
+   <folder id="FOLTAB551" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL56" populated="true" UUID="a6a99229-5688-48e5-b877-07ba658050c2" autoIncrement="false" autoIncrementSequenceName="tbsistemaconfiguracao_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL57" populated="true" UUID="75aef6be-3922-4989-900e-c57450210e04" autoIncrement="false" autoIncrementSequenceName="tbsistemaconfiguracao_sispermitemanutfimsemana_seq" defaultValue="" name="sispermitemanutfimsemana" nullable="0" physicalName="sispermitemanutfimsemana" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Sistema permite gerar ordens de manutenção com datas para os finais de semana (0 - Não, 1 - Sábado e Domingo, 2 - Somente sábado, 3 - Somente domingo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB553" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB552" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB554" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX58" populated="true" UUID="8a914b1b-c9ec-48ee-a348-7a251b66f751" clustered="false" name="tbsistemaconfiguracao_pkey" physicalName="tbsistemaconfiguracao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC59" populated="true" UUID="fbf60186-07f5-4915-93ef-1564372dc73e" ascendingOrDescending="UNSPECIFIED" column-ref="COL56" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB60" populated="true" UUID="5091cce5-2b0d-4a4d-aefc-602fc57893b5" name="tbgrupoacesso" objectType="TABLE" physicalName="tbgrupoacesso" >
+   <remarks>Tabela de relacionamento dos grupos de usuários com os privilégios de sistema</remarks>
+   <folder id="FOLTAB601" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL61" populated="true" UUID="766a1f71-1d97-49e9-865c-be3985f54beb" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_grucodigo_seq" defaultValue="" name="grucodigo" nullable="0" physicalName="grucodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do grupo</remarks>
+    </column>
+    <column id="COL62" populated="true" UUID="10036a1b-58c0-4d8c-9fac-2c1ce815146a" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_tipcodigo_seq" defaultValue="" name="tipcodigo" nullable="0" physicalName="tipcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do tipo de privilégio</remarks>
+    </column>
+    <column id="COL63" populated="true" UUID="0381d5e8-883a-4d2b-8923-1e00a9f7fd19" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_rotcodigo_seq" defaultValue="" name="rotcodigo" nullable="0" physicalName="rotcodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da rotina</remarks>
+    </column>
+    <column id="COL64" populated="true" UUID="89dfea2f-6128-464a-aea1-2aa5904ba97a" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_modcodigo_seq" defaultValue="" name="modcodigo" nullable="0" physicalName="modcodigo" precision="0" primaryKeySeq="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do módulo</remarks>
+    </column>
+    <column id="COL65" populated="true" UUID="e72ae7f3-f435-4fa0-928b-2e821d26c10f" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="4" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL66" populated="true" UUID="d88f1a35-6319-48f2-acf1-0ebfdd1b5feb" autoIncrement="false" autoIncrementSequenceName="tbgrupoacesso_graativo_seq" defaultValue="" name="graativo" nullable="0" physicalName="graativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do vínculo grupo x privilégio (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB603" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB602" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB604" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX67" populated="true" UUID="4110c795-ea35-404b-a85c-ba9070501dcd" clustered="false" name="tbgrupoacesso_pkey" physicalName="tbgrupoacesso_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC68" populated="true" UUID="d9bd6388-4f05-4d35-a1b7-f9b8d5009762" ascendingOrDescending="UNSPECIFIED" column-ref="COL61" name="grucodigo" physicalName="grucodigo" />
+     <index-column id="IDC69" populated="true" UUID="a41d89d3-e8eb-4adc-8533-5b2c4c49dc76" ascendingOrDescending="UNSPECIFIED" column-ref="COL62" name="tipcodigo" physicalName="tipcodigo" />
+     <index-column id="IDC70" populated="true" UUID="b24fedfb-c178-495a-a3f8-ecf717f8caef" ascendingOrDescending="UNSPECIFIED" column-ref="COL63" name="rotcodigo" physicalName="rotcodigo" />
+     <index-column id="IDC71" populated="true" UUID="ed526d97-9d13-427d-bfef-b70509f8733a" ascendingOrDescending="UNSPECIFIED" column-ref="COL64" name="modcodigo" physicalName="modcodigo" />
+     <index-column id="IDC72" populated="true" UUID="c6d11051-b7e5-42f4-b66b-caca3af75a4d" ascendingOrDescending="UNSPECIFIED" column-ref="COL65" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB73" populated="true" UUID="c476f9fc-b013-4840-b361-0e2e70049df3" name="tbprivilegio" objectType="TABLE" physicalName="tbprivilegio" >
+   <remarks>Tabela de domínio relacionamento das rotinas com tipos de privilégio</remarks>
+   <folder id="FOLTAB731" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL74" populated="true" UUID="eeda81ae-fbe1-4caa-b1da-5ef462d0976e" autoIncrement="false" autoIncrementSequenceName="tbprivilegio_tipcodigo_seq" defaultValue="" name="tipcodigo" nullable="0" physicalName="tipcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do tipo de privilégio</remarks>
+    </column>
+    <column id="COL75" populated="true" UUID="7de42efb-a861-4fc7-be47-08e19f804778" autoIncrement="false" autoIncrementSequenceName="tbprivilegio_rotcodigo_seq" defaultValue="" name="rotcodigo" nullable="0" physicalName="rotcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da rotina</remarks>
+    </column>
+    <column id="COL76" populated="true" UUID="da75a480-b076-428c-a8be-65cc35780e08" autoIncrement="false" autoIncrementSequenceName="tbprivilegio_modcodigo_seq" defaultValue="" name="modcodigo" nullable="0" physicalName="modcodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do módulo</remarks>
+    </column>
+    <column id="COL77" populated="true" UUID="64cc7646-8f73-417c-b2b4-94a4cb1df0c0" autoIncrement="false" autoIncrementSequenceName="tbprivilegio_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" primaryKeySeq="3" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    <column id="COL78" populated="true" UUID="d9ec2d75-212f-47cc-8cfe-2f7125965ebf" autoIncrement="false" autoIncrementSequenceName="tbprivilegio_priativo_seq" defaultValue="" name="priativo" nullable="0" physicalName="priativo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Status do privilégio (0- Inativo, 1- Ativo)</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB733" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB732" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB734" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX79" populated="true" UUID="61d086e0-66cf-450e-81b8-1eed2310be06" clustered="false" name="tbprivilegio_pkey" physicalName="tbprivilegio_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC80" populated="true" UUID="44830518-f3a8-468f-ade6-82bc35f93c0e" ascendingOrDescending="UNSPECIFIED" column-ref="COL74" name="tipcodigo" physicalName="tipcodigo" />
+     <index-column id="IDC81" populated="true" UUID="9fbc95b5-c175-427c-bd37-c2d4e61b5f15" ascendingOrDescending="UNSPECIFIED" column-ref="COL75" name="rotcodigo" physicalName="rotcodigo" />
+     <index-column id="IDC82" populated="true" UUID="27412e38-5456-4e31-9a3d-126e3e29e0e2" ascendingOrDescending="UNSPECIFIED" column-ref="COL76" name="modcodigo" physicalName="modcodigo" />
+     <index-column id="IDC83" populated="true" UUID="4884c3d6-5791-4cb9-a981-124d5225ff3a" ascendingOrDescending="UNSPECIFIED" column-ref="COL77" name="siscodigo" physicalName="siscodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB84" populated="true" UUID="b80a506a-927f-454d-9306-af5df94643e1" name="tbtipoprivilegio" objectType="TABLE" physicalName="tbtipoprivilegio" >
+   <remarks>Tabela de domínio dos tipos de privilégios aplicados no sistema</remarks>
+   <folder id="FOLTAB841" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL85" populated="true" UUID="0d9f9fc5-9e4a-4d3f-9da1-b7d85182fbd1" autoIncrement="false" autoIncrementSequenceName="tbtipoprivilegio_tipcodigo_seq" defaultValue="" name="tipcodigo" nullable="0" physicalName="tipcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do tipo de privilégio</remarks>
+    </column>
+    <column id="COL86" populated="true" UUID="f01f521d-efd4-490c-a1f9-2383b1a8d682" autoIncrement="false" autoIncrementSequenceName="tbtipoprivilegio_tipdescricao_seq" defaultValue="" name="tipdescricao" nullable="0" physicalName="tipdescricao" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição do tipo de privilégio</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB843" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB842" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB844" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX87" populated="true" UUID="f316d889-b945-4d3b-97cc-b4da32a29feb" clustered="false" name="tbtipoprivilegio_pkey" physicalName="tbtipoprivilegio_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC88" populated="true" UUID="a9ff7924-90de-4a4e-bfb9-40dd0e922a12" ascendingOrDescending="UNSPECIFIED" column-ref="COL85" name="tipcodigo" physicalName="tipcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB89" populated="true" UUID="5600f901-00b3-4be3-a86a-421bee5ff289" name="tbmonitoracao" objectType="TABLE" physicalName="tbmonitoracao" >
+   <remarks></remarks>
+   <folder id="FOLTAB891" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL90" populated="true" UUID="a2d820fd-4c68-4498-8a2f-80f410187404" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_mtrcodigo_seq" defaultValue="" name="mtrcodigo" nullable="0" physicalName="mtrcodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks>Código sequencial da monitoração</remarks>
+    </column>
+    <column id="COL91" populated="true" UUID="ee56705f-4ab1-46ee-a1eb-f4e655d64c8d" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_usucodigo_seq" defaultValue="" name="usucodigo" nullable="0" physicalName="usucodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do usuário</remarks>
+    </column>
+    <column id="COL92" populated="true" UUID="64591220-6913-4125-8fc6-5b5f3cf3f1c0" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_mtrdathora_seq" defaultValue="" name="mtrdathora" nullable="0" physicalName="mtrdathora" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Data/hora em que foi realizada a monitoração</remarks>
+    </column>
+    <column id="COL93" populated="true" UUID="8cc53820-5475-4032-ac14-bc7fe2ee4d0f" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_opecodigo_seq" defaultValue="" name="opecodigo" nullable="0" physicalName="opecodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da operação</remarks>
+    </column>
+    <column id="COL94" populated="true" UUID="379ac6cd-3e8c-4264-b7af-cd49e917bfbc" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_mrtdescricao_seq" defaultValue="" name="mrtdescricao" nullable="0" physicalName="mrtdescricao" precision="1000" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descritivo da monitoração</remarks>
+    </column>
+    <column id="COL95" populated="true" UUID="4d31004d-078b-4477-b09b-ea6901c16bdc" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_rotcodigo_seq" defaultValue="" name="rotcodigo" nullable="0" physicalName="rotcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da rotina</remarks>
+    </column>
+    <column id="COL96" populated="true" UUID="37b90312-eb52-42ca-9dff-6a7a7484dfb6" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_modcodigo_seq" defaultValue="" name="modcodigo" nullable="0" physicalName="modcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do módulo</remarks>
+    </column>
+    <column id="COL97" populated="true" UUID="2d52a2ee-abb7-4e4e-8bfc-c3bd56e5585a" autoIncrement="false" autoIncrementSequenceName="tbmonitoracao_siscodigo_seq" defaultValue="" name="siscodigo" nullable="0" physicalName="siscodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do sistema</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB893" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB892" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB894" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX98" populated="true" UUID="90c202c1-9660-42c9-bf03-aece7c49e937" clustered="false" name="tbmonitoracao_pkey" physicalName="tbmonitoracao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC99" populated="true" UUID="64e04a2d-5b93-4439-97a8-15405eb60fea" ascendingOrDescending="UNSPECIFIED" column-ref="COL90" name="mtrcodigo" physicalName="mtrcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB100" populated="true" UUID="cf61556f-6b42-4067-96b9-1d0b0a0e8eae" name="tboperacao" objectType="TABLE" physicalName="tboperacao" >
+   <remarks>Tabela de domínio das operações aplicadas aos dados.</remarks>
+   <folder id="FOLTAB1001" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL101" populated="true" UUID="12f613ee-5f63-4480-91eb-9fd5a7f38acf" autoIncrement="false" autoIncrementSequenceName="tboperacao_opecodigo_seq" defaultValue="" name="opecodigo" nullable="0" physicalName="opecodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da operação</remarks>
+    </column>
+    <column id="COL102" populated="true" UUID="c409cce7-f9f4-4982-a47e-149f51c11e7b" autoIncrement="false" autoIncrementSequenceName="tboperacao_opedescricao_seq" defaultValue="" name="opedescricao" nullable="0" physicalName="opedescricao" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Descrição da operação</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1003" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1002" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1004" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX103" populated="true" UUID="f8bb252e-cfe8-46c9-8807-f0fb9e4f3a6c" clustered="false" name="tboperacao_pkey" physicalName="tboperacao_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC104" populated="true" UUID="7dc1f51d-22c7-4074-87e0-e285653fd53a" ascendingOrDescending="UNSPECIFIED" column-ref="COL101" name="opecodigo" physicalName="opecodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB105" populated="true" UUID="190e3c32-2770-4d87-bb4c-004a2af55cc7" name="tbcliente" objectType="TABLE" physicalName="tbcliente" >
+   <remarks>Tabbela das informações do cliente que utiliza o sistema</remarks>
+   <folder id="FOLTAB1051" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL106" populated="true" UUID="15e7ee87-5fe8-4cf9-baac-b3c3c089b7ac" autoIncrement="false" autoIncrementSequenceName="tbcliente_clicodigo_seq" defaultValue="" name="clicodigo" nullable="0" physicalName="clicodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cliente</remarks>
+    </column>
+    <column id="COL107" populated="true" UUID="023ac93f-0897-4098-81fa-c3824ab4e8a9" autoIncrement="false" autoIncrementSequenceName="tbcliente_clirazaosocial_seq" defaultValue="" name="clirazaosocial" nullable="0" physicalName="clirazaosocial" precision="250" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Razão social do cliente</remarks>
+    </column>
+    <column id="COL108" populated="true" UUID="18016b54-f4a1-46c1-911e-8ddb590a2cd4" autoIncrement="false" autoIncrementSequenceName="tbcliente_clicnpjprincipal_seq" defaultValue="" name="clicnpjprincipal" nullable="0" physicalName="clicnpjprincipal" precision="16" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>CNPJ principal do cliente</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1053" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1052" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1054" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX109" populated="true" UUID="278ab532-abdd-4963-bb14-5b708a17dbdc" clustered="false" name="tbcliente_pkey" physicalName="tbcliente_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC110" populated="true" UUID="89358e63-9256-41d6-96a8-fc8492b6814c" ascendingOrDescending="UNSPECIFIED" column-ref="COL106" name="clicodigo" physicalName="clicodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB111" populated="true" UUID="fa6730f3-36a4-4ff7-a8e6-e2f3311cfa42" name="tbpais" objectType="TABLE" physicalName="tbpais" >
+   <remarks>Tabela domínio dos países</remarks>
+   <folder id="FOLTAB1111" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL112" populated="true" UUID="81d8179c-8127-4666-b859-e08e5d4c22ca" autoIncrement="false" autoIncrementSequenceName="tbpais_paicodigo_seq" defaultValue="" name="paicodigo" nullable="0" physicalName="paicodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do país</remarks>
+    </column>
+    <column id="COL113" populated="true" UUID="8ec5a98d-4b94-48dd-b12f-39dc62759857" autoIncrement="false" autoIncrementSequenceName="tbpais_painome_seq" defaultValue="" name="painome" nullable="0" physicalName="painome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome do país</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1113" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1112" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1114" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX114" populated="true" UUID="cf9b5d51-cf5b-4000-a90b-67858cee7226" clustered="false" name="tbpais_pkey" physicalName="tbpais_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC115" populated="true" UUID="1ca4f25f-f3dd-4a37-920e-d1a7975fe2b9" ascendingOrDescending="UNSPECIFIED" column-ref="COL112" name="paicodigo" physicalName="paicodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB116" populated="true" UUID="3142a64d-dec9-44d7-bb90-201d6a151670" name="tbcidade" objectType="TABLE" physicalName="tbcidade" >
+   <remarks>Tabela domínio das cidades</remarks>
+   <folder id="FOLTAB1161" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL117" populated="true" UUID="d9fae725-d9b5-41ec-9d45-b42ead507ba3" autoIncrement="false" autoIncrementSequenceName="tbcidade_paicodigo_seq" defaultValue="" name="paicodigo" nullable="0" physicalName="paicodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do país</remarks>
+    </column>
+    <column id="COL118" populated="true" UUID="d076826b-3c1e-43dc-8324-be867586b57c" autoIncrement="false" autoIncrementSequenceName="tbcidade_unfcodigo_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da unidade federativa</remarks>
+    </column>
+    <column id="COL119" populated="true" UUID="1c104358-1dd1-4116-8259-3cb59fae7cbf" autoIncrement="false" autoIncrementSequenceName="tbcidade_cidcodigo_seq" defaultValue="" name="cidcodigo" nullable="0" physicalName="cidcodigo" precision="0" primaryKeySeq="2" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da cidade</remarks>
+    </column>
+    <column id="COL120" populated="true" UUID="65017370-7df8-4682-9061-9035fdcce9bc" autoIncrement="false" autoIncrementSequenceName="tbcidade_cidnome_seq" defaultValue="" name="cidnome" nullable="0" physicalName="cidnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da cidade</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1163" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1162" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1164" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX121" populated="true" UUID="57eb7c61-6436-44e3-b1bf-c455cf043581" clustered="false" name="tbcidade_pkey" physicalName="tbcidade_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC122" populated="true" UUID="706b2730-c23d-4776-b415-0d58e1a987bc" ascendingOrDescending="UNSPECIFIED" column-ref="COL117" name="paicodigo" physicalName="paicodigo" />
+     <index-column id="IDC123" populated="true" UUID="31f1650b-6221-4a2a-9e7c-50cfb2f61017" ascendingOrDescending="UNSPECIFIED" column-ref="COL118" name="unfcodigo" physicalName="unfcodigo" />
+     <index-column id="IDC124" populated="true" UUID="f7b19900-2fa4-41c6-a74c-faf0bed1a5c8" ascendingOrDescending="UNSPECIFIED" column-ref="COL119" name="cidcodigo" physicalName="cidcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB125" populated="true" UUID="de30be59-452a-40ce-9364-e904197fd4f9" name="tbunifederativa" objectType="TABLE" physicalName="tbunifederativa" >
+   <remarks>Tabela domínio de unidades federativas</remarks>
+   <folder id="FOLTAB1251" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL126" populated="true" UUID="b9b0c92e-6c15-4e2f-aef5-203671466349" autoIncrement="false" autoIncrementSequenceName="tbunifederativa_paicodigo_seq" defaultValue="" name="paicodigo" nullable="0" physicalName="paicodigo" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do país</remarks>
+    </column>
+    <column id="COL127" populated="true" UUID="ca7a2c73-ea2b-4aac-8a16-13a04f8881c3" autoIncrement="false" autoIncrementSequenceName="tbunifederativa_unfcodigo_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade federativa</remarks>
+    </column>
+    <column id="COL128" populated="true" UUID="0e026b9b-b3fb-4b5e-9c2d-e9e87a925584" autoIncrement="false" autoIncrementSequenceName="tbunifederativa_unfnome_seq" defaultValue="" name="unfnome" nullable="0" physicalName="unfnome" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Nome da unidade federativa</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1253" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1252" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1254" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX129" populated="true" UUID="bcccf64d-fed6-49f2-a6f8-339a7d8f8c34" clustered="false" name="tbunifederativa_pkey" physicalName="tbunifederativa_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC130" populated="true" UUID="d9b7f21f-8870-41ec-8cf1-aed41aa8107f" ascendingOrDescending="UNSPECIFIED" column-ref="COL126" name="paicodigo" physicalName="paicodigo" />
+     <index-column id="IDC131" populated="true" UUID="dfe28394-7340-496a-b2e6-27a2561df74d" ascendingOrDescending="UNSPECIFIED" column-ref="COL127" name="unfcodigo" physicalName="unfcodigo" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB132" populated="true" UUID="c6d57729-2e87-4f6a-98d1-597cafe64309" name="tbunidadefabril" objectType="TABLE" physicalName="tbunidadefabril" >
+   <remarks>Tabela de unidades fabris do cliente.</remarks>
+   <folder id="FOLTAB1321" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL133" populated="true" UUID="84a2ba41-26af-4f61-952e-87118725b3e0" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_tbunidadefabril_seq" defaultValue="" name="tbunidadefabril" nullable="0" physicalName="tbunidadefabril" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da unidade fabril</remarks>
+    </column>
+    <column id="COL134" populated="true" UUID="bfe7daf1-d8f1-48ae-81ee-be253265a277" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_clicodigo_seq" defaultValue="" name="clicodigo" nullable="0" physicalName="clicodigo" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial do cliente</remarks>
+    </column>
+    <column id="COL135" populated="true" UUID="8497a0e5-bc95-4fb0-8be8-41a0b110992d" autoIncrement="false" autoIncrementSequenceName="tbcidade_paicodigo_seq" defaultValue="" name="paicodigo" nullable="0" physicalName="paicodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código do país</remarks>
+    </column>
+    <column id="COL136" populated="true" UUID="79ba3f32-a754-46cc-a0ac-1e75c7ca6746" autoIncrement="false" autoIncrementSequenceName="tbcidade_unfcodigo_seq" defaultValue="" name="unfcodigo" nullable="0" physicalName="unfcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código da unidade federativa</remarks>
+    </column>
+    <column id="COL137" populated="true" UUID="a70177f3-585f-45ad-b1a4-79a0abf699a2" autoIncrement="false" autoIncrementSequenceName="tbcidade_cidcodigo_seq" defaultValue="" name="cidcodigo" nullable="0" physicalName="cidcodigo" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Código sequencial da cidade</remarks>
+    </column>
+    <column id="COL138" populated="true" UUID="0ba14432-f64b-476b-962c-b4aa570ef9aa" autoIncrement="false" autoIncrementSequenceName="tbunidadefabril_unfendereco_seq" defaultValue="" name="unfendereco" nullable="0" physicalName="unfendereco" precision="300" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Endereço descritivo da unidade</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB1323" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB1322" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB1324" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX139" populated="true" UUID="beea7902-1be6-4bfe-8bce-a25b8c15c923" clustered="false" name="tbunidadefabril_pkey" physicalName="tbunidadefabril_pkey" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC140" populated="true" UUID="cc9cd5e1-2007-4ec7-b5b3-211b7c27a8ea" ascendingOrDescending="UNSPECIFIED" column-ref="COL133" name="tbunidadefabril" physicalName="tbunidadefabril" />
+     <index-column id="IDC141" populated="true" UUID="63465a65-3958-44a6-add8-ae4fea7ebb2d" ascendingOrDescending="UNSPECIFIED" column-ref="COL134" name="clicodigo" physicalName="clicodigo" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL142" populated="true" UUID="b15fee39-5079-47e7-bd18-36e5bc83196c" deferrability="7" deleteRule="3" fk-table-ref="TAB8" fkCardinality="7" identifying="false" name="&quot;GLO.TBGRUPOUSUARIO -&gt; GLO.TBUSUARIO&quot;" physicalName="&quot;GLO.TBGRUPOUSUARIO -&gt; GLO.TBUSUARIO&quot;" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP143" populated="true" UUID="c2094e35-9e4f-4f67-9a31-f520cc3f3a87" fk-column-ref="COL10" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL144" populated="true" UUID="6aee852d-ad75-484f-af34-7f3c07eb618a" deferrability="7" deleteRule="3" fk-table-ref="TAB60" fkCardinality="7" identifying="true" name="glo.tbgrupousuario_glo.tbgrupoacesso_fk" physicalName="glo.tbgrupousuario_glo.tbgrupoacesso_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP145" populated="true" UUID="e2a43072-d43d-460d-8fdd-346e7aa938d4" fk-column-ref="COL61" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL146" populated="true" UUID="9bcdd19a-d4be-4186-8713-c13d52975f20" deferrability="7" deleteRule="3" fk-table-ref="TAB89" fkCardinality="7" identifying="false" name="tbusuario_tbmonitoracao_fk" physicalName="tbusuario_tbmonitoracao_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP147" populated="true" UUID="a704e518-d763-4f37-831a-6f3df6b98b23" fk-column-ref="COL91" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   </relationship>
+   <relationship id="REL148" populated="true" UUID="f49de1d8-a433-4407-9f61-8f8d48c53b9e" deferrability="7" deleteRule="3" fk-table-ref="TAB73" fkCardinality="7" identifying="true" name="glo.tbrotina_glo.tbprivilegio_fk" physicalName="glo.tbrotina_glo.tbprivilegio_fk" pk-table-ref="TAB18" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP149" populated="true" UUID="094ef4e4-ccce-45fb-9c5e-f783aa132c80" fk-column-ref="COL75" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL19" />
+    <column-mapping id="CMP150" populated="true" UUID="6f14b941-96a7-400f-8af8-56c6897266b4" fk-column-ref="COL76" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL20" />
+    <column-mapping id="CMP151" populated="true" UUID="b2c42e1e-752e-4699-8b0a-c3ab5b4e50d6" fk-column-ref="COL77" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
+   </relationship>
+   <relationship id="REL152" populated="true" UUID="6cb88509-e6f2-4fed-bdd2-9cbd37dae506" deferrability="7" deleteRule="3" fk-table-ref="TAB89" fkCardinality="7" identifying="false" name="tbrotina_tbmonitoracao_fk" physicalName="tbrotina_tbmonitoracao_fk" pk-table-ref="TAB18" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP153" populated="true" UUID="9ee54fa1-7f79-47d3-a6eb-240445d3038b" fk-column-ref="COL95" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL19" />
+    <column-mapping id="CMP154" populated="true" UUID="c0199336-3627-490b-99dd-7f3eccd123f2" fk-column-ref="COL96" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL20" />
+    <column-mapping id="CMP155" populated="true" UUID="589f99c7-98a2-4e42-8b97-4717de798591" fk-column-ref="COL97" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL21" />
+   </relationship>
+   <relationship id="REL156" populated="true" UUID="52b87ab5-a7ee-42a0-ab26-8a1e73c4d7a5" deferrability="7" deleteRule="3" fk-table-ref="TAB46" fkCardinality="7" identifying="true" name="glo.tbsistema_glo.tbsistemamanutencao_fk" physicalName="glo.tbsistema_glo.tbsistemamanutencao_fk" pk-table-ref="TAB30" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP157" populated="true" UUID="b2c6aa2a-41af-43d5-82e1-1157035295cb" fk-column-ref="COL48" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL31" />
+   </relationship>
+   <relationship id="REL158" populated="true" UUID="db8ca999-5441-4774-8d27-6c2179adcbe8" deferrability="7" deleteRule="3" fk-table-ref="TAB37" fkCardinality="7" identifying="true" name="glo.tbsistema_glo.tbmodulo_fk" physicalName="glo.tbsistema_glo.tbmodulo_fk" pk-table-ref="TAB30" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP159" populated="true" UUID="ed64a69a-7a01-45c1-acd0-c2ea46b7ac73" fk-column-ref="COL39" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL31" />
+   </relationship>
+   <relationship id="REL160" populated="true" UUID="1d8b2f07-0c12-4b01-ad65-5704cc9fc9ed" deferrability="7" deleteRule="3" fk-table-ref="TAB55" fkCardinality="7" identifying="true" name="glo.tbsistema_glo.tbsistemaconfiguracao_fk" physicalName="glo.tbsistema_glo.tbsistemaconfiguracao_fk" pk-table-ref="TAB30" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP161" populated="true" UUID="c924a362-390d-4735-99d8-7112daaf4153" fk-column-ref="COL56" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL31" />
+   </relationship>
+   <relationship id="REL162" populated="true" UUID="9210ec29-9a9b-4c99-a514-e3bd3d46165b" deferrability="7" deleteRule="3" fk-table-ref="TAB18" fkCardinality="7" identifying="true" name="glo.tbmodulo_glo.tbrotina_fk" physicalName="glo.tbmodulo_glo.tbrotina_fk" pk-table-ref="TAB37" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP163" populated="true" UUID="29b9035f-8461-4bca-8b6c-a9d26720cb51" fk-column-ref="COL20" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL38" />
+    <column-mapping id="CMP164" populated="true" UUID="d3745db3-5a65-4ebc-ba1c-637ebce661a5" fk-column-ref="COL21" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL39" />
+   </relationship>
+   <relationship id="REL165" populated="true" UUID="d213c16e-d9d5-4cef-b86e-fb19dc632b39" deferrability="7" deleteRule="3" fk-table-ref="TAB60" fkCardinality="7" identifying="true" name="glo.tbprivilegio_glo.tbgrupoacesso_fk" physicalName="glo.tbprivilegio_glo.tbgrupoacesso_fk" pk-table-ref="TAB73" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP166" populated="true" UUID="a8245ca0-6b96-4a1b-ac53-469f7f702641" fk-column-ref="COL62" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL74" />
+    <column-mapping id="CMP167" populated="true" UUID="b8c6a9f6-edf6-4550-84f5-a61c68932fc7" fk-column-ref="COL63" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL75" />
+    <column-mapping id="CMP168" populated="true" UUID="4e2f85d0-1997-49fe-b887-b3163779e2ce" fk-column-ref="COL64" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL76" />
+    <column-mapping id="CMP169" populated="true" UUID="42913ed0-0c1e-4898-bc8c-80a155908bb4" fk-column-ref="COL65" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL77" />
+   </relationship>
+   <relationship id="REL170" populated="true" UUID="48ebb962-f66b-41a5-ae11-4e26412c1ce1" deferrability="7" deleteRule="3" fk-table-ref="TAB73" fkCardinality="7" identifying="true" name="glo.tbtipoprivilegio_glo.tbprivilegio_fk" physicalName="glo.tbtipoprivilegio_glo.tbprivilegio_fk" pk-table-ref="TAB84" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP171" populated="true" UUID="79608f0e-7b05-48de-b336-a9a0e48c2594" fk-column-ref="COL74" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL85" />
+   </relationship>
+   <relationship id="REL172" populated="true" UUID="0e316d54-b2be-48ca-9902-702fa6d90596" deferrability="7" deleteRule="3" fk-table-ref="TAB89" fkCardinality="7" identifying="false" name="tboperacao_tbmonitoracao_fk" physicalName="tboperacao_tbmonitoracao_fk" pk-table-ref="TAB100" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP173" populated="true" UUID="a65faa57-6e7e-43e1-97ac-522014f82220" fk-column-ref="COL93" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL101" />
+   </relationship>
+   <relationship id="REL174" populated="true" UUID="b848a6d6-607f-4dd3-b8c0-f3906a6e0c80" deferrability="7" deleteRule="3" fk-table-ref="TAB30" fkCardinality="7" identifying="false" name="tbcliente_tbsistema_fk" physicalName="tbcliente_tbsistema_fk" pk-table-ref="TAB105" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP175" populated="true" UUID="51c06ba6-aba9-4eff-997c-5002556cacc5" fk-column-ref="COL34" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL106" />
+   </relationship>
+   <relationship id="REL176" populated="true" UUID="c94b55e0-d116-4cff-bfec-afc29ed38347" deferrability="7" deleteRule="3" fk-table-ref="TAB132" fkCardinality="7" identifying="true" name="tbcliente_New_Table_fk" physicalName="tbcliente_New_Table_fk" pk-table-ref="TAB105" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP177" populated="true" UUID="35dd9d4e-283d-4dd9-892d-8674bd220c28" fk-column-ref="COL134" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL106" />
+   </relationship>
+   <relationship id="REL178" populated="true" UUID="f991bd8d-f90d-4fb7-97e3-992e4564bd81" deferrability="7" deleteRule="3" fk-table-ref="TAB125" fkCardinality="7" identifying="true" name="tbpais_tbunifederativa_fk" physicalName="tbpais_tbunifederativa_fk" pk-table-ref="TAB111" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP179" populated="true" UUID="4ee0a217-f952-40e8-ad53-26b74e7a7801" fk-column-ref="COL126" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL112" />
+   </relationship>
+   <relationship id="REL180" populated="true" UUID="deb7292c-db9a-4b38-a575-e64aeed1428e" deferrability="7" deleteRule="3" fk-table-ref="TAB132" fkCardinality="7" identifying="false" name="tbcidade_tbunidadefabril_fk" physicalName="tbcidade_tbunidadefabril_fk" pk-table-ref="TAB116" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP181" populated="true" UUID="5f709eb3-1cae-4150-b39e-a7a6218913bf" fk-column-ref="COL135" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL117" />
+    <column-mapping id="CMP182" populated="true" UUID="ee61e6b4-ca5c-483f-99c6-6d7156ca9498" fk-column-ref="COL136" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL118" />
+    <column-mapping id="CMP183" populated="true" UUID="c97d523f-5e4c-4708-ac9f-45abd82e8399" fk-column-ref="COL137" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL119" />
+   </relationship>
+   <relationship id="REL184" populated="true" UUID="680a9cd8-bc19-4990-94b7-5b9dd0dd5d94" deferrability="7" deleteRule="3" fk-table-ref="TAB116" fkCardinality="7" identifying="true" name="tbunifederativa_tbcidade_fk" physicalName="tbunifederativa_tbcidade_fk" pk-table-ref="TAB125" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP185" populated="true" UUID="eb7fa9c4-5128-48fe-ac65-6cacbc397428" fk-column-ref="COL117" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL126" />
+    <column-mapping id="CMP186" populated="true" UUID="4e369586-7235-428e-999d-f220c47b6a90" fk-column-ref="COL118" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL127" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="true" target-schema="glo"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="0.8408964152537145" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="375" y="694" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB8" x="687" y="602" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB18" x="534" y="305" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB30" x="68" y="155" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB37" x="368" y="142" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB46" x="290" y="298" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB55" x="71" y="418" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB60" x="358" y="508" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB73" x="703" y="141" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB84" x="1035" y="269" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB89" x="981" y="631" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB100" x="971" y="381" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB105" x="1021" y="44" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB111" x="1310" y="441" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB116" x="1311" y="757" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB125" x="1306" y="545" bgColor="0xc8dccc" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB132" x="24" y="850" bgColor="0xbfd6ff" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL142" pkConnection="0.2" fkConnection="0.8582677165354331" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL156" pkConnection="0.7647058823529411" fkConnection="0.53125" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL158" pkConnection="0.49411764705882355" fkConnection="0.5555555555555556" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL162" pkConnection="0.6565656565656566" fkConnection="0.3781094527363184" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="129"/>
+  <table-link relationship-ref="REL160" pkConnection="0.3480392156862745" fkConnection="0.38257575757575757" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL144" pkConnection="0.4482758620689655" fkConnection="0.54" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-link relationship-ref="REL170" pkConnection="0.5263157894736842" fkConnection="0.26262626262626265" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL148" pkConnection="0.6965174129353234" fkConnection="0.7171717171717171" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="40"/>
+  <table-link relationship-ref="REL165" pkConnection="0.36" fkConnection="0.6814159292035398" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="20"/>
+  <table-link relationship-ref="REL146" pkConnection="0.6141732283464567" fkConnection="0.3475177304964539" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL172" pkConnection="0.5219512195121951" fkConnection="0.46411483253588515" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL152" pkConnection="0.5621890547263682" fkConnection="0.23923444976076555" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL174" pkConnection="0.676056338028169" fkConnection="0.5591397849462365" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
+  <table-link relationship-ref="REL178" pkConnection="0.5" fkConnection="0.5" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL184" pkConnection="0.5103092783505154" fkConnection="0.4846938775510204" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL176" pkConnection="0.23943661971830985" fkConnection="0.060085836909871244" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
+  <table-link relationship-ref="REL180" pkConnection="0.6823529411764706" fkConnection="0.32323232323232326" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

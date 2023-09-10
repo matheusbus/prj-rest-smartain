@@ -1,0 +1,8 @@
+ALterações a serem feitas no Modelo Lógico e no arquivo de criação do banco de dados:
+
+GLO:
+tbusuario:
+-- (  ) Adicionar o campo de e-mail na tabela de usuários no modelo lógico e no script de criação do banco.
+-- (  ) Adicionar o campo de nome na tabela de usuários no modelo lógico e no script de criação do banco.
+
+MHU_MPP:

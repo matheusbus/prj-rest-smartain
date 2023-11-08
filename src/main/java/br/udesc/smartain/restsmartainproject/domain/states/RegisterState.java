@@ -1,13 +1,13 @@
-package br.udesc.smartain.restsmartainproject.domain.model.states;
+package br.udesc.smartain.restsmartainproject.domain.states;
 
-public enum RegisterDataState {
+public enum RegisterState {
 
     ACTIVE((short)1),
     INACTIVE((short) 2);
 
     private Short value;
 
-    private RegisterDataState(Short value){
+    private RegisterState(Short value){
         this.value = value;
     }
 
@@ -15,8 +15,8 @@ public enum RegisterDataState {
         return this.value;
     }
 
-    public static RegisterDataState valueOf(short value){
-        for(RegisterDataState reg : RegisterDataState.values()){
+    public static RegisterState valueOf(short value){
+        for(RegisterState reg : RegisterState.values()){
             if(reg.getValue() == value){
                 return reg;
             }

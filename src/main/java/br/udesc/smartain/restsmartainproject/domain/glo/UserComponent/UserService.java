@@ -1,12 +1,7 @@
-package br.udesc.smartain.restsmartainproject.domain.service.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.User;
-import br.udesc.smartain.restsmartainproject.domain.repository.glo.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -34,8 +29,4 @@ public class UserService implements UserDetailsService {
         userRepository.saveAll(users);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
 }

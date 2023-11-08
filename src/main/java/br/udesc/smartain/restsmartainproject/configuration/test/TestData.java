@@ -1,16 +1,29 @@
 package br.udesc.smartain.restsmartainproject.configuration.test;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.User;
-import br.udesc.smartain.restsmartainproject.domain.model.glo.UserGroup;
-import br.udesc.smartain.restsmartainproject.domain.model.states.RegisterDataState;
-import br.udesc.smartain.restsmartainproject.domain.service.glo.UserGroupService;
-import br.udesc.smartain.restsmartainproject.domain.service.glo.UserService;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.City;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.CityId;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.CityService;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CountryComponent.Country;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CountryComponent.CountryService;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.FederativeUnitComponent.FederativeUnit;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.FederativeUnitComponent.FederativeUnitId;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.FederativeUnitComponent.FederativeUnitService;
+import br.udesc.smartain.restsmartainproject.domain.glo.CustomerComponent.Customer;
+import br.udesc.smartain.restsmartainproject.domain.glo.CustomerComponent.CustomerService;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,29 +37,335 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private UserGroupService userGroupService;
 
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private FederativeUnitService federativeUnitService;
+
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @Autowired
+    private ManufacturingUnitService manufacturingUnitService;
+
+    private List<Country> countries = new ArrayList<>();
+    private List<FederativeUnit> units = new ArrayList<>();
+
+    private List<City> cities = new ArrayList<>();
+
+    private List<ManufacturingUnit> manUnits = new ArrayList<>();
+
     @Override
     public void run(String... args) throws Exception {
+        makeCostumer();
         makeUsers(makeUserGroups());
+        makeCountries();
+        makeFederativeUnits();
+        associateUnits();
+        makeCities();
+
+        makeManufacturingUnits();
+
+    }
+
+    public void associateUnits() {
+        Country brasil = countryService.findByName("Brasil").get().get(0);
+        for(FederativeUnit unit : units) {
+            brasil.addUnit(unit);
+        }
+        countryService.save(brasil);
+    }
+
+    public List<ManufacturingUnit> makeManufacturingUnits() {
+        City cidade = cityService.findByCountryIdAndFederativeUnitIdAndCityId(23, 24, 1).get();
+        this.manUnits = Arrays.asList(
+                new ManufacturingUnit(1, customerService.getCustomer().get(), cidade, "Rua Tuiuti, 180, Centro, 89160045", RegisterState.ACTIVE)
+        );
+        for(ManufacturingUnit manUnit : manUnits) {
+            manufacturingUnitService.save(manUnit);
+        }
+        return manUnits;
+    }
+
+    public void makeCostumer() {
+        Customer customer = new Customer();
+        customer.setMainCnpj("83891283000136");
+        customer.setFantasyName("UDESC");
+        customer.setCorporateReason("FUNDACAO UNIVERSIDADE DO ESTADO DE SC UDESC");
+
+        customerService.save(customer);
     }
 
     public void makeUsers(List<UserGroup> groups) {
         userService.saveAll(
                 Arrays.asList(
-                        new User(null, groups.get(0), "matheusbus", "matheus", "matheus@smartain.com.br", LocalDateTime.now(), LocalDateTime.now(), RegisterDataState.ACTIVE)
+                        new User(null, groups.get(0), "matheusbus", "Matheus Buschermoehle","{bcrypt}$2a$10$zqMYMwxHWTtbNGWsg9qEPOVw0O5bYdRK9oj/g0Lirvpl.xw81DxmG", "matheus@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE)
                 )
         );
     }
 
     public List<UserGroup> makeUserGroups(){
         List<UserGroup> userGroups = Arrays.asList(
-                new UserGroup(null, "Gestores de Manutenção", "Grupo que abrange os usuários gestores, que possuem acesso total ao sistema, priorizando os indicadores e relatórios.", RegisterDataState.ACTIVE),
-                new UserGroup(null, "Coordenadores de Manutenção", "Grupo que abrange os usuários coordenadores, com privilégios de cadastros e manuseio de integrações.", RegisterDataState.ACTIVE),
-                new UserGroup(null, "Planejadores e Controladores de Manutenção", "Grupo que abrange os usuários responsáveis pelos Planos de Manutenção, cronograma, e dados necessários pela manutenção.", RegisterDataState.ACTIVE),
-                new UserGroup(null, "Planejadores e Controladores de Produção", "Grupo que abrange os usuários da produção, que terão acesso ao sistema para visualizar o cronograma de manutenção e gerar novas solicitações de serviço.", RegisterDataState.ACTIVE),
-                new UserGroup(null, "Operadores de Manutenção", "Grupo que abrange os usuários manutentores, que serão responsáveis por executar ordens de serviço.", RegisterDataState.ACTIVE)
+                new UserGroup(null, "Gestores de Manutenção", "Grupo que abrange os usuários gestores, que possuem acesso total ao sistema, priorizando os indicadores e relatórios.", RegisterState.ACTIVE, "ROLE_GESTOR"),
+                new UserGroup(null, "Coordenadores de Manutenção", "Grupo que abrange os usuários coordenadores, com privilégios de cadastros e manuseio de integrações.", RegisterState.ACTIVE, "ROLE_COORDENADOR"),
+                new UserGroup(null, "Planejadores e Controladores de Manutenção", "Grupo que abrange os usuários responsáveis pelos Planos de Manutenção, cronograma, e dados necessários pela manutenção.", RegisterState.ACTIVE, "ROLE_PCM"),
+                new UserGroup(null, "Planejadores e Controladores de Produção", "Grupo que abrange os usuários da produção, que terão acesso ao sistema para visualizar o cronograma de manutenção e gerar novas solicitações de serviço.", RegisterState.ACTIVE, "ROLE_PCP"),
+                new UserGroup(null, "Operadores de Manutenção", "Grupo que abrange os usuários manutentores, que serão responsáveis por executar ordens de serviço.", RegisterState.ACTIVE, "ROLE_OPERADOR")
         );
 
         userGroupService.saveAll(userGroups);
         return userGroups;
+    }
+
+    public List<Country> makeCountries() {
+        this.countries = Arrays.asList(
+                newCountry("Afeganistão"),
+                newCountry("Albânia"),
+                newCountry("Argélia"),
+                newCountry("Andorra"),
+                newCountry("Angola"),
+                newCountry("Antígua e Barbuda"),
+                newCountry("Argentina"),
+                newCountry("Armênia"),
+                newCountry("Austrália"),
+                newCountry("Áustria"),
+                newCountry("Azerbaijão"),
+                newCountry("Bahamas"),
+                newCountry("Bahrein"),
+                newCountry("Bangladesh"),
+                newCountry("Barbados"),
+                newCountry("Bielorrússia"),
+                newCountry("Bélgica"),
+                newCountry("Belize"),
+                newCountry("Benin"),
+                newCountry("Bolívia"),
+                newCountry("Bósnia e Herzegovina"),
+                newCountry("Botsuana"),
+                newCountry("Brasil"),
+                newCountry("Brunei"),
+                newCountry("Bulgária"),
+                newCountry("Burkina Faso"),
+                newCountry("Burundi"),
+                newCountry("Butão"),
+                newCountry("Cabo Verde"),
+                newCountry("Camarões"),
+                newCountry("Camboja"),
+                newCountry("Canadá"),
+                newCountry("Catar"),
+                newCountry("Cazaquistão"),
+                newCountry("Chade"),
+                newCountry("Chile"),
+                newCountry("China"),
+                newCountry("Chipre"),
+                newCountry("Colômbia"),
+                newCountry("Comores"),
+                newCountry("Coreia do Norte"),
+                newCountry("Coreia do Sul"),
+                newCountry("Costa do Marfim"),
+                newCountry("Costa Rica"),
+                newCountry("Croácia"),
+                newCountry("Cuba"),
+                newCountry("Dinamarca"),
+                newCountry("Djibuti"),
+                newCountry("Dominica"),
+                newCountry("Egito"),
+                newCountry("El Salvador"),
+                newCountry("Emirados Árabes Unidos"),
+                newCountry("Equador"),
+                newCountry("Eritreia"),
+                newCountry("Eslováquia"),
+                newCountry("Eslovênia"),
+                newCountry("Espanha"),
+                newCountry("Estados Unidos da América"),
+                newCountry("Estônia"),
+                newCountry("Eswatini"),
+                newCountry("Etiópia"),
+                newCountry("Fiji"),
+                newCountry("Filipinas"),
+                newCountry("Finlândia"),
+                newCountry("França"),
+                newCountry("Gabão"),
+                newCountry("Gâmbia"),
+                newCountry("Geórgia"),
+                newCountry("Gana"),
+                newCountry("Grécia"),
+                newCountry("Granada"),
+                newCountry("Guatemala"),
+                newCountry("Guiana"),
+                newCountry("Guiné"),
+                newCountry("Guiné Equatorial"),
+                newCountry("Guiné-Bissau"),
+                newCountry("Haiti"),
+                newCountry("Holanda"),
+                newCountry("Honduras"),
+                newCountry("Hungria"),
+                newCountry("Iêmen"),
+                newCountry("Ilhas Marshall"),
+                newCountry("Ilhas Salomão"),
+                newCountry("Índia"),
+                newCountry("Indonésia"),
+                newCountry("Irã"),
+                newCountry("Iraque"),
+                newCountry("Irlanda"),
+                newCountry("Islândia"),
+                newCountry("Israel"),
+                newCountry("Itália"),
+                newCountry("Jamaica"),
+                newCountry("Japão"),
+                newCountry("Jordânia"),
+                newCountry("Kiribati"),
+                newCountry("Kuwait"),
+                newCountry("Laos"),
+                newCountry("Lesoto"),
+                newCountry("Letônia"),
+                newCountry("Líbano"),
+                newCountry("Libéria"),
+                newCountry("Líbia"),
+                newCountry("Liechtenstein"),
+                newCountry("Lituânia"),
+                newCountry("Luxemburgo"),
+                newCountry("Macedônia do Norte"),
+                newCountry("Madagascar"),
+                newCountry("Malásia"),
+                newCountry("Malawi"),
+                newCountry("Maldivas"),
+                newCountry("Mali"),
+                newCountry("Malta"),
+                newCountry("Marrocos"),
+                newCountry("Maurício"),
+                newCountry("Mauritânia"),
+                newCountry("México"),
+                newCountry("Micronésia"),
+                newCountry("Moçambique"),
+                newCountry("Moldávia"),
+                newCountry("Mônaco"),
+                newCountry("Mongólia"),
+                newCountry("Montenegro"),
+                newCountry("Namíbia"),
+                newCountry("Nauru"),
+                newCountry("Nepal"),
+                newCountry("Nicarágua"),
+                newCountry("Níger"),
+                newCountry("Nigéria"),
+                newCountry("Niue"),
+                newCountry("Noruega"),
+                newCountry("Nova Zelândia"),
+                newCountry("Omã"),
+                newCountry("Palau"),
+                newCountry("Panamá"),
+                newCountry("Papua Nova Guiné"),
+                newCountry("Paquistão"),
+                newCountry("Paraguai"),
+                newCountry("Peru"),
+                newCountry("Polônia"),
+                newCountry("Portugal"),
+                newCountry("Quênia"),
+                newCountry("Quirguistão"),
+                newCountry("Quiribati"),
+                newCountry("Reino Unido"),
+                newCountry("República Centro-Africana"),
+                newCountry("República Dominicana"),
+                newCountry("República Tcheca"),
+                newCountry("Romênia"),
+                newCountry("Ruanda"),
+                newCountry("Rússia"),
+                newCountry("Samoa"),
+                newCountry("San Marino"),
+                newCountry("Santa Lúcia"),
+                newCountry("São Cristóvão e Nevis"),
+                newCountry("São Tomé e Príncipe"),
+                newCountry("São Vicente e Granadinas"),
+                newCountry("Seicheles"),
+                newCountry("Senegal"),
+                newCountry("Serra Leoa"),
+                newCountry("Sérvia"),
+                newCountry("Singapura"),
+                newCountry("Síria"),
+                newCountry("Somália"),
+                newCountry("Sri Lanka"),
+                newCountry("Suazilândia"),
+                newCountry("Sudão"),
+                newCountry("Sudão do Sul"),
+                newCountry("Suécia"),
+                newCountry("Suíça"),
+                newCountry("Suriname"),
+                newCountry("Tailândia"),
+                newCountry("Taiwan"),
+                newCountry("Tajiquistão"),
+                newCountry("Tanzânia"),
+                newCountry("Timor-Leste"),
+                newCountry("Togo"),
+                newCountry("Tonga"),
+                newCountry("Trinidad e Tobago"),
+                newCountry("Tunísia"),
+                newCountry("Turcomenistão"),
+                newCountry("Turquia"),
+                newCountry("Tuvalu"),
+                newCountry("Ucrânia"),
+                newCountry("Uganda"),
+                newCountry("Uruguai"),
+                newCountry("Uzbequistão"),
+                newCountry("Vanuatu"),
+                newCountry("Vaticano"),
+                newCountry("Venezuela"),
+                newCountry("Vietnã"),
+                newCountry("Zâmbia"),
+                newCountry("Zimbábue")
+        );
+        countryService.saveAll(countries);
+        return countries;
+    }
+
+    public Country newCountry(String name) {
+        return new Country(null, name);
+    }
+
+    public List<FederativeUnit> makeFederativeUnits() {
+        Country brasil = countryService.findByName("Brasil").get().get(0);
+        this.units = Arrays.asList(
+                new FederativeUnit(new FederativeUnitId(1, brasil), "Acre"),
+                new FederativeUnit(new FederativeUnitId(2, brasil), "Alagoas"),
+                new FederativeUnit(new FederativeUnitId(3, brasil), "Amapá"),
+                new FederativeUnit(new FederativeUnitId(4, brasil), "Amazonas"),
+                new FederativeUnit(new FederativeUnitId(5, brasil), "Bahia"),
+                new FederativeUnit(new FederativeUnitId(6, brasil), "Ceará"),
+                new FederativeUnit(new FederativeUnitId(7, brasil), "Distrito Federal"),
+                new FederativeUnit(new FederativeUnitId(8, brasil), "Espírito Santo"),
+                new FederativeUnit(new FederativeUnitId(9, brasil), "Goiás"),
+                new FederativeUnit(new FederativeUnitId(10, brasil), "Maranhão"),
+                new FederativeUnit(new FederativeUnitId(11, brasil), "Mato Grosso"),
+                new FederativeUnit(new FederativeUnitId(12, brasil), "Mato Grosso do Sul"),
+                new FederativeUnit(new FederativeUnitId(13, brasil), "Minas Gerais"),
+                new FederativeUnit(new FederativeUnitId(14, brasil), "Pará"),
+                new FederativeUnit(new FederativeUnitId(15, brasil), "Paraíba"),
+                new FederativeUnit(new FederativeUnitId(16, brasil), "Paraná"),
+                new FederativeUnit(new FederativeUnitId(17, brasil), "Pernambuco"),
+                new FederativeUnit(new FederativeUnitId(18, brasil), "Piauí"),
+                new FederativeUnit(new FederativeUnitId(19, brasil), "Rio de Janeiro"),
+                new FederativeUnit(new FederativeUnitId(20, brasil), "Rio Grande do Norte"),
+                new FederativeUnit(new FederativeUnitId(21, brasil), "Rio Grande do Sul"),
+                new FederativeUnit(new FederativeUnitId(22, brasil), "Rondônia"),
+                new FederativeUnit(new FederativeUnitId(23, brasil), "Roraima"),
+                new FederativeUnit(new FederativeUnitId(24, brasil), "Santa Catarina"),
+                new FederativeUnit(new FederativeUnitId(25, brasil), "São Paulo"),
+                new FederativeUnit(new FederativeUnitId(26, brasil), "Sergipe"),
+                new FederativeUnit(new FederativeUnitId(27, brasil), "Tocantins")
+        );
+        federativeUnitService.saveAll(units);
+        return units;
+    }
+
+    public List<City> makeCities() {
+        FederativeUnit unit = federativeUnitService.findByName("catarina").get().get(0);
+        this.cities = Arrays.asList(
+            new City(new CityId(1, unit), "Rio do Sul"),
+            new City(new CityId(1, unit), "Ibirama")
+        );
+        cityService.saveAll(cities);
+        return cities;
     }
 }

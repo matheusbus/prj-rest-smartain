@@ -1,6 +1,5 @@
-package br.udesc.smartain.restsmartainproject.domain.repository.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

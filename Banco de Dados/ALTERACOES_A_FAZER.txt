@@ -3,6 +3,8 @@ ALterações a serem feitas no Modelo Lógico e no arquivo de criação do banco
 GLO:
 tbusuario:
 -- (  ) Adicionar o campo de e-mail na tabela de usuários no modelo lógico e no script de criação do banco.
+--> usuemail varchar(100) not null
 -- (  ) Adicionar o campo de nome na tabela de usuários no modelo lógico e no script de criação do banco.
+--> usunome varchar (100) not null
 
 MHU_MPP:

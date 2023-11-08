@@ -1,7 +1,5 @@
-package br.udesc.smartain.restsmartainproject.domain.service.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.UserGroup;
-import br.udesc.smartain.restsmartainproject.domain.repository.glo.UserGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

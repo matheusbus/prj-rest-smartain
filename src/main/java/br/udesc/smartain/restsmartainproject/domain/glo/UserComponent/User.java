@@ -1,23 +1,22 @@
-package br.udesc.smartain.restsmartainproject.domain.model.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.states.RegisterDataState;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(schema = "glo", name = "tbusuario", uniqueConstraints = {@UniqueConstraint(name = "unique_login", columnNames = {"usulogin"})})
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class User implements Serializable {
 
     @Id
@@ -33,6 +32,11 @@ public class User implements Serializable {
     @NotBlank(message = "O login não pode ser nulo ou estar em branco.")
     @Size(min = 8, max = 30, message = "O login deve conter ao menos 8 caracteres e no máximo 30 caracteres.")
     private String login;
+
+    @Column(name = "usunome")
+    @NotBlank(message = "O nome de usuário nao pode ser nulo ou estar em branco.")
+    @Size(min = 8, max = 100, message = "O nome de usuário deve conter entre 8 e 100 caracteres.")
+    private String name;
 
     @Column(name = "ususenha")
     private String password;
@@ -55,10 +59,13 @@ public class User implements Serializable {
     @Column(name = "usuativo")
     private short active;
 
-    public User(Long id, UserGroup userGroup, String login, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterDataState active) {
+    private UserRole role;
+
+    public User(Long id, UserGroup userGroup, String login, String name, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterState active) {
         this.id = id;
         this.userGroup = userGroup;
         this.login = login;
+        this.name = name;
         this.password = password;
         this.email = email;
         this.createdDate = createdDate;
@@ -90,9 +97,9 @@ public class User implements Serializable {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public void setPassword(String password) {
         this.password = password;
@@ -118,11 +125,11 @@ public class User implements Serializable {
         this.updatedDate = updatedDate;
     }
 
-    public RegisterDataState getActive() {
-        return RegisterDataState.valueOf(active);
+    public RegisterState getActive() {
+        return RegisterState.valueOf(active);
     }
 
-    public void setActive(RegisterDataState active) {
+    public void setActive(RegisterState active) {
         this.active = active.getValue();
     }
 

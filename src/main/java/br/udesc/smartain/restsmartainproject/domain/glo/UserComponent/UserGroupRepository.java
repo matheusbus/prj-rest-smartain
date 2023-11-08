@@ -1,6 +1,5 @@
-package br.udesc.smartain.restsmartainproject.domain.repository.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.UserGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,8 +16,8 @@ public interface UserGroupRepository extends JpaRepository<UserGroup, Long> {
 
     @Query(
             value = "SELECT * FROM glo.tbgrupousuario g ORDER BY g.grucodigo",
-            nativeQuery = true
-    )
+            nativeQuery = true)
     public Optional<List<UserGroup>> findAllGroups();
+
 
 }

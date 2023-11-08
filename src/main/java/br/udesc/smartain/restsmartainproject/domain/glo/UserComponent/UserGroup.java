@@ -1,11 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.model.glo;
+package br.udesc.smartain.restsmartainproject.domain.glo.UserComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.model.glo.User;
-import br.udesc.smartain.restsmartainproject.domain.model.states.RegisterDataState;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,14 +34,18 @@ public class UserGroup implements Serializable {
     @Column(name = "gruativo")
     private Short active;
 
+    @Column(name = "grupapel", nullable = false)
+    private String role;
+
     @OneToMany(mappedBy = "userGroup", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> users = new HashSet<>();
 
-    public UserGroup(Short id, String name, String description, RegisterDataState active) {
+    public UserGroup(Short id, String name, String description, RegisterState active, String role) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.role = role;
         this.active = active.getValue();
     }
 
@@ -72,13 +73,17 @@ public class UserGroup implements Serializable {
         this.description = description;
     }
 
-    public RegisterDataState getActive() {
-        return RegisterDataState.valueOf(active);
+    public RegisterState getActive() {
+        return RegisterState.valueOf(active);
     }
 
-    public void setActive(RegisterDataState active) {
+    public void setActive(RegisterState active) {
         this.active = active.getValue();
     }
+
+    public String getRole() { return role; }
+
+    public void setRole(String tole) { this.role = role; }
 
     public Set<User> getUsers() {
         return users;

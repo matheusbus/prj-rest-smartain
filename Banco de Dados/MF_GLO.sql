@@ -48,21 +48,25 @@ COMMENT ON COLUMN glo.tbcliente.clicnpjprincipal IS 'CNPJ principal do cliente';
 COMMENT ON COLUMN glo.tbcliente.clinomefantasia IS 'Nome fantasia do cliente (mostrado em teal)';
 
 CREATE TABLE glo.tbunidadefabril (
-                tbunidadefabril INTEGER NOT NULL,
+                ufbcodigo INTEGER NOT NULL,
                 clicodigo INTEGER NOT NULL,
                 paicodigo INTEGER NOT NULL,
                 unfcodigo INTEGER NOT NULL,
                 cidcodigo INTEGER NOT NULL,
-                unfendereco VARCHAR(300) NOT NULL,
-                CONSTRAINT tbunidadefabril_pkey PRIMARY KEY (tbunidadefabril, clicodigo)
+                ufbendereco VARCHAR(300) NOT NULL,
+                CONSTRAINT tbunidadefabril_pkey PRIMARY KEY (tbunidadefabril),
+                CONSTRAINT tbunidadefabril_tbcliente_fk FOREIGN KEY (clicodigo)
+                    REFERENCES glo.tbcliente (clicodigo),
+                CONSTRAINT tbunifederativa_tbcidade_fk (paicodigo, unfcodigo, cidcodigo)
+                    REFERENCES glo.tbcidade (paicodigo, unfcodigo, cidcodigo)
 );
 COMMENT ON TABLE glo.tbunidadefabril IS 'Tabela de unidades fabris do cliente.';
-COMMENT ON COLUMN glo.tbunidadefabril.tbunidadefabril IS 'Código sequencial da unidade fabril';
+COMMENT ON COLUMN glo.tbunidadefabril.ufbcodigo IS 'Código sequencial da unidade fabril';
 COMMENT ON COLUMN glo.tbunidadefabril.clicodigo IS 'Código do cliente';
 COMMENT ON COLUMN glo.tbunidadefabril.paicodigo IS 'Código do país';
 COMMENT ON COLUMN glo.tbunidadefabril.unfcodigo IS 'Código da unidade federativa';
 COMMENT ON COLUMN glo.tbunidadefabril.cidcodigo IS 'Código da cidade';
-COMMENT ON COLUMN glo.tbunidadefabril.unfendereco IS 'Endereço descritivo da unidade';
+COMMENT ON COLUMN glo.tbunidadefabril.ufbendereco IS 'Endereço descritivo da unidade';
 
 CREATE TABLE glo.tboperacao (
                 opecodigo INTEGER NOT NULL,

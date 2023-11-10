@@ -1,1 +1,2 @@
 CREATE SCHEMA glo;
+CREATE SCHEMA mhu;

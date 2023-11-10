@@ -2,6 +2,7 @@ package br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompon
 
 import br.udesc.smartain.restsmartainproject.domain.glo.CustomerComponent.Customer;
 import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.City;
+import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -32,16 +33,21 @@ public class ManufacturingUnit {
     @Column(name = "ufbstatus")
     private Short status;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tiucodigo")
+    private UnitType type;
+
     public ManufacturingUnit() {
 
     }
 
-    public ManufacturingUnit(Integer id, Customer customer, City city, String address, RegisterState status) {
+    public ManufacturingUnit(Integer id, Customer customer, City city, String address, RegisterState status, UnitType type) {
         this.id = id;
         this.customer = customer;
         this.city = city;
         this.address = address;
         this.status = status.getValue();
+        this.type = type;
     }
 
     public Integer getId() {
@@ -83,6 +89,15 @@ public class ManufacturingUnit {
     public void setStatus(RegisterState status) {
         this.status = status.getValue();
     }
+
+    public UnitType getType() {
+        return type;
+    }
+
+    public void setType(UnitType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

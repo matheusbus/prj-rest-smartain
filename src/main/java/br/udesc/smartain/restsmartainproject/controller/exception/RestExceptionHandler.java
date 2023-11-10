@@ -24,6 +24,7 @@ public class RestExceptionHandler {
 
     }
 
+    @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException(Exception exc) {
 
         // Create an ErrorResponse

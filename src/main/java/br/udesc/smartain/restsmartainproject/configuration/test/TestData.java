@@ -14,6 +14,8 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
@@ -50,12 +52,17 @@ public class TestData implements CommandLineRunner {
     private CustomerService customerService;
 
     @Autowired
+    private UnitTypeService unitTypeService;
+
+    @Autowired
     private ManufacturingUnitService manufacturingUnitService;
 
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
     private List<City> cities = new ArrayList<>();
+
+    private List<UnitType> types = new ArrayList<>();
 
     private List<ManufacturingUnit> manUnits = new ArrayList<>();
 
@@ -68,6 +75,7 @@ public class TestData implements CommandLineRunner {
         associateUnits();
         makeCities();
 
+        makeManufacturingUnitTypes();
         makeManufacturingUnits();
 
     }
@@ -80,10 +88,31 @@ public class TestData implements CommandLineRunner {
         countryService.save(brasil);
     }
 
+    public List<UnitType> makeManufacturingUnitTypes() {
+        this.types = Arrays.asList(
+            new UnitType(1, 0, "Unidade Produtiva", "Unidade operacional, quando exercer atividades de produção ou venda de bens e/ou serviços destinados a terceiros"),
+            new UnitType(2, 1,  "Sede", "Administração central da empresa, presidência, diretoria."),
+            new UnitType(3, 2, "Escritório Administrativo", "Estabelecimento onde são exercidas atividades meramente administrativas, tais como: escritório de contato, setor de contabilidade, etc."),
+            new UnitType(4,3, "Depósito Fechado", "Estabelecimento onde a empresa armazena mercadorias próprias destinadas à industrialização e/ou comercialização, no qual não se realizam vendas."),
+            new UnitType(5, 4, "Almoxarifado", "Estabelecimento onde a empresa armazena artigos de consumo para uso próprio."),
+            new UnitType(6, 5, "Oficina de Reparação", "Estabelecimento onde se efetua manutenção e reparação exclusivamente de bens do ativo fixo da própria empresa."),
+            new UnitType(7, 6, "Garagem", "Para estacionamento de veículos próprios, uso exclusivo da empresa."),
+            new UnitType(8, 7, "Unidade de abastecimento de combustíveis", "Exclusivamente para uso pela frota própria."),
+            new UnitType(9, 8, "Ponto de exposição", "Local para exposição e demonstração de produtos próprios, sem realização de transações comerciais, tipo showroom."),
+            new UnitType(10, 9, "Centro de treinamento", "Uso exclusivo da empresa, para realização de atividades de capacitação e treinamentos de recursos humanos."),
+            new UnitType(11, 10, "Centro de Processamento de Dados", "Uso exclusivo da empresa, para realização de atividades na área de informática em geral."),
+            new UnitType(12, 13, "Posto de Serviço", "Posto de Serviço"),
+            new UnitType(13, 14, "Posto de Coleta", "Estabelecimento destinado a atender o público com o objetivo de recolher produtos/materiais/mercadorias/equipamentos/informações para posterior encaminhamento à unidade produtiva responsável por sua análise/processamento/beneficiamento/publicação. Ex: posto de coleta de anúncios classificados; posto de coleta de material para exames laboratoriais; posto de coleta de filmes fotográficos para revelação; posto de coleta de roupas para lavagem etc.")
+        );
+        unitTypeService.saveAll(types);
+        return types;
+    }
+
     public List<ManufacturingUnit> makeManufacturingUnits() {
         City cidade = cityService.findByCountryIdAndFederativeUnitIdAndCityId(23, 24, 1).get();
+        UnitType type = unitTypeService.findById(1).get();
         this.manUnits = Arrays.asList(
-                new ManufacturingUnit(1, customerService.getCustomer().get(), cidade, "Rua Tuiuti, 180, Centro, 89160045", RegisterState.ACTIVE)
+                new ManufacturingUnit(1, customerService.getCustomer().get(), cidade, "Rua Tuiuti, 180, Centro, 89160045", RegisterState.ACTIVE, type)
         );
         for(ManufacturingUnit manUnit : manUnits) {
             manufacturingUnitService.save(manUnit);

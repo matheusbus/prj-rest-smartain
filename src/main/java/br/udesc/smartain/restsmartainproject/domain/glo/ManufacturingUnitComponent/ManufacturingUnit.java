@@ -30,6 +30,9 @@ public class ManufacturingUnit {
     @Size(max = 300, message = "O endereço deve conter no máximo 300 caracteres.")
     private String address;
 
+    @Column(name = "ufbtag", nullable = false)
+    private String tag;
+
     @Column(name = "ufbstatus")
     private Short status;
 
@@ -41,10 +44,11 @@ public class ManufacturingUnit {
 
     }
 
-    public ManufacturingUnit(Integer id, Customer customer, City city, String address, RegisterState status, UnitType type) {
+    public ManufacturingUnit(Integer id, Customer customer, City city, String address, String tag, RegisterState status, UnitType type) {
         this.id = id;
         this.customer = customer;
         this.city = city;
+        this.tag = tag;
         this.address = address;
         this.status = status.getValue();
         this.type = type;
@@ -90,12 +94,33 @@ public class ManufacturingUnit {
         this.status = status.getValue();
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     public UnitType getType() {
         return type;
     }
 
     public void setType(UnitType type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "ManufacturingUnit{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", city=" + city +
+                ", address='" + address + '\'' +
+                ", tag='" + tag + '\'' +
+                ", status=" + status +
+                ", type=" + type +
+                '}';
     }
 
     @Override

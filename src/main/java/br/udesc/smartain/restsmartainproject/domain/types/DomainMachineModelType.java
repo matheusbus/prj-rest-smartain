@@ -1,4 +1,4 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent;
+package br.udesc.smartain.restsmartainproject.domain.types;
 
 public enum DomainMachineModelType {
 

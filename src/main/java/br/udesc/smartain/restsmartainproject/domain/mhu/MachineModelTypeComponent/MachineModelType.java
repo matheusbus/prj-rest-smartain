@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;

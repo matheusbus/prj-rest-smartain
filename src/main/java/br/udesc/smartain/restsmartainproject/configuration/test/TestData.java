@@ -112,7 +112,7 @@ public class TestData implements CommandLineRunner {
         City cidade = cityService.findByCountryIdAndFederativeUnitIdAndCityId(23, 24, 1).get();
         UnitType type = unitTypeService.findById(1).get();
         this.manUnits = Arrays.asList(
-                new ManufacturingUnit(1, customerService.getCustomer().get(), cidade, "Rua Tuiuti, 180, Centro, 89160045", RegisterState.ACTIVE, type)
+                new ManufacturingUnit(1, customerService.getCustomer().get(), cidade, "Rua Tuiuti, 180, Centro, 89160045", "ABC-0001", RegisterState.ACTIVE, type)
         );
         for(ManufacturingUnit manUnit : manUnits) {
             manufacturingUnitService.save(manUnit);

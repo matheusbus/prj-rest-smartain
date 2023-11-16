@@ -1,85 +1,84 @@
-CREATE SCHEMA mhu;
+--CREATE SCHEMA mhu;
 
-CREATE TABLE mhu.tbtipomodelomaquina (
-	tmmcodigo INTEGER NOT NULL,
-	tmmdescricao VARCHAR(250) NOT NULL,
-	CONSTRAINT tbtipomodelomaquina_pkey PRIMARY KEY (tmmcodigo)
-);
-COMMENT ON TABLE mhu.tbtipomodelomaquina IS 'Tabela dos tipos de máquinas';
-COMMENT ON COLUMN mhu.tbtipomodelomaquina.tmmcodigo IS 'Código sequencial do tipo de máquina';
-COMMENT ON COLUMN mhu.tbtipomodelomaquina.tmmdescricao IS 'Descrição do tipo de máquina';
+--CREATE TABLE mhu.tbtipomodelomaquina (
+--	tmmcodigo INTEGER NOT NULL,
+--	tmmdescricao VARCHAR(250) NOT NULL,
+--	CONSTRAINT tbtipomodelomaquina_pkey PRIMARY KEY (tmmcodigo)
+--);
+--COMMENT ON TABLE mhu.tbtipomodelomaquina IS 'Tabela dos tipos de máquinas';
+--COMMENT ON COLUMN mhu.tbtipomodelomaquina.tmmcodigo IS 'Código sequencial do tipo de máquina';
+--COMMENT ON COLUMN mhu.tbtipomodelomaquina.tmmdescricao IS 'Descrição do tipo de máquina';
 
-
-CREATE TABLE mhu.tbturno (
-	turcodigo INTEGER NOT NULL,
-	turdescri VARCHAR(100) NOT NULL,
-	turstatus SMALLINT NOT NULL,
-	turhoraini VARCHAR(5) NOT NULL,
-	turhorafim VARCHAR(5) NOT NULL,
-	CONSTRAINT tbturno_pkey PRIMARY KEY (turcodigo)
-);
-COMMENT ON TABLE mhu.tbturno IS 'Tabela de cadastros dos turnos de trabalho';
-COMMENT ON COLUMN mhu.tbturno.turcodigo IS 'Código sequencial do turno';
-COMMENT ON COLUMN mhu.tbturno.turdescri IS 'Descrição do turno';
-COMMENT ON COLUMN mhu.tbturno.turstatus IS 'Status do turno (0-Inativo, 1-Ativo)';
-COMMENT ON COLUMN mhu.tbturno.turhoraini IS 'Hora de início do turno (Formato HH:mm)';
-COMMENT ON COLUMN mhu.tbturno.turhorafim IS 'Hora de término do turno (Formato HH:mm)';
-
-
-CREATE TABLE mhu.tbcargo (
-	carcodigo INTEGER NOT NULL,
-	carnome VARCHAR(100) NOT NULL,
-	cardescricao VARCHAR(250),
-	carstatus VARCHAR NOT NULL,
-	CONSTRAINT tbcargo_pkey PRIMARY KEY (carcodigo)
-);
-COMMENT ON TABLE mhu.tbcargo IS 'Tabela de cadastro dos cargos dos profissionais';
-COMMENT ON COLUMN mhu.tbcargo.carcodigo IS 'Código sequencial do cargo';
-COMMENT ON COLUMN mhu.tbcargo.carnome IS 'Nome do cargo';
-COMMENT ON COLUMN mhu.tbcargo.cardescricao IS 'Breve descrição do cargo';
-COMMENT ON COLUMN mhu.tbcargo.carstatus IS 'Status do cargo (0-Inativo, 1-Ativo)';
+--CREATE TABLE mhu.tbturno (
+--	turcodigo INTEGER NOT NULL,
+--	turdescri VARCHAR(100) NOT NULL,
+--	turstatus SMALLINT NOT NULL,
+--	turhoraini VARCHAR(5) NOT NULL,
+--	turhorafim VARCHAR(5) NOT NULL,
+--	CONSTRAINT tbturno_pkey PRIMARY KEY (turcodigo)
+--);
+--COMMENT ON TABLE mhu.tbturno IS 'Tabela de cadastros dos turnos de trabalho';
+--COMMENT ON COLUMN mhu.tbturno.turcodigo IS 'Código sequencial do turno';
+--COMMENT ON COLUMN mhu.tbturno.turdescri IS 'Descrição do turno';
+--COMMENT ON COLUMN mhu.tbturno.turstatus IS 'Status do turno (0-Inativo, 1-Ativo)';
+--COMMENT ON COLUMN mhu.tbturno.turhoraini IS 'Hora de início do turno (Formato HH:mm)';
+--COMMENT ON COLUMN mhu.tbturno.turhorafim IS 'Hora de término do turno (Formato HH:mm)';
 
 
-CREATE TABLE mhu.tbtipounidade (
-	tiucodigo INTEGER NOT NULL,
-	tiucodfaz INTEGER NOT NULL,
-	tiunome VARCHAR(50) NOT NULL,
-	tiudescricao VARCHAR(250) NOT NULL,
-	CONSTRAINT tbtipounidade_pkey PRIMARY KEY (tiucodigo)
-);
-COMMENT ON TABLE mhu.tbtipounidade IS 'Tabela domínio de tipo de unidade';
-COMMENT ON COLUMN mhu.tbtipounidade.tiucodigo IS 'Código sequencial do tipo de unidade';
-COMMENT ON COLUMN mhu.tbtipounidade.tiucodfaz IS 'Código do tipo de unidade de acordo com o ministério da fazenda';
-COMMENT ON COLUMN mhu.tbtipounidade.tiunome IS 'Nome do tipo de unidade';
-COMMENT ON COLUMN mhu.tbtipounidade.tiudescricao IS 'Descrição do tipo de undiade';
+--CREATE TABLE mhu.tbcargo (
+--	carcodigo INTEGER NOT NULL,
+--	carnome VARCHAR(100) NOT NULL,
+--	cardescricao VARCHAR(250),
+--	carstatus VARCHAR NOT NULL,
+--	CONSTRAINT tbcargo_pkey PRIMARY KEY (carcodigo)
+--);
+--COMMENT ON TABLE mhu.tbcargo IS 'Tabela de cadastro dos cargos dos profissionais';
+--COMMENT ON COLUMN mhu.tbcargo.carcodigo IS 'Código sequencial do cargo';
+--COMMENT ON COLUMN mhu.tbcargo.carnome IS 'Nome do cargo';
+--COMMENT ON COLUMN mhu.tbcargo.cardescricao IS 'Breve descrição do cargo';
+--COMMENT ON COLUMN mhu.tbcargo.carstatus IS 'Status do cargo (0-Inativo, 1-Ativo)';
 
 
-CREATE TABLE mhu.tbmarca (
-	marcodigo INTEGER NOT NULL,
-	marnome VARCHAR(150) NOT NULL,
-	mardatcad DATE NOT NULL,
-	usucodigo INTEGER NOT NULL,
-	CONSTRAINT tbmarca_pkey PRIMARY KEY (marcodigo)
-);
-COMMENT ON TABLE mhu.tbmarca IS 'Tabela de cadastro de marcas';
-COMMENT ON COLUMN mhu.tbmarca.marcodigo IS 'Código sequencial da marca';
-COMMENT ON COLUMN mhu.tbmarca.marnome IS 'Nome da marca';
-COMMENT ON COLUMN mhu.tbmarca.mardatcad IS 'Data de cadastro da marca';
-COMMENT ON COLUMN mhu.tbmarca.usucodigo IS 'Código do usuário de cadastro da marca';
+--CREATE TABLE mhu.tbtipounidade (
+--	tiucodigo INTEGER NOT NULL,
+--	tiucodfaz INTEGER NOT NULL,
+--	tiunome VARCHAR(50) NOT NULL,
+--	tiudescricao VARCHAR(250) NOT NULL,
+--	CONSTRAINT tbtipounidade_pkey PRIMARY KEY (tiucodigo)
+--);
+--COMMENT ON TABLE mhu.tbtipounidade IS 'Tabela domínio de tipo de unidade';
+--COMMENT ON COLUMN mhu.tbtipounidade.tiucodigo IS 'Código sequencial do tipo de unidade';
+--COMMENT ON COLUMN mhu.tbtipounidade.tiucodfaz IS 'Código do tipo de unidade de acordo com o ministério da fazenda';
+--COMMENT ON COLUMN mhu.tbtipounidade.tiunome IS 'Nome do tipo de unidade';
+--COMMENT ON COLUMN mhu.tbtipounidade.tiudescricao IS 'Descrição do tipo de undiade';
 
 
-CREATE TABLE mhu.tbcomponente (
-	comcodigo INTEGER NOT NULL,
-	comnome VARCHAR(250) NOT NULL,
-	comdadostec VARCHAR(1000) NOT NULL,
-	marcodigo INTEGER NOT NULL,
-	CONSTRAINT tbcomponente_pkey PRIMARY KEY (comcodigo)
-);
-COMMENT ON TABLE mhu.tbcomponente IS 'Tabela de cadastro dos componentes das máquinas';
-COMMENT ON COLUMN mhu.tbcomponente.comcodigo IS 'Código sequencial do componente';
-COMMENT ON COLUMN mhu.tbcomponente.comnome IS 'Nome do componente';
-COMMENT ON COLUMN mhu.tbcomponente.comdadostec IS 'Dados e especificações técnicas do componente';
-COMMENT ON COLUMN mhu.tbcomponente.marcodigo IS 'Código sequencial da marca';
+--CREATE TABLE mhu.tbmarca (
+--	marcodigo INTEGER NOT NULL,
+--	marnome VARCHAR(150) NOT NULL,
+--	mardatcad DATE NOT NULL,
+--	usucodigo INTEGER NOT NULL,
+--	CONSTRAINT tbmarca_pkey PRIMARY KEY (marcodigo)
+--);
+--COMMENT ON TABLE mhu.tbmarca IS 'Tabela de cadastro de marcas';
+--COMMENT ON COLUMN mhu.tbmarca.marcodigo IS 'Código sequencial da marca';
+--COMMENT ON COLUMN mhu.tbmarca.marnome IS 'Nome da marca';
+--COMMENT ON COLUMN mhu.tbmarca.mardatcad IS 'Data de cadastro da marca';
+--COMMENT ON COLUMN mhu.tbmarca.usucodigo IS 'Código do usuário de cadastro da marca';
+
+
+--CREATE TABLE mhu.tbcomponente (
+--	comcodigo INTEGER NOT NULL,
+--	comnome VARCHAR(250) NOT NULL,
+--	comdadostec VARCHAR(1000) NOT NULL,
+--	marcodigo INTEGER NOT NULL,
+--	CONSTRAINT tbcomponente_pkey PRIMARY KEY (comcodigo)
+--);
+--COMMENT ON TABLE mhu.tbcomponente IS 'Tabela de cadastro dos componentes das máquinas';
+--COMMENT ON COLUMN mhu.tbcomponente.comcodigo IS 'Código sequencial do componente';
+--COMMENT ON COLUMN mhu.tbcomponente.comnome IS 'Nome do componente';
+--COMMENT ON COLUMN mhu.tbcomponente.comdadostec IS 'Dados e especificações técnicas do componente';
+--COMMENT ON COLUMN mhu.tbcomponente.marcodigo IS 'Código sequencial da marca';
 
 
 CREATE TABLE mhu.tbimportacao (

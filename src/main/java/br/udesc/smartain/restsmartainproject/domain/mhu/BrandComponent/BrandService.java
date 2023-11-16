@@ -33,6 +33,11 @@ public class BrandService {
     }
 
     @Transactional
+    public void saveAll(List<Brand> brands) {
+        brandRepository.saveAll(brands);
+    }
+
+    @Transactional
     public Object inactiveBrand(Brand BrandToInactive) {
         if(BrandToInactive.getStatus().equals(RegisterState.INACTIVE)) {
             return "The Brand " + BrandToInactive.getId() + " is already inactive";

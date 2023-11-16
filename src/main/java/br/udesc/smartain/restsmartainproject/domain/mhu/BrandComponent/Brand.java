@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -10,6 +11,8 @@ import org.hibernate.annotations.Comment;
 import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -43,6 +46,9 @@ public class Brand {
     @JoinColumn(name = "usucodigo", nullable = false)
     @Comment("Código do usuário de cadastro da marca")
     private User user;
+
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
+    private List<Component> components = new ArrayList<>();
 
     public Brand() {
 
@@ -94,6 +100,10 @@ public class Brand {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Component> getComponents() {
+        return components;
     }
 
     @Override

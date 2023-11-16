@@ -23,11 +23,6 @@ public class BrandController {
     @GetMapping
     public ResponseEntity<List<Brand>> findAll() {
         List<Brand> brands = brandService.findAll();
-
-        if(brands.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-
         return ResponseEntity.ok(brands);
     }
 
@@ -44,7 +39,7 @@ public class BrandController {
 
     @GetMapping(params = "status")
     public ResponseEntity<List<Brand>> findAllByStatys(@RequestParam(name = "status") Short status) {
-        if(status != 1 || status != 2) {
+        if(status != 1 && status != 2) {
             throw new NotFoundException("Status code not found - " + status);
         }
         List<Brand> brands = brandService.findAllByStatus(status);

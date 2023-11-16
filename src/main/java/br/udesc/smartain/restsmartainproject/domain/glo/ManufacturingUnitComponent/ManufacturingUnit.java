@@ -2,11 +2,14 @@ package br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompon
 
 import br.udesc.smartain.restsmartainproject.domain.glo.CustomerComponent.Customer;
 import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.City;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -39,6 +42,9 @@ public class ManufacturingUnit {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tiucodigo")
     private UnitType type;
+
+    @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
+    private List<Sector> sectors = new ArrayList<>();
 
     public ManufacturingUnit() {
 
@@ -108,6 +114,10 @@ public class ManufacturingUnit {
 
     public void setType(UnitType type) {
         this.type = type;
+    }
+
+    public List<Sector> getSectors() {
+        return sectors;
     }
 
     @Override

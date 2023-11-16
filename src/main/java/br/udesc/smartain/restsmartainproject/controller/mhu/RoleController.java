@@ -44,7 +44,7 @@ public class RoleController {
 
     @GetMapping(params = "status")
     public ResponseEntity<List<Role>> findAllByStatys(@RequestParam(name = "status") Short status) {
-        if(status != 1 || status != 2) {
+        if(status != 1 && status != 2) {
             throw new NotFoundException("Status code not found - " + status);
         }
         List<Role> Roles = roleService.findAllByStatus(status);

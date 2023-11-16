@@ -1,13 +1,17 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CollectionIdJdbcTypeCode;
 import org.hibernate.annotations.Comment;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +25,7 @@ public class Sector {
     @Comment("Código sequencial do setor")
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "unfcodigo", nullable = false)
     @Comment("Código da unidade fabril")
@@ -48,6 +53,9 @@ public class Sector {
     @Column(name = "settag")
     @Comment("Tag do setor (Ex.: ABC-001)")
     private String tag;
+
+    @OneToMany(mappedBy = "sector")
+    private List<ProductionCell> cells = new ArrayList<>();
 
     public Sector() {
 
@@ -117,6 +125,10 @@ public class Sector {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public List<ProductionCell> getCells() {
+        return cells;
     }
 
     @Override

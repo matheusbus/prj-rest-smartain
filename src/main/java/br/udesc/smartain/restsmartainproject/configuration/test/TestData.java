@@ -14,6 +14,8 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
+import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
@@ -24,6 +26,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +60,9 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private ManufacturingUnitService manufacturingUnitService;
 
+    @Autowired
+    private BrandService brandService;
+
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
@@ -65,6 +71,8 @@ public class TestData implements CommandLineRunner {
     private List<UnitType> types = new ArrayList<>();
 
     private List<ManufacturingUnit> manUnits = new ArrayList<>();
+
+    private List<Brand> brands = new ArrayList<>();
 
     @Override
     public void run(String... args) throws Exception {
@@ -77,6 +85,8 @@ public class TestData implements CommandLineRunner {
 
         makeManufacturingUnitTypes();
         makeManufacturingUnits();
+
+        makeBrands();
 
     }
 
@@ -396,5 +406,16 @@ public class TestData implements CommandLineRunner {
         );
         cityService.saveAll(cities);
         return cities;
+    }
+
+    public List<Brand> makeBrands() {
+        this.brands = Arrays.asList(
+                new Brand(null, "WEG", LocalDate.now(), userService.findAllUsers().get().get(0), RegisterState.ACTIVE),
+                new Brand(null, "NSK", LocalDate.now(), userService.findAllUsers().get().get(0), RegisterState.ACTIVE)
+        );
+        for(Brand brand : brands) {
+            brandService.save(brand);
+        }
+        return brands;
     }
 }

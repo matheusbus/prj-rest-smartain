@@ -19,7 +19,7 @@ public interface SectorRepository extends JpaRepository<Sector, Integer> {
             value = "UPDATE mhu.tbsetor SET tbsetor.setstatus = 2 WHERE tbsetor.setcodigo = ?1",
             nativeQuery = true
     )
-    public void inacivateShiftById(Integer id);
+    public void inacivateSectorById(Integer id);
 
 
 }

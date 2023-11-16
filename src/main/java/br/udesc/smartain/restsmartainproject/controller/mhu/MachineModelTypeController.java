@@ -44,7 +44,7 @@ public class MachineModelTypeController {
 
     @GetMapping(params = "status")
     public ResponseEntity<List<MachineModelType>> findAllByStatys(@RequestParam(name = "status") Short status) {
-        if(status != 1 || status != 2) {
+        if(status != 1 && status != 2) {
             throw new NotFoundException("Status code not found - " + status);
         }
         List<MachineModelType> machineModelTypes = machineModelTypeService.findAllByStatus(status);

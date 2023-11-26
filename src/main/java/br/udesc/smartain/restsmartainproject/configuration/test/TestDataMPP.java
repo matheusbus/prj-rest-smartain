@@ -2,10 +2,14 @@ package br.udesc.smartain.restsmartainproject.configuration.test;
 
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationType;
+import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCause;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceIntervention;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceInterventionService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +36,12 @@ public class TestDataMPP implements CommandLineRunner {
     @Autowired
     private ServiceCauseService serviceCauseService;
 
+    @Autowired
+    private ServicePriorityService servicePriorityService;
+
+    @Autowired
+    private OrderGenerationTypeService orderGenerationTypeService;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,6 +49,8 @@ public class TestDataMPP implements CommandLineRunner {
         makeServiceSymptons();
         makeMaintenanceTypes();
         makeServiceCauses();
+        makeServicePriorities();
+        makeOrderGenerationTypes();
     }
 
 
@@ -125,6 +137,25 @@ public class TestDataMPP implements CommandLineRunner {
                 new ServiceCause(null, "Subdimensionado", "SUB", "Tal causa será indicada, quando o motivo do efeito for a estipulação no projeto de componente que não atende os requisitos mínimos para o bom funcionamento do conjunto. Exemplo-, O projeto determina um disjuntor de proteção ao circuito, de 4A /220V, sendo a real necessidade um de 5A/220V. ")
         );
         serviceCauseService.saveAll(serviceCauses);
+    }
+
+    public void makeServicePriorities() {
+        List<ServicePriority> servicePriorities = Arrays.asList(
+                new ServicePriority(null, "Baixa"),
+                new ServicePriority(null, "Média"),
+                new ServicePriority(null, "Alta")
+        );
+        servicePriorityService.saveAll(servicePriorities);
+    }
+
+    public void makeOrderGenerationTypes() {
+        List<OrderGenerationType> orderGenerationTypes = Arrays.asList(
+                new OrderGenerationType(null, "Gerada a partir do Plano de Manutenção"),
+                new OrderGenerationType(null, "Gerada a partir do executante (emergência)"),
+                new OrderGenerationType(null, "Gerada a partir da Solicitação de Serviço"),
+                new OrderGenerationType(null, "Gerada a partir de inspeção")
+        );
+        orderGenerationTypeService.saveAll(orderGenerationTypes);
     }
 
 }

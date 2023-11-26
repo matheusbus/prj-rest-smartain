@@ -52,6 +52,7 @@ public class UserController {
         newUser.setLogin(request.getLogin());
         newUser.setName(request.getName());
         newUser.setEmail(request.getEmail());
+        newUser.setPassword(request.getPassword());
         newUser.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
         newUser.setCreatedDate(LocalDateTime.now());
 

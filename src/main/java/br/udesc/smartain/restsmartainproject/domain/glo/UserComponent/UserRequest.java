@@ -11,6 +11,7 @@ public class UserRequest {
     private String email;
     private RegisterState status;
     private LocalDateTime createdData;
+    private String password;
     public String getName() {
         return name;
     }
@@ -40,6 +41,12 @@ public class UserRequest {
     }
     public void setCreatedData(LocalDateTime createdData) {
         this.createdData = createdData;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     

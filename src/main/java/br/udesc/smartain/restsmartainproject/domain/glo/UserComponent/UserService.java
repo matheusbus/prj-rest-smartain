@@ -19,6 +19,11 @@ public class UserService {
         return userRepository.findAllUsers();
     }
 
+    @Transactional(readOnly = true)
+    public Optional<User> findById(long id){
+        return userRepository.findById(id);
+    }
+    
     @Transactional
     public void saveUser(@Valid User user){
         userRepository.save(user);

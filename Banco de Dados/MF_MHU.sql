@@ -156,20 +156,20 @@ COMMENT ON COLUMN mhu.tbimportacaofabricante.impcodigo IS 'Código sequencial da
 COMMENT ON COLUMN mhu.tbimportacaofabricante.ipfdados IS 'Dados (JSON) das informações do fabricante';
 
 
-CREATE TABLE mhu.tbfabricante (
-	fabcodigo INTEGER NOT NULL,
-	fabrazaosocial VARCHAR(150) NOT NULL,
-	fabcnpj VARCHAR(16) NOT NULL,
-	fabstatus SMALLINT NOT NULL,
-	imfcodigo INTEGER NOT NULL,
-	CONSTRAINT tbfabricante_pkey PRIMARY KEY (fabcodigo)
-);
-COMMENT ON TABLE mhu.tbfabricante IS 'Tabela de cadastro dos fabricantes de máquinas/equipamentos/componentes';
-COMMENT ON COLUMN mhu.tbfabricante.fabcodigo IS 'Código sequencial do fabricante';
-COMMENT ON COLUMN mhu.tbfabricante.fabrazaosocial IS 'Razão social do fabricante';
-COMMENT ON COLUMN mhu.tbfabricante.fabcnpj IS 'CNPJ do fabricante';
-COMMENT ON COLUMN mhu.tbfabricante.fabstatus IS 'Status do fabricante (0-Inativo, 1-Ativo)';
-COMMENT ON COLUMN mhu.tbfabricante.imfcodigo IS 'Código (ERP) do fabricante';
+--CREATE TABLE mhu.tbfabricante (
+--	fabcodigo INTEGER NOT NULL,
+--	fabrazaosocial VARCHAR(150) NOT NULL,
+--	fabcnpj VARCHAR(16) NOT NULL,
+--	fabstatus SMALLINT NOT NULL,
+--	imfcodigo INTEGER NOT NULL,
+--	CONSTRAINT tbfabricante_pkey PRIMARY KEY (fabcodigo)
+--);
+--COMMENT ON TABLE mhu.tbfabricante IS 'Tabela de cadastro dos fabricantes de máquinas/equipamentos/componentes';
+--COMMENT ON COLUMN mhu.tbfabricante.fabcodigo IS 'Código sequencial do fabricante';
+--COMMENT ON COLUMN mhu.tbfabricante.fabrazaosocial IS 'Razão social do fabricante';
+--COMMENT ON COLUMN mhu.tbfabricante.fabcnpj IS 'CNPJ do fabricante';
+--COMMENT ON COLUMN mhu.tbfabricante.fabstatus IS 'Status do fabricante (0-Inativo, 1-Ativo)';
+--COMMENT ON COLUMN mhu.tbfabricante.imfcodigo IS 'Código (ERP) do fabricante';
 
 
 CREATE TABLE mhu.tbmodelomaquina (

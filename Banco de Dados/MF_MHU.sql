@@ -117,23 +117,22 @@ COMMENT ON COLUMN mhu.tbimportacaofornecedor.impcodigo IS 'Código sequencial da
 COMMENT ON COLUMN mhu.tbimportacaofornecedor.ipfinfo IS 'Informações do fornecedor (JSON ou XML)';
 
 
-CREATE TABLE mhu.tbfornecedor (
-	forcodigo INTEGER NOT NULL,
-	forrazaosocial VARCHAR(150) NOT NULL,
-	forcnpj VARCHAR(16) NOT NULL,
-	forcontatotelefone VARCHAR(20),
-	forcontatoemail VARCHAR(100),
-	imfcodigo INTEGER NOT NULL,
-	CONSTRAINT tbfornecedor_pkey PRIMARY KEY (forcodigo)
-);
-COMMENT ON TABLE mhu.tbfornecedor IS 'Tabela de cadastros dos fornecedores';
-COMMENT ON COLUMN mhu.tbfornecedor.forcodigo IS 'Código sequencial do fornecedor';
-COMMENT ON COLUMN mhu.tbfornecedor.forrazaosocial IS 'Razão social do fornecedor';
-COMMENT ON COLUMN mhu.tbfornecedor.forcnpj IS 'CNPJ do fornecedor';
-COMMENT ON COLUMN mhu.tbfornecedor.forcontatotelefone IS 'Telefone de contato do fornecedor';
-COMMENT ON COLUMN mhu.tbfornecedor.forcontatoemail IS 'E-mail de contato do fornecedor';
-COMMENT ON COLUMN mhu.tbfornecedor.imfcodigo IS 'Código (ERP) do fornecedor';
-
+--CREATE TABLE mhu.tbfornecedor (
+--	forcodigo INTEGER NOT NULL,
+--	forrazaosocial VARCHAR(150) NOT NULL,
+--	forcnpj VARCHAR(16) NOT NULL,
+--	forcontatotelefone VARCHAR(20),
+--	forcontatoemail VARCHAR(100),
+--	imfcodigo INTEGER NOT NULL,
+--	CONSTRAINT tbfornecedor_pkey PRIMARY KEY (forcodigo)
+-- );
+--COMMENT ON TABLE mhu.tbfornecedor IS 'Tabela de cadastros dos fornecedores';
+--COMMENT ON COLUMN mhu.tbfornecedor.forcodigo IS 'Código sequencial do fornecedor';
+--COMMENT ON COLUMN mhu.tbfornecedor.forrazaosocial IS 'Razão social do fornecedor';
+--COMMENT ON COLUMN mhu.tbfornecedor.forcnpj IS 'CNPJ do fornecedor';
+--COMMENT ON COLUMN mhu.tbfornecedor.forcontatoemail IS 'E-mail de contato do fornecedor';
+--COMMENT ON COLUMN mhu.tbfornecedor.forcontatotelefone IS 'Telefone de contato do fornecedor';
+--COMMENT ON COLUMN mhu.tbfornecedor.imfcodigo IS 'Código (ERP) do fornecedor';
 
 CREATE TABLE mhu.tbcomponentefornecedor (
 	comcodigo INTEGER NOT NULL,

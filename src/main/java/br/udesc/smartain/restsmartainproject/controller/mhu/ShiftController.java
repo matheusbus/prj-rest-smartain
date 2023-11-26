@@ -44,7 +44,7 @@ public class ShiftController {
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<Shift>> findAllByStatys(@RequestParam(name = "status") Short status) {
+    public ResponseEntity<List<Shift>> findAllByStatus(@RequestParam(name = "status") Short status) {
         if(status != 1 && status != 2) {
             throw new NotFoundException("Status code not found - " + status);
         }

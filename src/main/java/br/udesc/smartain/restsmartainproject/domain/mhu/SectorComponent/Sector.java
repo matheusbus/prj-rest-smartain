@@ -25,7 +25,6 @@ public class Sector {
     @Comment("Código sequencial do setor")
     private Integer id;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "unfcodigo", nullable = false)
     @Comment("Código da unidade fabril")

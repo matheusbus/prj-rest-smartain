@@ -270,32 +270,32 @@ COMMENT ON COLUMN mhu.tbcelulaproducao.setcodigo IS 'Código sequencial do setor
 COMMENT ON COLUMN mhu.tbcelulaproducao.clptag IS 'Tag da célula de produção (Ex.: ABC-001) 3 primeiros dígitos livres e 3 últimos dígitos iguais do setor a qual pertence';
 
 
-CREATE TABLE mhu.tbmaquina (
-	maqcodigo INTEGER NOT NULL,
-	setcodigo INTEGER NOT NULL,
-	unfcodigo INTEGER NOT NULL,
-	maqdadostec VARCHAR(1000) NOT NULL,
-	momcodigo INTEGER NOT NULL,
-	clpcodigo INTEGER,
-	maqtag VARCHAR(7) NOT NULL,
-	maqdataaquisicao DATE NOT NULL,
-	maqdatcad TIMESTAMP NOT NULL,
-	maqdatexpiragarantia DATE,
-	maqgarantia SMALLINT NOT NULL,
-	CONSTRAINT tbmaquina_pkey PRIMARY KEY (maqcodigo)
-);
-COMMENT ON TABLE mhu.tbmaquina IS 'Tabela de cadastros de máquinas dos setores/células de produção';
-COMMENT ON COLUMN mhu.tbmaquina.maqcodigo IS 'Código sequencial da máquina';
-COMMENT ON COLUMN mhu.tbmaquina.setcodigo IS 'Código sequencial do setor';
-COMMENT ON COLUMN mhu.tbmaquina.unfcodigo IS 'Código sequencial da unidade fabril';
-COMMENT ON COLUMN mhu.tbmaquina.maqdadostec IS 'Dados técnicos do modelo de máquina';
-COMMENT ON COLUMN mhu.tbmaquina.momcodigo IS 'Código do modelo de máquina';
-COMMENT ON COLUMN mhu.tbmaquina.clpcodigo IS 'Código da célula de produção';
-COMMENT ON COLUMN mhu.tbmaquina.maqtag IS 'Tag da máquina (Ex.: ABC-001)';
-COMMENT ON COLUMN mhu.tbmaquina.maqdataaquisicao IS 'Data de aquisição da máquina';
-COMMENT ON COLUMN mhu.tbmaquina.maqdatcad IS 'Data de cadastro da máquina';
-COMMENT ON COLUMN mhu.tbmaquina.maqdatexpiragarantia IS 'Data de expiração da garantia da máquina';
-COMMENT ON COLUMN mhu.tbmaquina.maqgarantia IS 'Indica de a máquina está na garantia (0-Não, 1-Sim)';
+--CREATE TABLE mhu.tbmaquina (
+--	maqcodigo INTEGER NOT NULL,
+--	setcodigo INTEGER NOT NULL,
+--	unfcodigo INTEGER NOT NULL,
+--	maqdadostec VARCHAR(1000) NOT NULL,
+--	momcodigo INTEGER NOT NULL,
+--	clpcodigo INTEGER,
+--	maqtag VARCHAR(7) NOT NULL,
+--	maqdataaquisicao DATE NOT NULL,
+--	maqdatcad TIMESTAMP NOT NULL,
+--	maqdatexpiragarantia DATE,
+--	maqgarantia SMALLINT NOT NULL,
+--	CONSTRAINT tbmaquina_pkey PRIMARY KEY (maqcodigo)
+--);
+--COMMENT ON TABLE mhu.tbmaquina IS 'Tabela de cadastros de máquinas dos setores/células de produção';
+--COMMENT ON COLUMN mhu.tbmaquina.maqcodigo IS 'Código sequencial da máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.setcodigo IS 'Código sequencial do setor';
+--COMMENT ON COLUMN mhu.tbmaquina.unfcodigo IS 'Código sequencial da unidade fabril';
+--COMMENT ON COLUMN mhu.tbmaquina.maqdadostec IS 'Dados técnicos do modelo de máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.momcodigo IS 'Código do modelo de máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.clpcodigo IS 'Código da célula de produção';
+--COMMENT ON COLUMN mhu.tbmaquina.maqtag IS 'Tag da máquina (Ex.: ABC-001)';
+--COMMENT ON COLUMN mhu.tbmaquina.maqdataaquisicao IS 'Data de aquisição da máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.maqdatcad IS 'Data de cadastro da máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.maqdatexpiragarantia IS 'Data de expiração da garantia da máquina';
+--COMMENT ON COLUMN mhu.tbmaquina.maqgarantia IS 'Indica de a máquina está na garantia (0-Não, 1-Sim)';
 
 
 CREATE TABLE mhu.tbmaquinacomponente (

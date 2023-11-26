@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 @Service
 public class SectorService {
 
+    @Autowired
     private SectorRepository sectorRepository;
 
     public List<Sector> findAll() {

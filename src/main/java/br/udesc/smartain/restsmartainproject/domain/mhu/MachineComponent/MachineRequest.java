@@ -22,7 +22,7 @@ public class MachineRequest {
 
     private LocalDate warrantyExpDate;
 
-    private RegisterState status;
+    private Short status;
 
     public Integer getId() {
         return id;
@@ -80,11 +80,11 @@ public class MachineRequest {
         this.warrantyExpDate = warrantyExpDate;
     }
 
-    public RegisterState getStatus() {
+    public Short getStatus() {
         return status;
     }
 
-    public void setStatus(RegisterState status) {
+    public void setStatus(Short status) {
         this.status = status;
     }
 }

@@ -93,7 +93,7 @@ public class MachineController {
         newMachine.setProductionCell(cell);
         newMachine.setTag(request.getTag());
         newMachine.setTechnicalData(request.getTechnicalData());
-        newMachine.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+        newMachine.setStatus(RegisterState.valueOf(request.getStatus()));
         newMachine.setCreatedDate(LocalDateTime.now());
         newMachine.setAcquisitionDate(request.getAcquisitionDate());
         newMachine.setWarrantyExpDate(request.getWarrantyExpDate());
@@ -134,7 +134,7 @@ public class MachineController {
             MachineUpdated.setAcquisitionDate(request.getAcquisitionDate());
             MachineUpdated.setTag(request.getTag());
             MachineUpdated.setTechnicalData(request.getTechnicalData());
-            MachineUpdated.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+            MachineUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             MachineUpdated.setWarrantyExpDate(request.getWarrantyExpDate());
 
             if (MachineUpdated.getWarrantyExpDate().isAfter(LocalDate.now())) {

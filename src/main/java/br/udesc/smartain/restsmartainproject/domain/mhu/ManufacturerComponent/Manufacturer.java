@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
@@ -53,13 +54,13 @@ public class Manufacturer {
 
     }
 
-    public Manufacturer(Integer id, String socialReason, String cnpj, String phone, String email, Short status) {
+    public Manufacturer(Integer id, String socialReason, String cnpj, String phone, String email, RegisterState status) {
         this.id = id;
         this.socialReason = socialReason;
         this.cnpj = cnpj;
         this.phone = phone;
         this.email = email;
-        this.status = status;
+        this.status = status.getValue();
     }
 
     public Integer getId() {

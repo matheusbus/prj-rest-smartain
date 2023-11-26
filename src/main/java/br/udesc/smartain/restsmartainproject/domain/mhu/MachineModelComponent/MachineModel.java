@@ -2,6 +2,7 @@ package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.validator.constraints.Range;
@@ -44,6 +45,15 @@ public class MachineModel {
 
     public MachineModel() {
 
+    }
+
+    public MachineModel(Integer id, Manufacturer manufacturer, String model, String dimensions, MachineModelType machineModelType, RegisterState status) {
+        this.id = id;
+        this.manufacturer = manufacturer;
+        this.model = model;
+        this.dimensions = dimensions;
+        this.machineModelType = machineModelType;
+        this.status = status.getValue();
     }
 
     public Integer getId() {

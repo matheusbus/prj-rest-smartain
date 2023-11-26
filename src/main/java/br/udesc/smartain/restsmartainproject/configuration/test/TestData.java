@@ -20,6 +20,8 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.Ma
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
@@ -27,6 +29,7 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTy
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
+import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -73,6 +76,9 @@ public class TestData implements CommandLineRunner {
     private BrandService brandService;
 
     @Autowired
+    private ManufacturerService manufacturerService;
+
+    @Autowired
     private MachineModelTypeService machineModelTypeService;
 
     @Autowired
@@ -90,6 +96,8 @@ public class TestData implements CommandLineRunner {
     private List<Sector> sectors = new ArrayList<>();
 
     private List<Brand> brands = new ArrayList<>();
+
+    private List<Manufacturer> manufacturers = new ArrayList<>();
 
     private List<MachineModelType>  machineModelsTypes = new ArrayList<>();
 
@@ -110,6 +118,7 @@ public class TestData implements CommandLineRunner {
         makeSectors();
 
         makeBrands();
+        makeManufacturers();
 
         makeMachineModelTypes();
         makeMachineModels();
@@ -455,6 +464,17 @@ public class TestData implements CommandLineRunner {
         return brands;
     }
 
+    public List<Manufacturer> makeManufacturers() {
+        this.manufacturers = Arrays.asList(
+                new Manufacturer(null, "Industrial Pagé LTDA", "92412168000122", "482882012", "page@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "WEG S.A.", "84429695000111", "5130262026", "weg@comercial.com.br",  RegisterState.ACTIVE)
+        );
+        for(Manufacturer manufacturer : this.manufacturers) {
+            manufacturerService.save(manufacturer);
+        }
+        return manufacturers;
+    }
+
     public List<MachineModelType> makeMachineModelTypes() {
         this.machineModelsTypes = Arrays.asList(
                 new MachineModelType((Integer) null, "CNC", (short) 1, RegisterState.ACTIVE),
@@ -468,8 +488,8 @@ public class TestData implements CommandLineRunner {
 
     public List<MachineModel> makeMachineModels() {
         this.machineModels = Arrays.asList(
-                //new MachineModel((Integer) null, "CNC", (short) 1, RegisterState.ACTIVE),
-                //new MachineModel((Integer) null, "Manual", (short) 1, RegisterState.ACTIVE)
+                new MachineModel((Integer) null, this.manufacturers.get(1), "CNC de Cabeçote Fixo", "Largura: 3.2m, Comprimento: 5.0m", machineModelsTypes.get(0), RegisterState.ACTIVE),
+                new MachineModel((Integer) null, this.manufacturers.get(1) , "Torno Manual", "Largura: 2.0m, Comprimento: 3.3m", machineModelsTypes.get(0), RegisterState.ACTIVE)
         );
         for(MachineModel machineModel : machineModels) {
             machineModelService.save(machineModel);

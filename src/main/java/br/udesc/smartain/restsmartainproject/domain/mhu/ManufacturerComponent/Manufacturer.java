@@ -2,6 +2,7 @@ package br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
@@ -47,6 +48,7 @@ public class Manufacturer {
     @Range(min = 1, max = 2)
     private Short status;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
     private List<MachineModel> machineModels = new ArrayList<>();
 

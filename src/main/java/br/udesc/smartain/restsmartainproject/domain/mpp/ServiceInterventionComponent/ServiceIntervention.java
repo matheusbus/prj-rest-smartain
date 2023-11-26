@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Entity
-@Table(schema = "mpp", name = "tbservico")
+@Table(schema = "mpp", name = "tbintervencaoservico")
 @Comment("Tabela de domínio dos serviços de intervenção")
 public class ServiceIntervention {
 
@@ -22,7 +22,7 @@ public class ServiceIntervention {
     @Comment("Nome do serviço de intervenção")
     private String name;
 
-    @Column(name = "sersigla")
+    @Column(name = "sersigla", length = 3)
     @Comment("Sigla do serviço de intervenção")
     private String acronym;
 

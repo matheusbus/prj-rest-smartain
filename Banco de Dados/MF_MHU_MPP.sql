@@ -4,32 +4,32 @@ COMMENT ON SCHEMA mhu IS 'Máquinas, homens e unidades';
 CREATE SCHEMA mpp;
 COMMENT ON SCHEMA mpp is 'Manutenção programada e planejada'
 
-CREATE TABLE mpp.tbservico (
-	sercodigo SERIAL NOT NULL,
-	tpiintervencao VARCHAR(50) NOT NULL,
-	tpisigla VARCHAR NOT NULL,
-	tpidescricao VARCHAR(500) NOT NULL,
-	CONSTRAINT tbtipointervencao_pkey PRIMARY KEY (sercodigo)
-);
-COMMENT ON TABLE mpp.tbservico IS 'Tabela dos serviços de intervenção';
-COMMENT ON COLUMN mpp.tbservico.sercodigo IS 'Código sequencial do serviço de intervenção';
-COMMENT ON COLUMN mpp.tbservico.tpiintervencao IS 'Nome da intervenção';
-COMMENT ON COLUMN mpp.tbservico.tpisigla IS 'Sigla do tipo de intervenção';
-COMMENT ON COLUMN mpp.tbservico.tpidescricao IS 'Descrição do tipo de intervenção';
+--CREATE TABLE mpp.tbservico (
+--	sercodigo SERIAL NOT NULL,
+--	tpiintervencao VARCHAR(50) NOT NULL,
+--	tpisigla VARCHAR NOT NULL,
+--	tpidescricao VARCHAR(500) NOT NULL,
+--	CONSTRAINT tbtipointervencao_pkey PRIMARY KEY (sercodigo)
+--);
+--COMMENT ON TABLE mpp.tbservico IS 'Tabela dos serviços de intervenção';
+--COMMENT ON COLUMN mpp.tbservico.sercodigo IS 'Código sequencial do serviço de intervenção';
+--COMMENT ON COLUMN mpp.tbservico.tpiintervencao IS 'Nome da intervenção';
+--COMMENT ON COLUMN mpp.tbservico.tpisigla IS 'Sigla do tipo de intervenção';
+--COMMENT ON COLUMN mpp.tbservico.tpidescricao IS 'Descrição do tipo de intervenção';
 
 
-CREATE TABLE mpp.tbsintomaservico (
-	stscodigo SERIAL NOT NULL,
-	stssintoma VARCHAR(50) NOT NULL,
-	stssigla VARCHAR(3) NOT NULL,
-	stsdescricao VARCHAR(500) NOT NULL,
-	CONSTRAINT tbsintomaservico_pkey PRIMARY KEY (stscodigo)
-);
-COMMENT ON TABLE mpp.tbsintomaservico IS 'Tabela dos sintomas para geração de serviços';
-COMMENT ON COLUMN mpp.tbsintomaservico.stscodigo IS 'Código sequencial do sintoma de manutenção';
-COMMENT ON COLUMN mpp.tbsintomaservico.stssintoma IS 'Sintoma de manutenção';
-COMMENT ON COLUMN mpp.tbsintomaservico.stssigla IS 'Sigla do sintoma de manutenção';
-COMMENT ON COLUMN mpp.tbsintomaservico.stsdescricao IS 'Descrição do sintoma de manutenção';
+--CREATE TABLE mpp.tbsintomaservico (
+--	stscodigo SERIAL NOT NULL,
+--	stssintoma VARCHAR(50) NOT NULL,
+--	stssigla VARCHAR(3) NOT NULL,
+--	stsdescricao VARCHAR(500) NOT NULL,
+--	CONSTRAINT tbsintomaservico_pkey PRIMARY KEY (stscodigo)
+--);
+--COMMENT ON TABLE mpp.tbsintomaservico IS 'Tabela dos sintomas para geração de serviços';
+--COMMENT ON COLUMN mpp.tbsintomaservico.stscodigo IS 'Código sequencial do sintoma de manutenção';
+--COMMENT ON COLUMN mpp.tbsintomaservico.stssintoma IS 'Sintoma de manutenção';
+--COMMENT ON COLUMN mpp.tbsintomaservico.stssigla IS 'Sigla do sintoma de manutenção';
+--COMMENT ON COLUMN mpp.tbsintomaservico.stsdescricao IS 'Descrição do sintoma de manutenção';
 
 
 CREATE TABLE mpp.tbtipomanutencao (

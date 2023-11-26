@@ -32,14 +32,14 @@ COMMENT ON SCHEMA mpp is 'Manutenção programada e planejada'
 --COMMENT ON COLUMN mpp.tbsintomaservico.stsdescricao IS 'Descrição do sintoma de manutenção';
 
 
-CREATE TABLE mpp.tbtipomanutencao (
-	tpmcodigo INTEGER NOT NULL,
-	tpmdescricao VARCHAR(250) NOT NULL,
-	CONSTRAINT tbtipomanutencao_pkey PRIMARY KEY (tpmcodigo)
-);
-COMMENT ON TABLE mpp.tbtipomanutencao IS 'Tabela que armazena os tipos de manutenção';
-COMMENT ON COLUMN mpp.tbtipomanutencao.tpmcodigo IS 'Código sequencial do tipo de manutenção';
-COMMENT ON COLUMN mpp.tbtipomanutencao.tpmdescricao IS 'Descrição do tipo de manutenção';
+--CREATE TABLE mpp.tbtipomanutencao (
+--	tpmcodigo INTEGER NOT NULL,
+--	tpmdescricao VARCHAR(250) NOT NULL,
+--	CONSTRAINT tbtipomanutencao_pkey PRIMARY KEY (tpmcodigo)
+--);
+--COMMENT ON TABLE mpp.tbtipomanutencao IS 'Tabela que armazena os tipos de manutenção';
+--COMMENT ON COLUMN mpp.tbtipomanutencao.tpmcodigo IS 'Código sequencial do tipo de manutenção';
+--COMMENT ON COLUMN mpp.tbtipomanutencao.tpmdescricao IS 'Descrição do tipo de manutenção';
 
 
 CREATE TABLE mpp.tbcausaservico (

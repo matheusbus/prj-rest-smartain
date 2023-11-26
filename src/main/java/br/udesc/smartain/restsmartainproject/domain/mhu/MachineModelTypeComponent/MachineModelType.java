@@ -3,6 +3,7 @@ package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeCompone
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
@@ -37,6 +38,7 @@ public class MachineModelType {
     @Comment("Status do registro (1-Ativo, 2-Inativo)")
     private Short status;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "machineModelType", fetch = FetchType.LAZY)
     private List<MachineModel> machineModels = new ArrayList<>();
 

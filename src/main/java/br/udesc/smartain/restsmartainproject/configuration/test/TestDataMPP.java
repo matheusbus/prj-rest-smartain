@@ -2,6 +2,8 @@ package br.udesc.smartain.restsmartainproject.configuration.test;
 
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCause;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceIntervention;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceInterventionService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
@@ -27,12 +29,16 @@ public class TestDataMPP implements CommandLineRunner {
     @Autowired
     private MaintenanceTypeService maintenanceTypeService;
 
+    @Autowired
+    private ServiceCauseService serviceCauseService;
+
 
     @Override
     public void run(String... args) throws Exception {
         makeServiceInterventions();
         makeServiceSymptons();
         makeMaintenanceTypes();
+        makeServiceCauses();
     }
 
 
@@ -91,6 +97,34 @@ public class TestDataMPP implements CommandLineRunner {
             new MaintenanceType(null, "Manutenção prescritiva")
         );
         maintenanceTypeService.saveAll(maintenanceTypes);
+    }
+
+    public void makeServiceCauses() {
+        List<ServiceCause> serviceCauses = Arrays.asList(
+                new ServiceCause(null, "Defeito de Fábrica", "DEF", "Quando da ocorrência de uma imperfeição, defeito de fabricação do componente/elemento responsável pela falha. Exemplos: Bobina com número menor de espiras, PLC com problemas em seu programa instalado na fábrica, etc."),
+                new ServiceCause(null, "Desalinhamento", "DES", "Sem alinho, componente/elemento fora do seu devido alinhamento."),
+                new ServiceCause(null, "Desnivelamento", "DEN", "Componente/elemento fora do nivelamento, ocasionando diferença de nível entre elementos que interagem."),
+                new ServiceCause(null, "Falta de Proteção", "FPR", "Será indicado quando o efeito foi causado por uma falta de proteção, que deveria existir para salvaguardar um equipamento, bem como a retirada intencional de tal proteção. Exemplos: Queima de equipamento eletroeletrônico por falta de um disjuntor no circuito. Queima de uma fonte por um transiente de tensão devido à falta de um fusível tipo fio de proteção."),
+                new ServiceCause(null, "Desregulamento", "DER", "Ocorre quando o efeito é proveniente de uma falta de ajuste, calibração, regulagem de um determinado componente/elemento e/ou equipamento. Exemplo: Capacitor variável da placa de corrente de balança fora do ajuste de operação."),
+                new ServiceCause(null, "Destensionado", "DET", "Deve ser apontado quando o componente/elemento se encontrar sem tensionamento ou torque, necessário (recomendável) para sua operação."),
+                new ServiceCause(null, "Engripado", "ENG", "Ocorre quando o componente/elemento responsável pela falha estiver com suas partes móveis, sem nenhuma mobilidade, devido a um alto coeficiente de atrito, proveniente de grande quantidade de oxidação (ferrugem), etc., "),
+                new ServiceCause(null, "Fadiga", "FAD", "Quando o componente/elemento responsável pela falha se encontrava sob efeito de afadigamento, cansaço, ou seja, com fadiga que consiste na diminuição gradual da resistência de um material por efeito de solicitações repetidas."),
+                new ServiceCause(null, "Fissura", "FIS", "Quando o componente/elemento ocasionador do efeito tem ou tinha fissuras em seu corpo, ou seja, fendas, cisuras ou incisuras."),
+                new ServiceCause(null, "Folga", "FOL", "Componente/elemento ocasionador com folga, ou seja, espaço entre partes de interação acima do permitido."),
+                new ServiceCause(null, "Fora de Especificação", "FOE", "Ocorre quando o componente/elemento ocasionador do efeito se encontra fora da especificação estabelecida para o trabalho. Exemplos: Resistor de 2K2Q no lugar de um resistor que deveria ser de 3KQ. Rolamento blindado (zz) no lugar de um rolamento que deveria ser tipo aberto."),
+                new ServiceCause(null, "Gasto", "GAS", "Componente/elemento deteriorado, consumido nas partes úteis de seu corpo."),
+                new ServiceCause(null, "Não Identificada", "NID", "Devemos apontar tal causa quando não pudermos afirmar com exatidão o que provocou o efeito."),
+                new ServiceCause(null, "Nível Baixo", "NBX", "Esta causa se refere diretamente a lubrificação, ou seja, o motivo da intervenção é o nível aquém do normal de lubrificante, em um determinado equipamento. Exemplo: Rolamento com vibração excessiva em alta freqüência."),
+                new ServiceCause(null, "Preventiva", "PRE", "Será indicada tal causa quando a intervenção for proveniente de uma preventiva, ou seja, de um plano de manutenção."),
+                new ServiceCause(null, "Preditiva", "PRD", "Será indicada tal causa quando a intervenção for um exame preditivo, das condições de um determinado subconjunto. "),
+                new ServiceCause(null, "Rompido", "ROP", "Será apontada tal causa, quando o componente/elemento tiver se rompido, ou seja, interropida sua continuidade estrutural. Exemplo: Rasgo na correia transportadora de minério."),
+                new ServiceCause(null, "Rota de Inspeção", "RTI", "Será indicada tal causa quando a intervenção tiver como objetivo/causa realizar inspeção em um equipamento ou em vários, dispostos em uma rota."),
+                new ServiceCause(null, "Sobrecarga de Peso", "SPE", "Tal causa deve ser indicada, quando o efeito decorrer de uma solicitação ao equipamento além de sua capacidade máxima de suportar peso."),
+                new ServiceCause(null, "Sobrecarga de Tensão", "STE", "Será indicada tal causa quando a falha for proveniente de uma sobrecarga de tensão acima do normal, mesmo tendo o equipamento uma proteção."),
+                new ServiceCause(null, "Sobrecarga de Corrente", "SCO", "Será indicada tal causa quando a falha for proveniente de uma sobrecarga de corrente acima do normal, mesmo tendo o equipamento uma proteção."),
+                new ServiceCause(null, "Subdimensionado", "SUB", "Tal causa será indicada, quando o motivo do efeito for a estipulação no projeto de componente que não atende os requisitos mínimos para o bom funcionamento do conjunto. Exemplo-, O projeto determina um disjuntor de proteção ao circuito, de 4A /220V, sendo a real necessidade um de 5A/220V. ")
+        );
+        serviceCauseService.saveAll(serviceCauses);
     }
 
 }

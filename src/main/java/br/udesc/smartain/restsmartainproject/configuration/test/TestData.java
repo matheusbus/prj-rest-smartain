@@ -16,6 +16,8 @@ import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
@@ -61,6 +63,9 @@ public class TestData implements CommandLineRunner {
     private ManufacturingUnitService manufacturingUnitService;
 
     @Autowired
+    private SectorService sectorService;
+
+    @Autowired
     private BrandService brandService;
 
     private List<Country> countries = new ArrayList<>();
@@ -72,7 +77,10 @@ public class TestData implements CommandLineRunner {
 
     private List<ManufacturingUnit> manUnits = new ArrayList<>();
 
+    private List<Sector> sectors = new ArrayList<>();
+
     private List<Brand> brands = new ArrayList<>();
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -85,6 +93,7 @@ public class TestData implements CommandLineRunner {
 
         makeManufacturingUnitTypes();
         makeManufacturingUnits();
+        makeSectors();
 
         makeBrands();
 
@@ -128,6 +137,15 @@ public class TestData implements CommandLineRunner {
             manufacturingUnitService.save(manUnit);
         }
         return manUnits;
+    }
+
+    public List<Sector> makeSectors() {
+        ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
+        this.sectors = Arrays.asList(
+                new Sector(null, unit, "Beneficiamento", "Setor de beneficiamento da fabricação dos produtos", RegisterState.ACTIVE, LocalDateTime.now(), "PRD-001"),
+                new Sector(null, unit, "Carregamento", "Setor de expedição e carregamento dos produtos", RegisterState.ACTIVE, LocalDateTime.now(), "CAR-001")
+        );
+        return sectorService.saveAll(sectors);
     }
 
     public void makeCostumer() {

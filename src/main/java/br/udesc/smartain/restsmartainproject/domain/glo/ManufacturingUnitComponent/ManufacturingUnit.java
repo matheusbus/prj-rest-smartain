@@ -5,6 +5,7 @@ import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityCom
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
@@ -43,6 +44,7 @@ public class ManufacturingUnit {
     @JoinColumn(name = "tiucodigo")
     private UnitType type;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
     private List<Sector> sectors = new ArrayList<>();
 

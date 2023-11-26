@@ -32,6 +32,11 @@ public class SectorService {
     }
 
     @Transactional
+    public List<Sector> saveAll(List<Sector> sectors) {
+        return sectorRepository.saveAll(sectors);
+    }
+
+    @Transactional
     public Object inactiveSector(Sector sectorToInactive) {
         if(sectorToInactive.getStatus().equals(RegisterState.INACTIVE)) {
             return "The Sector " + sectorToInactive.getId() + " is already inactive";

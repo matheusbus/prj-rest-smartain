@@ -60,12 +60,12 @@ public class Sector {
 
     }
 
-    public Sector(Integer id, ManufacturingUnit unit, String name, String description, Short status, LocalDateTime createdDate, String tag) {
+    public Sector(Integer id, ManufacturingUnit unit, String name, String description, RegisterState status, LocalDateTime createdDate, String tag) {
         this.id = id;
         this.unit = unit;
         this.name = name;
         this.description = description;
-        this.status = status;
+        this.status = status.getValue();
         this.createdDate = createdDate;
         this.tag = tag;
     }

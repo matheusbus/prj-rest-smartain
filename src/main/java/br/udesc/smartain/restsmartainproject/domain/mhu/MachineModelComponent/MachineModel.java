@@ -96,12 +96,12 @@ public class MachineModel {
         this.machineModelType = machineModelType;
     }
 
-    public Short getStatus() {
-        return status;
+    public RegisterState getStatus() {
+        return RegisterState.valueOf(status);
     }
 
-    public void setStatus(Short status) {
-        this.status = status;
+    public void setStatus(RegisterState status) {
+        this.status = status.getValue();
     }
 
     @Override

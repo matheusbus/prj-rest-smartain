@@ -1,9 +1,19 @@
 package br.udesc.smartain.restsmartainproject.controller.mhu;
 
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
+import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CityComponent.City;
+import br.udesc.smartain.restsmartainproject.domain.glo.CustomerComponent.Customer;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +30,12 @@ public class MachineModelController {
     
     @Autowired
     private MachineModelService machineModelService;
+
+    @Autowired
+    private ManufacturerService manufacturerService;
+
+    @Autowired
+    private MachineModelTypeService machineModelTypeService;
 
     @GetMapping
     public ResponseEntity<List<MachineModel>> findAll() {
@@ -56,33 +72,47 @@ public class MachineModelController {
     }
 
     @PostMapping
-    public ResponseEntity<MachineModel> createMachineModel(@Valid @RequestBody MachineModel MachineModel) {
-        MachineModel newMachineModel = machineModelService.save(MachineModel);
+    public ResponseEntity<MachineModel> createMachineModel(@Valid @RequestBody MachineModelRequest request) {
+        Manufacturer manufacturer = manufacturerService.findById(request.getManufacturerId().intValue()).orElse(null);;
+        MachineModelType machineModelType = machineModelTypeService.findById(request.getMachineModelTypeId().intValue()).orElse(null);
+
+
+        MachineModel newMachineModel = new MachineModel();
+        newMachineModel.setDimensions(request.getDimensions());
+        newMachineModel.setMachineModelType(machineModelType);
+        newMachineModel.setModel(request.getModel());
+        newMachineModel.setManufacturer(manufacturer);
+        newMachineModel.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+
+        MachineModel savedMachineModel = machineModelService.save(newMachineModel);
+
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newMachineModel.getId())
+                .buildAndExpand(savedMachineModel.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MachineModel> updateMachineModel(@Valid @RequestBody MachineModel newMachineModel, @PathVariable Integer id) {
+    public ResponseEntity<MachineModel> updateMachineModel(@Valid @RequestBody MachineModelRequest request, @PathVariable Integer id) {
         Optional<MachineModel> MachineModelToUpdate = machineModelService.findById(id);
+        Manufacturer manufacturer = manufacturerService.findById(request.getManufacturerId().intValue()).orElse(null);;
+        MachineModelType machineModelType = machineModelTypeService.findById(request.getMachineModelTypeId().intValue()).orElse(null);
 
         if(MachineModelToUpdate.isEmpty()) {
             throw new NotFoundException("MachineModel id not found - " + id);
         }
 
         MachineModelToUpdate = MachineModelToUpdate.map((MachineModelUpdated) -> {
-            MachineModelUpdated.setModel(newMachineModel.getModel());
-            MachineModelUpdated.setManufacturer(newMachineModel.getManufacturer());
-            MachineModelUpdated.setDimensions(newMachineModel.getDimensions());
-            MachineModelUpdated.setMachineModelType(newMachineModel.getMachineModelType());
-            MachineModelUpdated.setStatus(newMachineModel.getStatus());
+            MachineModelUpdated.setModel(request.getModel());
+            MachineModelUpdated.setManufacturer(manufacturer);
+            MachineModelUpdated.setDimensions(request.getDimensions());
+            MachineModelUpdated.setMachineModelType(machineModelType);
+            MachineModelUpdated.setStatus(request.getStatus());
             return MachineModelUpdated;
         });
 
-        return ResponseEntity.ok(MachineModelToUpdate.get());
+        return ResponseEntity.ok(machineModelService.save(MachineModelToUpdate.get()));
     }
 
     @DeleteMapping("/{id}")

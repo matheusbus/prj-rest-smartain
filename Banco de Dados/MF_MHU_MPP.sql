@@ -42,18 +42,18 @@ COMMENT ON SCHEMA mpp is 'Manutenção programada e planejada'
 --COMMENT ON COLUMN mpp.tbtipomanutencao.tpmdescricao IS 'Descrição do tipo de manutenção';
 
 
-CREATE TABLE mpp.tbcausaservico (
-	csscodigo SERIAL NOT NULL,
-	csscausa VARCHAR(50) NOT NULL,
-	csssigla VARCHAR(3) NOT NULL,
-	cssdescricao VARCHAR(500) NOT NULL,
-	CONSTRAINT tbcausaservico_pkey PRIMARY KEY (csscodigo)
-);
-COMMENT ON TABLE mpp.tbcausaservico IS 'Tabela que armazena as causas de necessidade de manutenção';
-COMMENT ON COLUMN mpp.tbcausaservico.csscodigo IS 'Código sequencial da causa de manutenção';
-COMMENT ON COLUMN mpp.tbcausaservico.csscausa IS 'Causa de manutenção';
-COMMENT ON COLUMN mpp.tbcausaservico.csssigla IS 'Sigla da causa de manutenção';
-COMMENT ON COLUMN mpp.tbcausaservico.cssdescricao IS 'Descrição da causa de manutenção';
+--CREATE TABLE mpp.tbcausaservico (
+--	csscodigo SERIAL NOT NULL,
+--	csscausa VARCHAR(50) NOT NULL,
+--	csssigla VARCHAR(3) NOT NULL,
+--	cssdescricao VARCHAR(500) NOT NULL,
+--	CONSTRAINT tbcausaservico_pkey PRIMARY KEY (csscodigo)
+--);
+--COMMENT ON TABLE mpp.tbcausaservico IS 'Tabela que armazena as causas de necessidade de manutenção';
+--COMMENT ON COLUMN mpp.tbcausaservico.csscodigo IS 'Código sequencial da causa de manutenção';
+--COMMENT ON COLUMN mpp.tbcausaservico.csscausa IS 'Causa de manutenção';
+--COMMENT ON COLUMN mpp.tbcausaservico.csssigla IS 'Sigla da causa de manutenção';
+--COMMENT ON COLUMN mpp.tbcausaservico.cssdescricao IS 'Descrição da causa de manutenção';
 
 
 CREATE TABLE mpp.tbtipogeraorgem (
@@ -65,14 +65,14 @@ COMMENT ON TABLE mpp.tbtipogeraorgem IS 'Tabela dos tipos de geração de ordem 
 COMMENT ON COLUMN mpp.tbtipogeraorgem.tgocodigo IS 'Código sequencial do tipo de geração de ordem de serviço';
 COMMENT ON COLUMN mpp.tbtipogeraorgem.tgodescricao IS 'Descrição do tipo de geração de ordem de serviço';
 
-CREATE TABLE mpp.tbservicoprioridade (
-	svpcodigo INTEGER NOT NULL,
-	svpdescricao VARCHAR(200) NOT NULL,
-	CONSTRAINT tbservicoprioridade_pkey PRIMARY KEY (svpcodigo)
-);
-COMMENT ON TABLE mpp.tbservicoprioridade IS 'Tabela de domínio das prioridades de servicos de manutencao';
-COMMENT ON COLUMN mpp.tbservicoprioridade.svpcodigo IS 'Codigo sequencial da prioridade';
-COMMENT ON COLUMN mpp.tbservicoprioridade.svpdescricao IS 'Descricao da prioridade';
+--CREATE TABLE mpp.tbservicoprioridade (
+--	svpcodigo INTEGER NOT NULL,
+--	svpdescricao VARCHAR(200) NOT NULL,
+--	CONSTRAINT tbservicoprioridade_pkey PRIMARY KEY (svpcodigo)
+--);
+--COMMENT ON TABLE mpp.tbservicoprioridade IS 'Tabela de domínio das prioridades de servicos de manutencao';
+--COMMENT ON COLUMN mpp.tbservicoprioridade.svpcodigo IS 'Codigo sequencial da prioridade';
+--COMMENT ON COLUMN mpp.tbservicoprioridade.svpdescricao IS 'Descricao da prioridade';
 
 
 CREATE TABLE mhu.tbturno (

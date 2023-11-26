@@ -32,13 +32,13 @@ public class MachineModelService {
     }
 
     @Transactional
-    public Object inactiveMachineModel(MachineModel MachineModelToInactive) {
-        if(MachineModelToInactive.getStatus().equals(RegisterState.INACTIVE)) {
-            return "The MachineModel " + MachineModelToInactive.getId() + " is already inactive";
+    public Object inactiveMachineModel(MachineModel machineModelToInactive) {
+        if(machineModelToInactive.getStatus().equals(RegisterState.INACTIVE)) {
+            return "The MachineModel " + machineModelToInactive.getId() + " is already inactive";
         }
 
-        MachineModelRepository.inacivateMachineModelById(MachineModelToInactive.getId());
-        return "Success! The MachineModel " + MachineModelToInactive.getId() + " has been inactived.";
+        MachineModelRepository.inacivateMachineModelById(machineModelToInactive.getId());
+        return "Success! The MachineModel " + machineModelToInactive.getId() + " has been inactived.";
     }
 
 }

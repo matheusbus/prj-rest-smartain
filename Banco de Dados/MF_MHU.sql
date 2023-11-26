@@ -172,20 +172,20 @@ COMMENT ON COLUMN mhu.tbimportacaofabricante.ipfdados IS 'Dados (JSON) das infor
 --COMMENT ON COLUMN mhu.tbfabricante.imfcodigo IS 'Código (ERP) do fabricante';
 
 
-CREATE TABLE mhu.tbmodelomaquina (
-	momcodigo INTEGER NOT NULL,
-	fabcodigo INTEGER,
-	mommodelo VARCHAR(250) NOT NULL,
-	momdimensoes VARCHAR(250) NOT NULL,
-	tmmcodigo INTEGER NOT NULL,
-	CONSTRAINT tbmodelomaquina_pkey PRIMARY KEY (momcodigo)
-);
-COMMENT ON TABLE mhu.tbmodelomaquina IS 'Tabela de cadastros de modelos de máquinas';
-COMMENT ON COLUMN mhu.tbmodelomaquina.momcodigo IS 'Código sequencial do modelo de máquina';
-COMMENT ON COLUMN mhu.tbmodelomaquina.fabcodigo IS 'Código do fabricante';
-COMMENT ON COLUMN mhu.tbmodelomaquina.mommodelo IS 'Modelo da máquina';
-COMMENT ON COLUMN mhu.tbmodelomaquina.momdimensoes IS 'Dimensões do modelo de máquina';
-COMMENT ON COLUMN mhu.tbmodelomaquina.tmmcodigo IS 'Código sequencial do tipo de máquina';
+--CREATE TABLE mhu.tbmodelomaquina (
+--	momcodigo INTEGER NOT NULL,
+--	fabcodigo INTEGER,
+--	mommodelo VARCHAR(250) NOT NULL,
+--	momdimensoes VARCHAR(250) NOT NULL,
+--	tmmcodigo INTEGER NOT NULL,
+--	CONSTRAINT tbmodelomaquina_pkey PRIMARY KEY (momcodigo)
+--);
+--COMMENT ON TABLE mhu.tbmodelomaquina IS 'Tabela de cadastros de modelos de máquinas';
+--COMMENT ON COLUMN mhu.tbmodelomaquina.momcodigo IS 'Código sequencial do modelo de máquina';
+--COMMENT ON COLUMN mhu.tbmodelomaquina.fabcodigo IS 'Código do fabricante';
+--COMMENT ON COLUMN mhu.tbmodelomaquina.mommodelo IS 'Modelo da máquina';
+--COMMENT ON COLUMN mhu.tbmodelomaquina.momdimensoes IS 'Dimensões do modelo de máquina';
+--COMMENT ON COLUMN mhu.tbmodelomaquina.tmmcodigo IS 'Código sequencial do tipo de máquina';
 
 
 CREATE TABLE mhu.tbprofissional (

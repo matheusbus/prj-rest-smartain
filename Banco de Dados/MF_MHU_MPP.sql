@@ -56,14 +56,14 @@ COMMENT ON SCHEMA mpp is 'Manutenção programada e planejada'
 --COMMENT ON COLUMN mpp.tbcausaservico.cssdescricao IS 'Descrição da causa de manutenção';
 
 
-CREATE TABLE mpp.tbtipogeraorgem (
-	tgocodigo INTEGER NOT NULL,
-	tgodescricao VARCHAR NOT NULL,
-	CONSTRAINT tbtipogeraorgem_pkey PRIMARY KEY (tgocodigo)
-);
-COMMENT ON TABLE mpp.tbtipogeraorgem IS 'Tabela dos tipos de geração de ordem de manutenção';
-COMMENT ON COLUMN mpp.tbtipogeraorgem.tgocodigo IS 'Código sequencial do tipo de geração de ordem de serviço';
-COMMENT ON COLUMN mpp.tbtipogeraorgem.tgodescricao IS 'Descrição do tipo de geração de ordem de serviço';
+--CREATE TABLE mpp.tbtipogeraorgem (
+--	tgocodigo INTEGER NOT NULL,
+--	tgodescricao VARCHAR NOT NULL,
+--	CONSTRAINT tbtipogeraorgem_pkey PRIMARY KEY (tgocodigo)
+--);
+--COMMENT ON TABLE mpp.tbtipogeraorgem IS 'Tabela dos tipos de geração de ordem de manutenção';
+--COMMENT ON COLUMN mpp.tbtipogeraorgem.tgocodigo IS 'Código sequencial do tipo de geração de ordem de serviço';
+--COMMENT ON COLUMN mpp.tbtipogeraorgem.tgodescricao IS 'Descrição do tipo de geração de ordem de serviço';
 
 --CREATE TABLE mpp.tbservicoprioridade (
 --	svpcodigo INTEGER NOT NULL,
@@ -317,26 +317,26 @@ COMMENT ON COLUMN mhu.tbmodelomaquina.momdatcad IS 'Data de cadastro do modelo d
 COMMENT ON COLUMN mhu.tbmodelomaquina.usucodigo IS 'Código do usuário de cadastro';
 
 
-CREATE TABLE mhu.tbprofissional (
-	prfcodigo INTEGER NOT NULL,
-	prfnome VARCHAR(150) NOT NULL,
-	prfdatnasc DATE,
-	prfdatcad TIMESTAMP NOT NULL,
-	prfcpf VARCHAR(11) NOT NULL,
-	prfstatus VARCHAR NOT NULL,
-	usucodigo INTEGER NOT NULL,
-	ippcodigo INTEGER NOT NULL,
-	CONSTRAINT tbprofissional_pkey PRIMARY KEY (prfcodigo)
-);
-COMMENT ON TABLE mhu.tbprofissional IS 'Tabela de cadastro dos profissionais';
-COMMENT ON COLUMN mhu.tbprofissional.prfcodigo IS 'Código sequencial do profissional';
-COMMENT ON COLUMN mhu.tbprofissional.prfnome IS 'Nome do profissional';
-COMMENT ON COLUMN mhu.tbprofissional.prfdatnasc IS 'Data de nascimento do profissional';
-COMMENT ON COLUMN mhu.tbprofissional.prfdatcad IS 'Data/hora de cadastro do profissional';
-COMMENT ON COLUMN mhu.tbprofissional.prfcpf IS 'CPF do profissional';
-COMMENT ON COLUMN mhu.tbprofissional.prfstatus IS 'Status do profissional (0-Inativo, 1-Ativo)';
-COMMENT ON COLUMN mhu.tbprofissional.usucodigo IS 'Código do usuário atrelado ao profissional';
-COMMENT ON COLUMN mhu.tbprofissional.ippcodigo IS 'Código (ERP) da pessoa';
+--CREATE TABLE mhu.tbprofissional (
+--	prfcodigo INTEGER NOT NULL,
+--	prfnome VARCHAR(150) NOT NULL,
+--	prfdatnasc DATE,
+--	prfdatcad TIMESTAMP NOT NULL,
+--	prfcpf VARCHAR(11) NOT NULL,
+--	prfstatus VARCHAR NOT NULL,
+--	usucodigo INTEGER NOT NULL,
+--	ippcodigo INTEGER NOT NULL,
+--	CONSTRAINT tbprofissional_pkey PRIMARY KEY (prfcodigo)
+--);
+--COMMENT ON TABLE mhu.tbprofissional IS 'Tabela de cadastro dos profissionais';
+--COMMENT ON COLUMN mhu.tbprofissional.prfcodigo IS 'Código sequencial do profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.prfnome IS 'Nome do profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.prfdatnasc IS 'Data de nascimento do profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.prfdatcad IS 'Data/hora de cadastro do profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.prfcpf IS 'CPF do profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.prfstatus IS 'Status do profissional (0-Inativo, 1-Ativo)';
+--COMMENT ON COLUMN mhu.tbprofissional.usucodigo IS 'Código do usuário atrelado ao profissional';
+--COMMENT ON COLUMN mhu.tbprofissional.ippcodigo IS 'Código (ERP) da pessoa';
 
 
 CREATE TABLE mhu.tbunidadefabril (

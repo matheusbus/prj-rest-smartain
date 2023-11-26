@@ -1,5 +1,9 @@
 package br.udesc.smartain.restsmartainproject.configuration.test;
 
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.ProfessionalService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationType;
@@ -12,17 +16,24 @@ import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptomService;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 @Profile(value = "test")
 public class TestDataMPP implements CommandLineRunner {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ServiceInterventionService serviceInterventionService;
@@ -42,6 +53,9 @@ public class TestDataMPP implements CommandLineRunner {
     @Autowired
     private OrderGenerationTypeService orderGenerationTypeService;
 
+    @Autowired
+    private ProfessionalService professionalService;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -51,6 +65,7 @@ public class TestDataMPP implements CommandLineRunner {
         makeServiceCauses();
         makeServicePriorities();
         makeOrderGenerationTypes();
+        makeProfessionals();
     }
 
 
@@ -156,6 +171,17 @@ public class TestDataMPP implements CommandLineRunner {
                 new OrderGenerationType(null, "Gerada a partir de inspeção")
         );
         orderGenerationTypeService.saveAll(orderGenerationTypes);
+    }
+
+    public void makeProfessionals() {
+        User user = userService.findById(1).get();
+        List<Professional> professionals = Arrays.asList(
+            new Professional(null, "João Francisco", LocalDate.of(1988, Month.FEBRUARY, 12), LocalDateTime.now(), "29175183912", RegisterState.ACTIVE, user),
+            new Professional(null, "Cléber Maurício", LocalDate.of(1996, Month.DECEMBER, 26), LocalDateTime.now(), "49842849713", RegisterState.ACTIVE, user)
+        );
+        for(Professional professional : professionals) {
+            professionalService.save(professional);
+        }
     }
 
 }

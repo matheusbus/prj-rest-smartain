@@ -12,6 +12,8 @@ public class CityService {
     @Autowired
     private CityRepository cityRepository;
 
+    public Optional<City> findTeste(Integer id) { return cityRepository.findTeste(id); }
+
     public Optional<List<City>> findAll() {
         return cityRepository.findAllCities();
     }

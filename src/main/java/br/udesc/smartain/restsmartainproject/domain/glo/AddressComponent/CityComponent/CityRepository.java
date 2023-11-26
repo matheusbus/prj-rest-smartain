@@ -9,6 +9,12 @@ import java.util.Optional;
 public interface CityRepository extends JpaRepository<City, Integer> {
 
     @Query(
+            value = "SELECT * FROM glo.tbcidade WHERE tbcidade.cidcodigo = ?1",
+            nativeQuery = true
+    )
+    public Optional<City> findTeste(Integer id);
+
+    @Query(
             value = "SELECT * FROM glo.tbcidade",
             nativeQuery = true
     )

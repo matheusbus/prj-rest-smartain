@@ -6,7 +6,7 @@ import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 
 public class UserRequest {
     
-    private Long unitId;
+    private Long groupId;
     private String name;    
     private String login;
     private String email;
@@ -51,12 +51,12 @@ public class UserRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Long getUnitId() {
-        return unitId;
-    }
-    public void setUnitId(Long unitId) {
-        this.unitId = unitId;
+
+    public Long getGroupId() {
+        return groupId;
     }
 
-    
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
 }

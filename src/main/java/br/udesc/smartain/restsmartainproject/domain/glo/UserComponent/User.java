@@ -52,11 +52,9 @@ public class User implements Serializable {
     private LocalDateTime updatedDate;
 
     @Column(name = "usuativo")
-    private short active;
+    private Short status;
 
     private UserRole role;
-
-    private short status;
 
     public User() {
 
@@ -126,8 +124,8 @@ public class User implements Serializable {
         this.updatedDate = updatedDate;
     }
 
-    public RegisterState getActive() {
-        return RegisterState.valueOf(active);
+    public RegisterState getStatus() {
+        return RegisterState.valueOf(status);
     }
 
     public void setStatus(RegisterState status) {
@@ -143,7 +141,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
-                ", active=" + active +
+                ", active=" + status +
                 '}';
     }
 

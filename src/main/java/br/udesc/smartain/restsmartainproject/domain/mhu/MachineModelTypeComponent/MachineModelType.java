@@ -40,10 +40,14 @@ public class MachineModelType {
     @OneToMany(mappedBy = "machineModelType", fetch = FetchType.LAZY)
     private List<MachineModel> machineModels = new ArrayList<>();
 
-    public MachineModelType(Integer id, String description, Short domainType) {
+    public MachineModelType() {
+    }
+
+    public MachineModelType(Integer id, String description, Short domainType, RegisterState status) {
         this.id = id;
         this.description = description;
         this.domainType = domainType;
+        this.status = status.getValue();
     }
 
     public Integer getId() {

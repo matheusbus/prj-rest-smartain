@@ -16,6 +16,10 @@ import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
@@ -68,6 +72,12 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private BrandService brandService;
 
+    @Autowired
+    private MachineModelTypeService machineModelTypeService;
+
+    @Autowired
+    private MachineModelService machineModelService;
+
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
@@ -80,6 +90,10 @@ public class TestData implements CommandLineRunner {
     private List<Sector> sectors = new ArrayList<>();
 
     private List<Brand> brands = new ArrayList<>();
+
+    private List<MachineModelType>  machineModelsTypes = new ArrayList<>();
+
+    private List<MachineModel>  machineModels = new ArrayList<>();
 
 
     @Override
@@ -96,6 +110,9 @@ public class TestData implements CommandLineRunner {
         makeSectors();
 
         makeBrands();
+
+        makeMachineModelTypes();
+        makeMachineModels();
 
     }
 
@@ -436,5 +453,27 @@ public class TestData implements CommandLineRunner {
             brandService.save(brand);
         }
         return brands;
+    }
+
+    public List<MachineModelType> makeMachineModelTypes() {
+        this.machineModelsTypes = Arrays.asList(
+                new MachineModelType((Integer) null, "CNC", (short) 1, RegisterState.ACTIVE),
+                new MachineModelType((Integer) null, "Manual", (short) 1, RegisterState.ACTIVE)
+        );
+        for(MachineModelType machineModelType : machineModelsTypes) {
+            machineModelTypeService.save(machineModelType);
+        }
+        return machineModelsTypes;
+    }
+
+    public List<MachineModel> makeMachineModels() {
+        this.machineModels = Arrays.asList(
+                //new MachineModel((Integer) null, "CNC", (short) 1, RegisterState.ACTIVE),
+                //new MachineModel((Integer) null, "Manual", (short) 1, RegisterState.ACTIVE)
+        );
+        for(MachineModel machineModel : machineModels) {
+            machineModelService.save(machineModel);
+        }
+        return machineModels;
     }
 }

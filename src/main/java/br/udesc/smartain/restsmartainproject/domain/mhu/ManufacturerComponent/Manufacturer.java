@@ -105,12 +105,12 @@ public class Manufacturer {
         this.email = email;
     }
 
-    public Short getStatus() {
-        return status;
+    public RegisterState getStatus() {
+        return RegisterState.valueOf(status);
     }
 
-    public void setStatus(Short status) {
-        this.status = status;
+    public void setStatus(RegisterState status) {
+        this.status = status.getValue();
     }
 
     public List<MachineModel> getMachineModels() {

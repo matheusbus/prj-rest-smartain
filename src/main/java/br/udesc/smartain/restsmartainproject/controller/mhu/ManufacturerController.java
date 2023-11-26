@@ -1,8 +1,11 @@
 package br.udesc.smartain.restsmartainproject.controller.mhu;
 
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.Supplier;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,11 +58,19 @@ public class ManufacturerController {
     }
 
     @PostMapping
-    public ResponseEntity<Manufacturer> createManufacturer(@Valid @RequestBody Manufacturer Manufacturer) {
-        Manufacturer newManufacturer = manufacturerService.save(Manufacturer);
+    public ResponseEntity<Manufacturer> createManufacturer(@Valid @RequestBody ManufacturerRequest request) {
+        Manufacturer newManufacturer = new Manufacturer();
+        newManufacturer.setSocialReason(request.getSocialReason());
+        newManufacturer.setCnpj(request.getCnpj());
+        newManufacturer.setEmail(request.getEmail());
+        newManufacturer.setPhone(request.getPhone());
+        newManufacturer.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+
+
+        Manufacturer savedManufacturer = manufacturerService.save(newManufacturer);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newManufacturer.getId())
+                .buildAndExpand(savedManufacturer.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
@@ -81,7 +92,7 @@ public class ManufacturerController {
             return manufacturerUpdated;
         });
 
-        return ResponseEntity.ok(manufacturerToUpdate.get());
+        return ResponseEntity.ok(manufacturerService.save(manufacturerToUpdate.get()));
     }
 
     @DeleteMapping("/{id}")

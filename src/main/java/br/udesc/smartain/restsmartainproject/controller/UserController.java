@@ -2,6 +2,7 @@ package br.udesc.smartain.restsmartainproject.controller;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserRequest;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+     @Autowired
+    private UserGroupService userGroupService;
+
     @GetMapping
     public List<User> findAll() {
         return userService.findAllUsers().orElse(null);
@@ -47,15 +51,15 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest request) {
-        //UserGroup userGroup = userGroupService.findById(request.)
-
+    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest request) {     
+        UserGroup userGroup = userGroupService.findById(request.getUnitId()).orElse(null);
+         
         User newUser = new User();
         newUser.setLogin(request.getLogin());
         newUser.setName(request.getName());
         newUser.setEmail(request.getEmail());
         newUser.setPassword(request.getPassword());
-        //newUser.setUserGroup(request);
+        newUser.setUserGroup(userGroup);
         newUser.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
         newUser.setCreatedDate(LocalDateTime.now());
 

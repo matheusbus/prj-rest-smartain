@@ -6,12 +6,15 @@ import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 
 public class UserRequest {
     
+    private Long unitId;
     private String name;    
     private String login;
     private String email;
     private RegisterState status;
     private LocalDateTime createdData;
     private String password;
+
+    
     public String getName() {
         return name;
     }
@@ -47,6 +50,12 @@ public class UserRequest {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public Long getUnitId() {
+        return unitId;
+    }
+    public void setUnitId(Long unitId) {
+        this.unitId = unitId;
     }
 
     

@@ -1,8 +1,18 @@
 package br.udesc.smartain.restsmartainproject.controller.mhu;
 
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCellService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +31,18 @@ public class MachineController {
 
     @Autowired
     private MachineService machineService;
+
+    @Autowired
+    private ProductionCellService productionCellService;
+
+    @Autowired
+    private SectorService sectorService;
+
+    @Autowired
+    private ManufacturingUnitService manufacturingUnitService;
+
+    @Autowired
+    private MachineModelService machineModelService;
     
     @GetMapping
     public ResponseEntity<List<Machine>> findAll() {
@@ -55,39 +79,74 @@ public class MachineController {
     }
 
     @PostMapping
-    public ResponseEntity<Machine> createMachine(@Valid @RequestBody Machine Machine) {
-        Machine newMachine = machineService.save(Machine);
+    public ResponseEntity<Machine> createMachine(@Valid @RequestBody MachineRequest request) {
+        ProductionCell cell = productionCellService.findById(request.getProductionCellId()).orElse(null);
+        Sector sector = sectorService.findById(cell.getSector().getId()).orElse(null);
+        ManufacturingUnit unit = manufacturingUnitService.findById(sector.getUnit().getId()).orElse(null);
+        MachineModel model = machineModelService.findById(request.getMachineModelId()).orElse(null);
+
+        Machine newMachine = new Machine();
+
+        newMachine.setMachineModel(model);
+        newMachine.setUnit(unit);
+        newMachine.setSector(sector);
+        newMachine.setProductionCell(cell);
+        newMachine.setTag(request.getTag());
+        newMachine.setTechnicalData(request.getTechnicalData());
+        newMachine.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+        newMachine.setCreatedDate(LocalDateTime.now());
+        newMachine.setAcquisitionDate(request.getAcquisitionDate());
+        newMachine.setWarrantyExpDate(request.getWarrantyExpDate());
+
+        if (newMachine.getWarrantyExpDate().isAfter(LocalDate.now())) {
+            newMachine.setWarranty((short) 1);
+        }
+        else {
+            newMachine.setWarranty((short) 0);
+        }
+
+        Machine savedMachine = machineService.save(newMachine);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newMachine.getId())
+                .buildAndExpand(savedMachine.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Machine> updateMachine(@Valid @RequestBody Machine newMachine, @PathVariable Integer id) {
+    public ResponseEntity<Machine> updateMachine(@Valid @RequestBody MachineRequest request, @PathVariable Integer id) {
         Optional<Machine> MachineToUpdate = machineService.findById(id);
+        ProductionCell cell = productionCellService.findById(request.getProductionCellId()).orElse(null);
+        Sector sector = sectorService.findById(cell.getSector().getId()).orElse(null);
+        ManufacturingUnit unit = manufacturingUnitService.findById(sector.getUnit().getId()).orElse(null);
+        MachineModel model = machineModelService.findById(request.getMachineModelId()).orElse(null);
 
         if(MachineToUpdate.isEmpty()) {
             throw new NotFoundException("Machine id not found - " + id);
         }
 
         MachineToUpdate = MachineToUpdate.map((MachineUpdated) -> {
-            MachineUpdated.setUnit(newMachine.getUnit());
-            MachineUpdated.setSector(newMachine.getSector());
-            MachineUpdated.setProductionCell(newMachine.getProductionCell());
-            MachineUpdated.setMachineModel(newMachine.getMachineModel());
-            MachineUpdated.setCreatedDate(newMachine.getCreatedDate());
-            MachineUpdated.setAcquisitionDate(newMachine.getAcquisitionDate());
-            MachineUpdated.setTag(newMachine.getTag());
-            MachineUpdated.setTechnicalData(newMachine.getTechnicalData());
-            MachineUpdated.setWarranty(newMachine.getWarranty());
-            MachineUpdated.setStatus(newMachine.getStatus());
-            MachineUpdated.setWarrantyExpDate(newMachine.getWarrantyExpDate());
+            MachineUpdated.setUnit(unit);
+            MachineUpdated.setSector(sector);
+            MachineUpdated.setProductionCell(cell);
+            MachineUpdated.setMachineModel(model);
+            MachineUpdated.setCreatedDate(MachineUpdated.getCreatedDate());
+            MachineUpdated.setAcquisitionDate(request.getAcquisitionDate());
+            MachineUpdated.setTag(request.getTag());
+            MachineUpdated.setTechnicalData(request.getTechnicalData());
+            MachineUpdated.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+            MachineUpdated.setWarrantyExpDate(request.getWarrantyExpDate());
+
+            if (MachineUpdated.getWarrantyExpDate().isAfter(LocalDate.now())) {
+                MachineUpdated.setWarranty((short) 1);
+            }
+            else {
+                MachineUpdated.setWarranty((short) 0);
+            }
             return MachineUpdated;
         });
 
-        return ResponseEntity.ok(MachineToUpdate.get());
+        return ResponseEntity.ok(machineService.save(MachineToUpdate.get()));
     }
 
     @DeleteMapping("/{id}")

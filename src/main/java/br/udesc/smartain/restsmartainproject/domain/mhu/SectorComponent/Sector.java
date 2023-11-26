@@ -54,6 +54,7 @@ public class Sector {
     private String tag;
 
     @OneToMany(mappedBy = "sector")
+    @JsonIgnore
     private List<ProductionCell> cells = new ArrayList<>();
 
     public Sector() {

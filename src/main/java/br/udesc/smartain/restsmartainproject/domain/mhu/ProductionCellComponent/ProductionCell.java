@@ -52,8 +52,6 @@ public class ProductionCell {
     @NotNull
     @Comment("Data de cadastro da célula de produção")
     private LocalDateTime createdDate;
-
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "setcodigo")
     @Comment("Código do setor")

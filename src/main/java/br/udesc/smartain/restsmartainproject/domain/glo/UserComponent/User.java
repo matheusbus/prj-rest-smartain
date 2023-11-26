@@ -56,11 +56,13 @@ public class User implements Serializable {
 
     private UserRole role;
 
+    private short status;
+
     public User() {
 
     }
 
-    public User(Long id, UserGroup userGroup, String login, String name, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterState active) {
+    public User(Long id, UserGroup userGroup, String login, String name, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterState status) {
         this.id = id;
         this.userGroup = userGroup;
         this.login = login;
@@ -69,7 +71,7 @@ public class User implements Serializable {
         this.email = email;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
-        this.active = active.getValue();
+        this.status = status.getValue();
     }
 
     public Long getId() {
@@ -128,8 +130,8 @@ public class User implements Serializable {
         return RegisterState.valueOf(active);
     }
 
-    public void setActive(RegisterState active) {
-        this.active = active.getValue();
+    public void setStatus(RegisterState status) {
+        this.status = status.getValue();
     }
 
     @Override

@@ -91,7 +91,7 @@ public class SupplierController {
             return supplierUpdated;
         });
 
-        return ResponseEntity.ok(supplierToUpdate.get());
+        return ResponseEntity.ok(supplierService.save(supplierToUpdate.get()));
     }
 
     @DeleteMapping("/{id}")

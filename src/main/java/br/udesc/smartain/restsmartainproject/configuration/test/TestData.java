@@ -143,7 +143,7 @@ public class TestData implements CommandLineRunner {
         userService.saveAll(
                 Arrays.asList(
                         new User(null, groups.get(0), "matheusbus", "Matheus Buschermoehle","{bcrypt}$2a$10$zqMYMwxHWTtbNGWsg9qEPOVw0O5bYdRK9oj/g0Lirvpl.xw81DxmG", "matheus@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE),
-                        new User(null, groups.get(0), "admin", "Rafael Dalmarco","123", "admin@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE)
+                        new User(null, groups.get(0), "adminadmin", "Admin Admin","adminadmin", "admin@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE)
                 )
         );
     }
@@ -168,7 +168,7 @@ public class TestData implements CommandLineRunner {
                 newCountry("Argélia"),
                 newCountry("Andorra"),
                 newCountry("Angola"),
-                newCountry("Antígua e Barbuda"),
+                newCountry("Antígua e Barbada"),
                 newCountry("Argentina"),
                 newCountry("Armênia"),
                 newCountry("Austrália"),

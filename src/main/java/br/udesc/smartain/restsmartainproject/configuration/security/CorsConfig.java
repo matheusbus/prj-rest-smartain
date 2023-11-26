@@ -1,16 +1,16 @@
 package br.udesc.smartain.restsmartainproject.configuration.security;
 
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter; // Importe o CorsFilter correto
 
 @Configuration
 public class CorsConfig {
 
     @Bean
-    public CorsFilter conrsFilter() {
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("*");
@@ -18,7 +18,7 @@ public class CorsConfig {
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
 
-        return new CorsFilter();
+        return new CorsFilter(source);
     }
 
 }

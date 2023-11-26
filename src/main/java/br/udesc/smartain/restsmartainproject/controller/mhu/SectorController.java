@@ -98,7 +98,7 @@ public class SectorController {
             sectorUpdated.setDescription(request.getDescription());
             sectorUpdated.setTag(request.getTag());
             sectorUpdated.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
-            sectorUpdated.setCreatedDate(request.getCreatedDate());
+            sectorUpdated.setCreatedDate(sectorUpdated.getCreatedDate());
             sectorUpdated.setUnit(unit);
             return sectorUpdated;
         });

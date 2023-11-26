@@ -142,7 +142,8 @@ public class TestData implements CommandLineRunner {
     public void makeUsers(List<UserGroup> groups) {
         userService.saveAll(
                 Arrays.asList(
-                        new User(null, groups.get(0), "matheusbus", "Matheus Buschermoehle","{bcrypt}$2a$10$zqMYMwxHWTtbNGWsg9qEPOVw0O5bYdRK9oj/g0Lirvpl.xw81DxmG", "matheus@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE)
+                        new User(null, groups.get(0), "matheusbus", "Matheus Buschermoehle","{bcrypt}$2a$10$zqMYMwxHWTtbNGWsg9qEPOVw0O5bYdRK9oj/g0Lirvpl.xw81DxmG", "matheus@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE),
+                        new User(null, groups.get(0), "admin", "Rafael Dalmarco","123", "admin@smartain.com.br",  LocalDateTime.now(), LocalDateTime.now(), RegisterState.ACTIVE)
                 )
         );
     }

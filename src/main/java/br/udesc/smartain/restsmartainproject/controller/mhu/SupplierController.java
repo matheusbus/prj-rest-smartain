@@ -2,7 +2,9 @@ package br.udesc.smartain.restsmartainproject.controller.mhu;
 
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.Supplier;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.SupplierRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.SupplierService;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,11 +57,19 @@ public class SupplierController {
     }
 
     @PostMapping
-    public ResponseEntity<Supplier> createSupplier(@Valid @RequestBody Supplier supplier) {
-        Supplier newSupplier = supplierService.save(supplier);
+    public ResponseEntity<Supplier> createSupplier(@Valid @RequestBody SupplierRequest request) {
+        Supplier newSupplier = new Supplier();
+        newSupplier.setSocialReason(request.getSocialReason());
+        newSupplier.setCnpj(request.getCnpj());
+        newSupplier.setEmail(request.getEmail());
+        newSupplier.setPhone(request.getPhone());
+        newSupplier.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
+
+
+        Supplier savedSupplier = supplierService.save(newSupplier);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newSupplier.getId())
+                .buildAndExpand(savedSupplier.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
     }

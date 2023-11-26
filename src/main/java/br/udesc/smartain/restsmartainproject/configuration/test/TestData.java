@@ -22,6 +22,8 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponen
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCellService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
@@ -84,6 +86,9 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private MachineModelService machineModelService;
 
+    @Autowired
+    private ProductionCellService productionCellService;
+
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
@@ -102,6 +107,8 @@ public class TestData implements CommandLineRunner {
     private List<MachineModelType>  machineModelsTypes = new ArrayList<>();
 
     private List<MachineModel>  machineModels = new ArrayList<>();
+
+    private List<ProductionCell>  productionCells = new ArrayList<>();
 
 
     @Override
@@ -122,6 +129,7 @@ public class TestData implements CommandLineRunner {
 
         makeMachineModelTypes();
         makeMachineModels();
+        makeProductionsCells();
 
     }
 
@@ -495,5 +503,15 @@ public class TestData implements CommandLineRunner {
             machineModelService.save(machineModel);
         }
         return machineModels;
+    }
+
+    public List<ProductionCell> makeProductionsCells() {
+        this.productionCells = Arrays.asList(
+           new ProductionCell((Integer) null, "Celula 1", "Celula de Tuchos", manufacturingUnitService.findById(1).orElse(null),  RegisterState.ACTIVE, LocalDateTime.now(), sectorService.findById(1).orElse(null), "CEL-001")
+        );
+        for(ProductionCell productionCell : productionCells) {
+            productionCellService.save(productionCell);
+        }
+        return productionCells;
     }
 }

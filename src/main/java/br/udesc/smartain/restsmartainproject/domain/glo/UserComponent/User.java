@@ -4,7 +4,6 @@ import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -13,10 +12,6 @@ import java.util.Objects;
 
 @Entity
 @Table(schema = "glo", name = "tbusuario", uniqueConstraints = {@UniqueConstraint(name = "unique_login", columnNames = {"usulogin"})})
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class User implements Serializable {
 
     @Id
@@ -60,6 +55,10 @@ public class User implements Serializable {
     private short active;
 
     private UserRole role;
+
+    public User() {
+
+    }
 
     public User(Long id, UserGroup userGroup, String login, String name, String password, String email, LocalDateTime createdDate, LocalDateTime updatedDate, RegisterState active) {
         this.id = id;

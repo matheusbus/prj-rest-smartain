@@ -4,16 +4,12 @@ import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(schema = "glo", name = "tbgrupousuario")
 public class UserGroup implements Serializable {
@@ -40,6 +36,10 @@ public class UserGroup implements Serializable {
     @OneToMany(mappedBy = "userGroup", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<User> users = new HashSet<>();
+
+    public UserGroup() {
+
+    }
 
     public UserGroup(Short id, String name, String description, RegisterState active, String role) {
         this.id = id;

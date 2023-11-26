@@ -3,15 +3,11 @@ package br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.Countr
 import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.FederativeUnitComponent.FederativeUnit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(schema = "glo", name = "tbpais")
 public class Country {
@@ -28,6 +24,10 @@ public class Country {
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER)
     private Set<FederativeUnit> units = new HashSet<>();
+
+    public Country() {
+
+    }
 
     public Country(Integer id, String name) {
         this.id = id;

@@ -3,12 +3,10 @@ package br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.Federa
 import br.udesc.smartain.restsmartainproject.domain.glo.AddressComponent.CountryComponent.Country;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Embeddable
-@NoArgsConstructor
 public class FederativeUnitId implements Serializable {
 
     @Column(name = "unfcodigo")
@@ -18,6 +16,10 @@ public class FederativeUnitId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "paicodigo", referencedColumnName = "paicodigo")
     private Country country;
+
+    public FederativeUnitId() {
+
+    }
 
     public FederativeUnitId(Integer federativeUnitId, Country country) {
         this.federativeUnitId = federativeUnitId;

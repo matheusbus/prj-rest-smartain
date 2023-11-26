@@ -1,5 +1,6 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent;
 
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
 import jakarta.persistence.*;
@@ -7,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
 import org.hibernate.validator.constraints.Range;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -33,6 +36,9 @@ public class MachineModelType {
     @Column(name = "tmmstatus", nullable = false)
     @Comment("Status do registro (1-Ativo, 2-Inativo)")
     private Short status;
+
+    @OneToMany(mappedBy = "machineModelType", fetch = FetchType.LAZY)
+    private List<MachineModel> machineModels = new ArrayList<>();
 
     public MachineModelType(Integer id, String description, Short domainType) {
         this.id = id;
@@ -70,6 +76,10 @@ public class MachineModelType {
 
     public void setStatus(RegisterState status) {
         this.status = status.getValue();
+    }
+
+    public List<MachineModel> getMachineModels() {
+        return machineModels;
     }
 
     @Override

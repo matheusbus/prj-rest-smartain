@@ -12,4 +12,7 @@ import jakarta.validation.constraints.Size;
 //@Comment("Tabela de cadastro dos equipamentos das máquinas")
 public class Equipment {
 
+    @Id
+    public int id;
+
 }

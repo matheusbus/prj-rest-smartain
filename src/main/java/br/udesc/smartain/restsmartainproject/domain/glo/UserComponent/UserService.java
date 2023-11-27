@@ -23,6 +23,11 @@ public class UserService {
     public Optional<User> findById(long id){
         return userRepository.findById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Optional<User> findByLoginAndSenha(String login, String senha){
+        return userRepository.findUserByLoginAndSenha(login, senha);
+    }
     
     @Transactional
     public User save(User user){

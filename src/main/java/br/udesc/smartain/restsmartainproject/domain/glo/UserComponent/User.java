@@ -101,7 +101,7 @@ public class User implements Serializable {
     public void setName(String name) { this.name = name; }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = HashingPassword.hashing(password);
     }
 
     public String getEmail() { return email; };

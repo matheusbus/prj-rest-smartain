@@ -28,9 +28,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public Optional<List<User>> findUsersByStatus(Integer status);
 
     @Query(
-            value = "SELECT * FROM glo.tbusuario u WHERE u.usulogin = login",
+            value = "SELECT * FROM glo.tbusuario u WHERE u.usulogin = ?1 and u.ususenha = ?2",
             nativeQuery = true)
-    public Optional<User> findUserByLogin(String login);
+    public Optional<User> findUserByLoginAndSenha(String login, String senha);
 
     @Query(
             value = "SELECT * FROM glo.tbusuario u ORDER BY u.usucodigo \n-- #pageable\n",

@@ -1,10 +1,6 @@
 package br.udesc.smartain.restsmartainproject.controller;
 
-import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
-import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
-import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
-import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserRequest;
-import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.*;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
@@ -45,6 +41,19 @@ public class UserController {
         }
 
         return ResponseEntity.ok(user.get());
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserRequest request) {
+        String hashingPassword = HashingPassword.hashing(request.getPassword());
+
+        User user = userService.findByLoginAndSenha(request.getLogin(), hashingPassword).orElse(null);
+
+        if (user != null) {
+            return ResponseEntity.ok(user.getId().toString());
+        } else {
+            return ResponseEntity.status(401).body("Credenciais inválidas");
+        }
     }
 
     @PostMapping

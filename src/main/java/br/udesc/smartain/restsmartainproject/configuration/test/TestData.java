@@ -184,19 +184,19 @@ public class TestData implements CommandLineRunner {
 
     public List<UnitType> makeManufacturingUnitTypes() {
         this.types = Arrays.asList(
-            new UnitType(1, 0, "Unidade Produtiva", "Unidade operacional, quando exercer atividades de produção ou venda de bens e/ou serviços destinados a terceiros"),
-            new UnitType(2, 1,  "Sede", "Administração central da empresa, presidência, diretoria."),
-            new UnitType(3, 2, "Escritório Administrativo", "Estabelecimento onde são exercidas atividades meramente administrativas, tais como: escritório de contato, setor de contabilidade, etc."),
-            new UnitType(4,3, "Depósito Fechado", "Estabelecimento onde a empresa armazena mercadorias próprias destinadas à industrialização e/ou comercialização, no qual não se realizam vendas."),
-            new UnitType(5, 4, "Almoxarifado", "Estabelecimento onde a empresa armazena artigos de consumo para uso próprio."),
-            new UnitType(6, 5, "Oficina de Reparação", "Estabelecimento onde se efetua manutenção e reparação exclusivamente de bens do ativo fixo da própria empresa."),
-            new UnitType(7, 6, "Garagem", "Para estacionamento de veículos próprios, uso exclusivo da empresa."),
-            new UnitType(8, 7, "Unidade de abastecimento de combustíveis", "Exclusivamente para uso pela frota própria."),
-            new UnitType(9, 8, "Ponto de exposição", "Local para exposição e demonstração de produtos próprios, sem realização de transações comerciais, tipo showroom."),
-            new UnitType(10, 9, "Centro de treinamento", "Uso exclusivo da empresa, para realização de atividades de capacitação e treinamentos de recursos humanos."),
-            new UnitType(11, 10, "Centro de Processamento de Dados", "Uso exclusivo da empresa, para realização de atividades na área de informática em geral."),
-            new UnitType(12, 13, "Posto de Serviço", "Posto de Serviço"),
-            new UnitType(13, 14, "Posto de Coleta", "Estabelecimento destinado a atender o público com o objetivo de recolher produtos/materiais/mercadorias/equipamentos/informações para posterior encaminhamento à unidade produtiva responsável por sua análise/processamento/beneficiamento/publicação. Ex: posto de coleta de anúncios classificados; posto de coleta de material para exames laboratoriais; posto de coleta de filmes fotográficos para revelação; posto de coleta de roupas para lavagem etc.")
+                new UnitType(1, 0, "Unidade Produtiva", "Unidade operacional, quando exercer atividades de produção ou venda de bens e/ou serviços destinados a terceiros"),
+                new UnitType(2, 1,  "Sede", "Administração central da empresa, presidência, diretoria."),
+                new UnitType(3, 2, "Escritório Administrativo", "Estabelecimento onde são exercidas atividades meramente administrativas, tais como: escritório de contato, setor de contabilidade, etc."),
+                new UnitType(4,3, "Depósito Fechado", "Estabelecimento onde a empresa armazena mercadorias próprias destinadas à industrialização e/ou comercialização, no qual não se realizam vendas."),
+                new UnitType(5, 4, "Almoxarifado", "Estabelecimento onde a empresa armazena artigos de consumo para uso próprio."),
+                new UnitType(6, 5, "Oficina de Reparação", "Estabelecimento onde se efetua manutenção e reparação exclusivamente de bens do ativo fixo da própria empresa."),
+                new UnitType(7, 6, "Garagem", "Para estacionamento de veículos próprios, uso exclusivo da empresa."),
+                new UnitType(8, 7, "Unidade de abastecimento de combustíveis", "Exclusivamente para uso pela frota própria."),
+                new UnitType(9, 8, "Ponto de exposição", "Local para exposição e demonstração de produtos próprios, sem realização de transações comerciais, tipo showroom."),
+                new UnitType(10, 9, "Centro de treinamento", "Uso exclusivo da empresa, para realização de atividades de capacitação e treinamentos de recursos humanos."),
+                new UnitType(11, 10, "Centro de Processamento de Dados", "Uso exclusivo da empresa, para realização de atividades na área de informática em geral."),
+                new UnitType(12, 13, "Posto de Serviço", "Posto de Serviço"),
+                new UnitType(13, 14, "Posto de Coleta", "Estabelecimento destinado a atender o público com o objetivo de recolher produtos/materiais/mercadorias/equipamentos/informações para posterior encaminhamento à unidade produtiva responsável por sua análise/processamento/beneficiamento/publicação. Ex: posto de coleta de anúncios classificados; posto de coleta de material para exames laboratoriais; posto de coleta de filmes fotográficos para revelação; posto de coleta de roupas para lavagem etc.")
         );
         unitTypeService.saveAll(types);
         return types;
@@ -495,8 +495,8 @@ public class TestData implements CommandLineRunner {
     public List<City> makeCities() {
         FederativeUnit unit = federativeUnitService.findByName("catarina").get().get(0);
         this.cities = Arrays.asList(
-            new City(new CityId(1, unit), "Rio do Sul"),
-            new City(new CityId(1, unit), "Ibirama")
+                new City(new CityId(1, unit), "Rio do Sul"),
+                new City(new CityId(1, unit), "Ibirama")
         );
         cityService.saveAll(cities);
         return cities;
@@ -548,7 +548,7 @@ public class TestData implements CommandLineRunner {
 
     public List<ProductionCell> makeProductionsCells() {
         this.productionCells = Arrays.asList(
-           new ProductionCell((Integer) null, "Celula 1", "Celula de Tuchos", manufacturingUnitService.findById(1).orElse(null),  RegisterState.ACTIVE, LocalDateTime.now(), sectorService.findById(1).orElse(null), "CEL-001")
+                new ProductionCell((Integer) null, "Celula 1", "Celula de Tuchos", manufacturingUnitService.findById(1).orElse(null),  RegisterState.ACTIVE, LocalDateTime.now(), sectorService.findById(1).orElse(null), "CEL-001")
         );
         for(ProductionCell productionCell : productionCells) {
             productionCellService.save(productionCell);

@@ -568,7 +568,7 @@ public class TestData implements CommandLineRunner {
         machine.setSector(sector);
         machine.setProductionCell(productionCell);
         machine.setStatus(RegisterState.ACTIVE);
-        machine.setTag("ABC-001");
+        machine.setTag("MAQ-001");
         machine.setTechnicalData("Dados técnicos da máquina: 4000kg.");
         machine.setWarrantyExpDate(LocalDate.of(2025, Month.APRIL, 15));
         machine.setWarranty((short) 1);

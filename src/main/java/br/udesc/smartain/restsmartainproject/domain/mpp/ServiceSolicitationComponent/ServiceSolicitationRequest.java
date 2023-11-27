@@ -14,23 +14,14 @@ import java.time.LocalDateTime;
 public class ServiceSolicitationRequest {
 
     private Integer id;
-
     private Integer unitId;
-
     private Integer machineId;
-
-    private Integer responsibleProfessionalId;
-
+    private Integer responsibleUserId;
     private Short status;
-
     private String description;
-
     private LocalDateTime openingDate;
-
     private Integer priorityId;
-
     private Integer symptomId;
-
     private Integer maintenanceTypeId;
 
     public Integer getId() {
@@ -57,12 +48,12 @@ public class ServiceSolicitationRequest {
         this.machineId = machineId;
     }
 
-    public Integer getResponsibleProfessionalId() {
-        return responsibleProfessionalId;
+    public Integer getResponsibleUserId() {
+        return responsibleUserId;
     }
 
-    public void setResponsibleProfessionalId(Integer responsibleProfessionalId) {
-        this.responsibleProfessionalId = responsibleProfessionalId;
+    public void setResponsibleProfessionalId(Integer responsibleUserId) {
+        this.responsibleUserId = responsibleUserId;
     }
 
     public Short getStatus() {

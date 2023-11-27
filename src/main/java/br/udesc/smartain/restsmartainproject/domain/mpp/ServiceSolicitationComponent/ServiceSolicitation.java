@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
@@ -35,9 +36,9 @@ public class ServiceSolicitation {
     private Machine machine;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "prfcodigo")
-    @Comment("Código do profissional responsável pela solicitação")
-    private Professional responsibleProfessional;
+    @JoinColumn(name = "usucodigo")
+    @Comment("Código do usuário responsável pela solicitação")
+    private User responsibleUser;
 
     @Column(name = "srsstatus")
     @Comment("Status da solicitação (0-Aberta, 1-Aprovada, 2-Negada)")
@@ -71,11 +72,11 @@ public class ServiceSolicitation {
 
     }
 
-    public ServiceSolicitation(Integer id, ManufacturingUnit unit, Machine machine, Professional responsibleProfessional, ServiceSolicitationStatus status, String description, LocalDateTime openingDate, ServicePriority priority, ServiceSymptom symptom, MaintenanceType maintenanceType) {
+    public ServiceSolicitation(Integer id, ManufacturingUnit unit, Machine machine, User responsibleUser, ServiceSolicitationStatus status, String description, LocalDateTime openingDate, ServicePriority priority, ServiceSymptom symptom, MaintenanceType maintenanceType) {
         this.id = id;
         this.unit = unit;
         this.machine = machine;
-        this.responsibleProfessional = responsibleProfessional;
+        this.responsibleUser = responsibleUser;
         this.status = status.getValue();
         this.description = description;
         this.openingDate = openingDate;
@@ -108,12 +109,12 @@ public class ServiceSolicitation {
         this.machine = machine;
     }
 
-    public Professional getResponsibleProfessional() {
-        return responsibleProfessional;
+    public User getResponsibleProfessional() {
+        return responsibleUser;
     }
 
-    public void setResponsibleProfessional(Professional responsibleProfessional) {
-        this.responsibleProfessional = responsibleProfessional;
+    public void setResponsibleUser(User responsibleUser) {
+        this.responsibleUser = responsibleUser;
     }
 
     public ServiceSolicitationStatus getStatus() {
@@ -170,7 +171,7 @@ public class ServiceSolicitation {
                 "id=" + id +
                 ", unit=" + unit +
                 ", machine=" + machine +
-                ", responsibleProfessional=" + responsibleProfessional +
+                ", responsibleUser=" + responsibleUser +
                 ", status=" + status +
                 ", description='" + description + '\'' +
                 ", openingDate=" + openingDate +

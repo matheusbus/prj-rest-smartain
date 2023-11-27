@@ -16,6 +16,8 @@ import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
@@ -24,10 +26,21 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Ma
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCellService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.ProfessionalService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitationService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptomService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
@@ -39,6 +52,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -84,10 +98,34 @@ public class TestData implements CommandLineRunner {
     private MachineModelTypeService machineModelTypeService;
 
     @Autowired
+    private ServiceSymptomService serviceSymptomService;
+
+    @Autowired
     private MachineModelService machineModelService;
 
     @Autowired
     private ProductionCellService productionCellService;
+
+    @Autowired
+    private MachineService machineService;
+
+    @Autowired
+    private ProfessionalService professionalService;
+
+    @Autowired
+    private ServiceSolicitationService serviceSolicitationService;
+
+    @Autowired
+    private MaintenanceTypeService maintenanceTypeService;
+
+    @Autowired
+    private ServiceCauseService serviceCauseService;
+
+    @Autowired
+    private ServicePriorityService servicePriorityService;
+
+    @Autowired
+    private OrderGenerationTypeService orderGenerationTypeService;
 
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
@@ -110,6 +148,8 @@ public class TestData implements CommandLineRunner {
 
     private List<ProductionCell>  productionCells = new ArrayList<>();
 
+    private List<Machine> machines = new ArrayList<>();
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -131,6 +171,7 @@ public class TestData implements CommandLineRunner {
         makeMachineModels();
         makeProductionsCells();
 
+        makeMachines();
     }
 
     public void associateUnits() {
@@ -513,5 +554,33 @@ public class TestData implements CommandLineRunner {
             productionCellService.save(productionCell);
         }
         return productionCells;
+    }
+
+    public List<Machine> makeMachines() {
+        Machine machine = new Machine();
+        ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
+        MachineModel machineModel = machineModelService.findById(1).get();
+        Sector sector = sectorService.findById(1).get();
+        ProductionCell productionCell = productionCellService.findById(1).get();
+
+
+        machine.setUnit(unit);
+        machine.setSector(sector);
+        machine.setProductionCell(productionCell);
+        machine.setStatus(RegisterState.ACTIVE);
+        machine.setTag("ABC-001");
+        machine.setTechnicalData("Dados técnicos da máquina: 4000kg.");
+        machine.setWarrantyExpDate(LocalDate.of(2025, Month.APRIL, 15));
+        machine.setWarranty((short) 1);
+        machine.setMachineModel(machineModel);
+        machine.setAcquisitionDate(LocalDate.of(2022, Month.APRIL, 15));
+        machine.setCreatedDate(LocalDate.now().atStartOfDay());
+
+        this.machines = Arrays.asList(machine);
+
+        for (Machine mac : this.machines) {
+            machineService.save(machine);
+        }
+        return this.machines;
     }
 }

@@ -7,9 +7,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@Entity
-@Table(schema = "mhu", name = "tbequipamento")
-@Comment("Tabela de cadastro dos equipamentos das máquinas")
+//@Entity
+//@Table(schema = "mhu", name = "tbequipamento")
+//@Comment("Tabela de cadastro dos equipamentos das máquinas")
 public class Equipment {
 
 }

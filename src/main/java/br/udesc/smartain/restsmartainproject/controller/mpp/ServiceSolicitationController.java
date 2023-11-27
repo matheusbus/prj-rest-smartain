@@ -3,6 +3,8 @@ package br.udesc.smartain.restsmartainproject.controller.mpp;
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
@@ -47,7 +49,7 @@ public class ServiceSolicitationController {
     private ServiceSymptomService serviceSymptomService;
 
     @Autowired
-    private ProfessionalService professionalService;
+    private UserService userService;
 
     @Autowired
     private MaintenanceTypeService maintenanceTypeService;
@@ -94,7 +96,7 @@ public class ServiceSolicitationController {
         Machine machine = machineService.findById(request.getMachineId()).get();
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).get();
         ServiceSymptom symptom = serviceSymptomService.findById(request.getSymptomId()).get();
-        Professional professional = professionalService.findById(request.getResponsibleProfessionalId()).get();
+        User user = userService.findById(request.getResponsibleUserId()).get();
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).get();
 
         newServiceSolicitation.setUnit(unit);
@@ -104,7 +106,7 @@ public class ServiceSolicitationController {
         newServiceSolicitation.setStatus(ServiceSolicitationStatus.valueOf(request.getStatus()));
         newServiceSolicitation.setPriority(priority);
         newServiceSolicitation.setSymptom(symptom);
-        newServiceSolicitation.setResponsibleProfessional(professional);
+        newServiceSolicitation.setResponsibleUser(user);
         newServiceSolicitation.setMaintenanceType(maintenanceType);
 
         ServiceSolicitation savedServiceSolicitation = serviceSolicitationService.save(newServiceSolicitation);
@@ -127,7 +129,7 @@ public class ServiceSolicitationController {
         Machine machine = machineService.findById(request.getMachineId()).get();
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).get();
         ServiceSymptom symptom = serviceSymptomService.findById(request.getSymptomId()).get();
-        Professional professional = professionalService.findById(request.getResponsibleProfessionalId()).get();
+        User user = userService.findById(request.getResponsibleUserId()).get();
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).get();
 
         serviceSolicitationToUpdate = serviceSolicitationToUpdate.map((serviceSolicitationUpdated) -> {
@@ -138,7 +140,7 @@ public class ServiceSolicitationController {
             serviceSolicitationUpdated.setStatus(ServiceSolicitationStatus.valueOf(request.getStatus()));
             serviceSolicitationUpdated.setPriority(priority);
             serviceSolicitationUpdated.setSymptom(symptom);
-            serviceSolicitationUpdated.setResponsibleProfessional(professional);
+            serviceSolicitationUpdated.setResponsibleUser(user);
             serviceSolicitationUpdated.setMaintenanceType(maintenanceType);
             return serviceSolicitationUpdated;
         });
@@ -151,7 +153,7 @@ public class ServiceSolicitationController {
         Optional<ServiceSolicitation> serviceSolicitation = serviceSolicitationService.findById(id);
 
         if(serviceSolicitation.isEmpty()) {
-            throw new NotFoundException("Supplier id not found - " + id);
+            throw new NotFoundException("Service Solicitation id not found - " + id);
         }
         return ResponseEntity.ok(serviceSolicitationService.cancelServiceSolicitation(serviceSolicitation.get()));
     }

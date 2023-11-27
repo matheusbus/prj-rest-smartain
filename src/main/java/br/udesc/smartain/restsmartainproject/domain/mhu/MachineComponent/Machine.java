@@ -10,6 +10,8 @@ import org.hibernate.annotations.Comment;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.TemporalAccessor;
 import java.util.Objects;
 
 @Entity
@@ -78,7 +80,7 @@ public class Machine {
 
     }
 
-    public Machine(Integer id, Sector sector, ProductionCell productionCell, ManufacturingUnit unit, String technicalData, MachineModel machineModel, String tag, LocalDate acquisitionDate, LocalDateTime createdDate, LocalDate warrantyExpDate, Short warranty, RegisterState status) {
+    public Machine(Integer id, Sector sector, ProductionCell productionCell, ManufacturingUnit unit, String technicalData, MachineModel machineModel, String tag, LocalDate acquisitionDate, LocalDateTime createdDate, LocalDate warrantyExpDate, RegisterState status) {
         this.id = id;
         this.sector = sector;
         this.productionCell = productionCell;
@@ -88,9 +90,14 @@ public class Machine {
         this.tag = tag;
         this.acquisitionDate = acquisitionDate;
         this.createdDate = createdDate;
-        this.warrantyExpDate = warrantyExpDate;
-        this.warranty = warranty;
         this.status = status.getValue();
+        this.warrantyExpDate = warrantyExpDate;
+
+        if(warrantyExpDate.compareTo(LocalDate.now()) < 0) {
+            this.warranty = 0;
+        } else {
+            this.warranty = 1;
+        }
     }
 
     public Integer getId() {
@@ -170,7 +177,11 @@ public class Machine {
     }
 
     public void setWarranty(Short warranty) {
-        this.warranty = warranty;
+        if(warrantyExpDate.compareTo(LocalDate.now()) < 0) {
+            this.warranty = 0;
+        } else {
+            this.warranty = 1;
+        }
     }
 
     public RegisterState getStatus() {

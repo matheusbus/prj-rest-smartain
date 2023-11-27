@@ -1,7 +1,11 @@
 package br.udesc.smartain.restsmartainproject.configuration.test;
 
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.ProfessionalService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
@@ -14,6 +18,9 @@ import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionCompo
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceInterventionService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitation;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitationService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitationStatus;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptomService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
@@ -56,6 +63,15 @@ public class TestDataMPP implements CommandLineRunner {
     @Autowired
     private ProfessionalService professionalService;
 
+    @Autowired
+    private ServiceSolicitationService serviceSolicitationService;
+
+    @Autowired
+    private ManufacturingUnitService manufacturingUnitService;
+
+    @Autowired
+    private MachineService machineService;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -66,6 +82,7 @@ public class TestDataMPP implements CommandLineRunner {
         makeServicePriorities();
         makeOrderGenerationTypes();
         makeProfessionals();
+        makeServiceSolicitations();
     }
 
 
@@ -182,6 +199,29 @@ public class TestDataMPP implements CommandLineRunner {
         for(Professional professional : professionals) {
             professionalService.save(professional);
         }
+    }
+
+    public void makeServiceSolicitations() {
+        ServiceSolicitation newServiceSolicitation = new ServiceSolicitation();
+
+        ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
+        Machine machine = machineService.findById(1).get();
+        ServicePriority priority = servicePriorityService.findById(1).get();
+        ServiceSymptom symptom = serviceSymptomService.findById(1).get();
+        User user = userService.findById(1).get();
+        MaintenanceType maintenanceType = maintenanceTypeService.findById(2).get();
+
+        newServiceSolicitation.setUnit(unit);
+        newServiceSolicitation.setMachine(machine);
+        newServiceSolicitation.setDescription("Máquina apresenta barulhos estranhos. Deve ser verificado a porta traseira, pois parecia ser lá o problema.");
+        newServiceSolicitation.setOpeningDate(LocalDateTime.now());
+        newServiceSolicitation.setStatus(ServiceSolicitationStatus.OPENED);
+        newServiceSolicitation.setPriority(priority);
+        newServiceSolicitation.setSymptom(symptom);
+        newServiceSolicitation.setResponsibleUser(user);
+        newServiceSolicitation.setMaintenanceType(maintenanceType);
+
+        serviceSolicitationService.save(newServiceSolicitation);
     }
 
 }

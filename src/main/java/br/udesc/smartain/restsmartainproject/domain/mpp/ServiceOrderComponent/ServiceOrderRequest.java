@@ -16,7 +16,7 @@ public class ServiceOrderRequest {
     private LocalTime estimatedDuration;
     private Integer maintenancePlanId;
     private Integer maintenanceTypeId;
-    private Integer serviecCauseId;
+    private Integer serviceCauseId;
 
     public Integer getId() {
         return id;
@@ -106,11 +106,11 @@ public class ServiceOrderRequest {
         this.maintenanceTypeId = maintenanceTypeId;
     }
 
-    public Integer getServiecCauseId() {
-        return serviecCauseId;
+    public Integer getServiceCauseId() {
+        return serviceCauseId;
     }
 
-    public void setServiecCauseId(Integer serviecCauseId) {
-        this.serviecCauseId = serviecCauseId;
+    public void setServiceCauseId(Integer serviceCauseId) {
+        this.serviceCauseId = serviceCauseId;
     }
 }

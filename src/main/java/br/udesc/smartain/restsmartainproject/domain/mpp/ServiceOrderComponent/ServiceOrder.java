@@ -60,7 +60,7 @@ public class ServiceOrder {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tgocodigo", nullable = false)
-    @Comment("Código do tipo da geração da orgem")
+    @Comment("Código do tipo da geração da ordem")
     private OrderGenerationType generationType;
 
     @Column(name = "svostatus", nullable = false)

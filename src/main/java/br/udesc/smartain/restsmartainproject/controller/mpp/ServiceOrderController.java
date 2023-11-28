@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,13 +105,13 @@ public class ServiceOrderController {
     public ResponseEntity<ServiceOrder> createServiceOrder(@Valid @RequestBody ServiceOrderRequest request) {
         ServiceOrder newServiceOrder = new ServiceOrder();
 
-        ManufacturingUnit unit = manufacturingUnitService.findById(request.getUnitId()).orElse(null);
         Machine machine = machineService.findById(request.getMachineId()).orElse(null);
+        ManufacturingUnit unit = manufacturingUnitService.findById(machine.getUnit().getId()).orElse(null);
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).orElse(null);
         User user = userService.findById(request.getUserId()).orElse(null);
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).orElse(null);
-        ServiceCause cause = serviceCauseService.findById(request.getServiecCauseId()).orElse(null);
-        Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId());
+        ServiceCause cause = serviceCauseService.findById(request.getServiceCauseId()).orElse(null);
+        Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId() != null ? request.getSolicitationId() : 0);
         OrderGenerationType orderGenerationType = orderGenerationTypeService.findById(request.getGenerationTypeId()).orElse(null);
 
         newServiceOrder.setUnit(unit);
@@ -119,7 +120,7 @@ public class ServiceOrderController {
         newServiceOrder.setServiceCause(cause);
         newServiceOrder.setEstimatedDuration(request.getEstimatedDuration());
         newServiceOrder.setServiceIntervention(null);
-        newServiceOrder.setOpeningDate(request.getOpeningDate());
+        newServiceOrder.setOpeningDate(LocalDateTime.now());
         newServiceOrder.setPriority(priority);
         newServiceOrder.setMaintenanceType(maintenanceType);
         newServiceOrder.setServiceSolicitation(solicitation.orElse(null));
@@ -148,7 +149,7 @@ public class ServiceOrderController {
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).orElse(null);
         User user = userService.findById(request.getUserId()).orElse(null);
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).orElse(null);
-        ServiceCause cause = serviceCauseService.findById(request.getServiecCauseId()).orElse(null);
+        ServiceCause cause = serviceCauseService.findById(request.getServiceCauseId()).orElse(null);
         Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId());
         OrderGenerationType orderGenerationType = orderGenerationTypeService.findById(request.getGenerationTypeId()).orElse(null);
 

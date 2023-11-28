@@ -8,6 +8,9 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.ProfessionalService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlan;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlanService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlanStatus;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationType;
@@ -16,6 +19,9 @@ import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.Se
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceIntervention;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceInterventionService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrder;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrderService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrderStatus;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitation;
@@ -31,9 +37,11 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 @Profile(value = "test")
@@ -72,6 +80,12 @@ public class TestDataMPP implements CommandLineRunner {
     @Autowired
     private MachineService machineService;
 
+    @Autowired
+    private ServiceOrderService serviceOrderService;
+
+    @Autowired
+    private MaintenancePlanService maintenancePlanService;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -83,6 +97,8 @@ public class TestDataMPP implements CommandLineRunner {
         makeOrderGenerationTypes();
         makeProfessionals();
         makeServiceSolicitations();
+        makeServiceOrders();
+        makeMaintenancePlan(1, LocalDateTime.now(), MaintenancePlanStatus.NOT_STARTED, 1);
     }
 
 
@@ -207,7 +223,7 @@ public class TestDataMPP implements CommandLineRunner {
         ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
         Machine machine = machineService.findById(1).get();
         ServicePriority priority = servicePriorityService.findById(1).get();
-        ServiceSymptom symptom = serviceSymptomService.findById(1).get();
+        ServiceSymptom symptom = serviceSymptomService.findById(8).get();
         User user = userService.findById(1).get();
         MaintenanceType maintenanceType = maintenanceTypeService.findById(2).get();
 
@@ -222,6 +238,99 @@ public class TestDataMPP implements CommandLineRunner {
         newServiceSolicitation.setMaintenanceType(maintenanceType);
 
         serviceSolicitationService.save(newServiceSolicitation);
+    }
+
+    public ServiceOrder makeServiceOrder(Integer unitId, Integer machineId, Integer serviceSolicitationId, Integer serviceInterventionId, Integer serviceCauseId, Integer orderGenerationTypeId, Integer maintenancePlanId, Integer userId, LocalTime estimatedDuration, ServiceOrderStatus status, Integer maintenanceTypeId, LocalDateTime openingDate, Integer priorityId) {
+        ServiceOrder serviceOrder = new ServiceOrder();
+
+        ManufacturingUnit unit = manufacturingUnitService.findById(unitId).get();
+        serviceOrder.setUnit(unit);
+
+        Machine machine = machineService.findById(machineId).get();
+        serviceOrder.setMachine(machine);
+
+        MaintenanceType maintenanceType = maintenanceTypeService.findById(maintenanceTypeId).get();
+        ServicePriority priority = servicePriorityService.findById(priorityId).get();
+        if(orderGenerationTypeId == 3) {
+            ServiceSolicitation serviceSolicitation = serviceSolicitationService.findById(serviceSolicitationId).get();
+            serviceOrder.setServiceSolicitation(serviceSolicitation);
+            serviceOrder.setMaintenanceType(serviceSolicitation.getMaintenanceType());
+            serviceOrder.setPriority(serviceSolicitation.getPriority());
+        } else {
+            serviceOrder.setServiceSolicitation(null);
+            serviceOrder.setMaintenanceType(maintenanceType);
+            serviceOrder.setPriority(priority);
+        }
+
+        if(serviceInterventionId != null) {
+            Optional<ServiceIntervention> serviceIntervention = serviceInterventionService.findById(serviceInterventionId);
+            serviceOrder.setServiceIntervention(serviceIntervention.orElse(null));
+        }
+
+        if(serviceCauseId != null) {
+            ServiceCause cause = serviceCauseService.findById(serviceCauseId).get();
+            serviceOrder.setServiceCause(cause);
+        }
+
+        OrderGenerationType orderGenerationType = orderGenerationTypeService.findById(orderGenerationTypeId).get();
+        serviceOrder.setGenerationType(orderGenerationType);
+
+        User user = userService.findById(userId).get();
+        serviceOrder.setOpeningUser(user);
+
+        if(maintenancePlanId != null) {
+            MaintenancePlan maintenancePlan = maintenancePlanService.findById(maintenancePlanId).get();
+            serviceOrder.setMaintenancePlan(maintenancePlan);
+        }
+
+        serviceOrder.setEstimatedDuration(estimatedDuration);
+        serviceOrder.setStatus(status);
+        serviceOrder.setOpeningDate(openingDate);
+
+        ServiceOrder serviceOrderSaved = serviceOrderService.save(serviceOrder);
+        return serviceOrderSaved;
+    }
+
+    public void makeServiceOrders() {
+        makeServiceOrder(1, 1, null, 18, 17, 2, null, 1, LocalTime.of(3, 30), ServiceOrderStatus.COMPLETED, 2, LocalDateTime.of(2023, Month.NOVEMBER, 26, 17, 30, 0), 3);
+        makeServiceOrder(1, 1, null, 11, 15, 4, null, 1, LocalTime.of(6, 0), ServiceOrderStatus.COMPLETED, 1, LocalDateTime.of(2023, Month.NOVEMBER, 26, 14, 18, 0), 1);
+        makeServiceOrder(1, 1, 1, null, null, 3, null, 1, LocalTime.of(2, 0), ServiceOrderStatus.NOT_STARTED, 2, LocalDateTime.of(2023, Month.NOVEMBER, 27, 19, 15, 0), 2);
+        makeServiceOrder(1, 1, null, null, null, 2, null, 1, LocalTime.of(1, 0), ServiceOrderStatus.IN_PROGRESS, 2, LocalDateTime.of(2023, Month.NOVEMBER, 27, 8, 46, 0), 2);
+        makeServiceOrder(1, 1, null, null, null, 2, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.IN_PROGRESS, 2, LocalDateTime.of(2023, Month.NOVEMBER, 27, 13, 50, 0), 3);
+        makeServiceOrder(1, 1, null, null, null, 2, null, 1, LocalTime.of(0, 50), ServiceOrderStatus.SUSPENDED, 2, LocalDateTime.of(2023, Month.NOVEMBER, 26, 17, 30, 0), 1);
+        makeServiceOrder(1, 1, null, null, null, 2, null, 1, LocalTime.of(2, 45), ServiceOrderStatus.SUSPENDED, 2, LocalDateTime.of(2023, Month.NOVEMBER, 25, 15, 17, 0), 2);
+
+    }
+
+    public void makeMaintenancePlan(Integer unitId, LocalDateTime createdDate, MaintenancePlanStatus status, Integer userId) {
+        MaintenancePlan maintenancePlan = new MaintenancePlan();
+
+        ManufacturingUnit unit = manufacturingUnitService.findById(unitId).get();
+        maintenancePlan.setUnit(unit);
+
+        maintenancePlan.setCreatedDate(createdDate);
+        maintenancePlan.setStatus(status);
+
+        User user = userService.findById(userId).get();
+        maintenancePlan.setUser(user);
+
+        List<ServiceOrder> orders = Arrays.asList(
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.NOVEMBER, 27, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.DECEMBER, 4, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.DECEMBER, 11, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.DECEMBER, 18, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.DECEMBER, 25, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.JANUARY, 1, 8, 0, 0), 1),
+                makeServiceOrder(1, 1, null, null, null, 1, null, 1, LocalTime.of(0, 30), ServiceOrderStatus.NOT_STARTED, 1, LocalDateTime.of(2023, Month.DECEMBER, 8, 8, 0, 0), 1)
+        );
+        maintenancePlanService.save(maintenancePlan);
+
+        for(ServiceOrder serviceOrder : orders) {
+            serviceOrderService.save(serviceOrder);
+            maintenancePlan.addServiceOrder(serviceOrder);
+        }
+
+        maintenancePlanService.save(maintenancePlan);
     }
 
 }

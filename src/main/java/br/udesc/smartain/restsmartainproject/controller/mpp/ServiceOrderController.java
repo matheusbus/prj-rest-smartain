@@ -136,7 +136,7 @@ public class ServiceOrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ServiceOrder> updateSupplier(@Valid @RequestBody ServiceOrderRequest request, @PathVariable Integer id) {
+    public ResponseEntity<ServiceOrder> updateServiceOrder(@Valid @RequestBody ServiceOrderRequest request, @PathVariable Integer id) {
         Optional<ServiceOrder> serviceOrderToUpdate = serviceOrderService.findById(id);
 
         if(serviceOrderToUpdate.isEmpty()) {

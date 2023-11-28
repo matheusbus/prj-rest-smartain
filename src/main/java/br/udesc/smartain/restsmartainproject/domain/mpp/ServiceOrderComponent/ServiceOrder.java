@@ -68,7 +68,7 @@ public class ServiceOrder {
     private Short status;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sercodigo", nullable = false)
+    @JoinColumn(name = "sercodigo", nullable = true)
     @Comment("Código do tipo de intervenção (Quando encerrada)")
     private ServiceIntervention serviceIntervention;
 
@@ -88,7 +88,7 @@ public class ServiceOrder {
     private MaintenanceType maintenanceType;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "csscodigo", nullable = false)
+    @JoinColumn(name = "csscodigo", nullable = true)
     @Comment("Código da causa de manutenção")
     private ServiceCause serviceCause;
 

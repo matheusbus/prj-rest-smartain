@@ -2,10 +2,15 @@ package br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponen
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(schema = "mpp", name = "tbplanomanutencao")
@@ -37,14 +42,18 @@ public class MaintenancePlan {
     @Comment("Data de cadastro/geração do plano de manutenção")
     private LocalDateTime createdDate;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "maintenancePlan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ServiceOrder> orders = new ArrayList<>();
+
     public MaintenancePlan() {
 
     }
 
-    public MaintenancePlan(Integer id, ManufacturingUnit unit, Short status, User user, LocalDateTime createdDate) {
+    public MaintenancePlan(Integer id, ManufacturingUnit unit, MaintenancePlanStatus status, User user, LocalDateTime createdDate) {
         this.id = id;
         this.unit = unit;
-        this.status = status;
+        this.status = status.getValue();
         this.user = user;
         this.createdDate = createdDate;
     }
@@ -87,5 +96,39 @@ public class MaintenancePlan {
 
     public void setCreatedDate(LocalDateTime createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public List<ServiceOrder> getOrders() {
+        return orders;
+    }
+
+    public void addServiceOrder(ServiceOrder serviceOrder) {
+        this.orders.add(serviceOrder);
+        serviceOrder.setMaintenancePlan(this);
+    }
+
+    @Override
+    public String toString() {
+        return "MaintenancePlan{" +
+                "id=" + id +
+                ", unit=" + unit +
+                ", status=" + status +
+                ", user=" + user +
+                ", createdDate=" + createdDate +
+                ", orders=" + orders +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MaintenancePlan that = (MaintenancePlan) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

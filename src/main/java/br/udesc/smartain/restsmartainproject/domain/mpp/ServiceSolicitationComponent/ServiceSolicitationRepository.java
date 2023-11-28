@@ -30,7 +30,7 @@ public interface ServiceSolicitationRepository extends JpaRepository<ServiceSoli
 
     @Modifying
     @Query(
-            value = "UPDATE mpp.tbservicosolicitacao SET tbservicosolicitacao.stsstatus = 4 WHERE tbservicosolicitacao.stscodigo = ?1",
+            value = "UPDATE mpp.tbservicosolicitacao SET tbservicosolicitacao.srsstatus = 4 WHERE tbservicosolicitacao.stscodigo = ?1",
             nativeQuery = true
     )
     public void cancelServiceSolicitationById(Integer id);

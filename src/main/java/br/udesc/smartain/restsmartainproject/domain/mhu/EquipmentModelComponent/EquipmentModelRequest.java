@@ -1,8 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentModelComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 
-public class MachineModelRequest {
+public class EquipmentModelRequest {
 
     private Integer id;
 
@@ -63,4 +63,5 @@ public class MachineModelRequest {
     public void setStatus(RegisterState status) {
         this.status = status;
     }
+
 }

@@ -1,6 +1,9 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent.ComponentModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -36,15 +39,31 @@ public class Component {
     @Comment("Código da marca")
     private Brand brand;
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "moccodigo", nullable = false)
+    @Comment("Código do modelo de componente")
+    private ComponentModel componentModel;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "maqcodigo")
+    private Machine machine;
+
+    @Column(name = "comstatus")
+    @Comment("Status do componente (1-Ativo 2-Inativo)")
+    private Short status;
+
     public Component() {
 
     }
 
-    public Component(Integer id, String name, String technicalData, Brand brand) {
+    public Component(Integer id, String name, String technicalData, Brand brand, ComponentModel componentModel, Machine machine, RegisterState status) {
         this.id = id;
         this.name = name;
         this.technicalData = technicalData;
         this.brand = brand;
+        this.componentModel = componentModel;
+        this.machine = machine;
+        this.status = status.getValue();
     }
 
     public Integer getId() {
@@ -79,6 +98,30 @@ public class Component {
         this.brand = brand;
     }
 
+    public RegisterState getStatus() {
+        return RegisterState.valueOf(status);
+    }
+
+    public void setStatus(RegisterState status) {
+        this.status = status.getValue();
+    }
+
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+
+    public ComponentModel getComponentModel() {
+        return componentModel;
+    }
+
+    public void setComponentModel(ComponentModel componentModel) {
+        this.componentModel = componentModel;
+    }
+
     @Override
     public String toString() {
         return "Component{" +
@@ -86,6 +129,9 @@ public class Component {
                 ", name='" + name + '\'' +
                 ", technicalData='" + technicalData + '\'' +
                 ", brand=" + brand +
+                ", componentModel=" + componentModel +
+                ", machine=" + machine +
+                ", status=" + status +
                 '}';
     }
 

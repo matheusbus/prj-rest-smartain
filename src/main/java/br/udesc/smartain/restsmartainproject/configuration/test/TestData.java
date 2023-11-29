@@ -20,31 +20,27 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCellService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.Professional;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProfessionalComponent.ProfessionalService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
-import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceType;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
-import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriorityService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitationService;
-import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptomService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
-import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
+import br.udesc.smartain.restsmartainproject.domain.types.DomainModelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -95,7 +91,7 @@ public class TestData implements CommandLineRunner {
     private ManufacturerService manufacturerService;
 
     @Autowired
-    private MachineModelTypeService machineModelTypeService;
+    private ModelTypeService modelTypeService;
 
     @Autowired
     private ServiceSymptomService serviceSymptomService;
@@ -142,7 +138,7 @@ public class TestData implements CommandLineRunner {
 
     private List<Manufacturer> manufacturers = new ArrayList<>();
 
-    private List<MachineModelType>  machineModelsTypes = new ArrayList<>();
+    private List<ModelType>  machineModelsTypes = new ArrayList<>();
 
     private List<MachineModel>  machineModels = new ArrayList<>();
 
@@ -524,13 +520,13 @@ public class TestData implements CommandLineRunner {
         return manufacturers;
     }
 
-    public List<MachineModelType> makeMachineModelTypes() {
+    public List<ModelType> makeMachineModelTypes() {
         this.machineModelsTypes = Arrays.asList(
-                new MachineModelType((Integer) null, "CNC", (short) 1, RegisterState.ACTIVE),
-                new MachineModelType((Integer) null, "Manual", (short) 1, RegisterState.ACTIVE)
+                new ModelType((Integer) null, "CNC", DomainModelType.MACHINE, RegisterState.ACTIVE),
+                new ModelType((Integer) null, "Manual", DomainModelType.MACHINE, RegisterState.ACTIVE)
         );
-        for(MachineModelType machineModelType : machineModelsTypes) {
-            machineModelTypeService.save(machineModelType);
+        for(ModelType machineModelType : machineModelsTypes) {
+            modelTypeService.save(machineModelType);
         }
         return machineModelsTypes;
     }

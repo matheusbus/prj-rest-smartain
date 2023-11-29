@@ -1,7 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.Supplier;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
@@ -10,14 +11,14 @@ import org.hibernate.validator.constraints.Range;
 import java.util.Objects;
 
 @Entity
-@Table(schema = "mhu", name = "tbmodelomaquina")
-@Comment("Tabela de cadastros de modelos de máquinas")
-public class MachineModel {
+@Table(schema = "mhu", name = "tbmodelocomponente")
+@Comment("Tabela de cadastro dos modelos de componentes")
+public class ComponentModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "momcodigo")
-    @Comment("Código sequencial do modelo de máquina")
+    @Column(name = "moccodigo")
+    @Comment("Código sequencial do modelo de componente")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,34 +26,34 @@ public class MachineModel {
     @Comment("Código do fabricante do modelo")
     private Manufacturer manufacturer;
 
-    @Column(name = "mommodelo", length = 250)
-    @Comment("Modelo da máquina")
+    @Column(name = "mocmodelo", length = 250)
+    @Comment("Modelo de componente")
     private String model;
 
-    @Column(name = "momdimensoes", length = 250)
-    @Comment("Dimensões do modelo de máquina")
+    @Column(name = "mocdimensoes", length = 250)
+    @Comment("Dimensões do modelo de componente")
     private String dimensions;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tmmcodigo")
     @Comment("Código do tipo de modelo")
-    private ModelType machineModelType;
+    private ModelType modelType;
 
-    @Column(name = "momstatus")
+    @Column(name = "mocstatus")
     @Comment("Status do Modelo (1-Ativo 2-Inativo)")
     @Range(min = 1, max = 2)
     private Short status;
 
-    public MachineModel() {
+    public ComponentModel() {
 
     }
 
-    public MachineModel(Integer id, Manufacturer manufacturer, String model, String dimensions, ModelType machineModelType, RegisterState status) {
+    public ComponentModel(Integer id, Manufacturer manufacturer, String model, String dimensions, ModelType modelType, RegisterState status) {
         this.id = id;
         this.manufacturer = manufacturer;
         this.model = model;
         this.dimensions = dimensions;
-        this.machineModelType = machineModelType;
+        this.modelType = modelType;
         this.status = status.getValue();
     }
 
@@ -88,12 +89,12 @@ public class MachineModel {
         this.dimensions = dimensions;
     }
 
-    public ModelType getMachineModelType() {
-        return machineModelType;
+    public ModelType getModelType() {
+        return modelType;
     }
 
-    public void setMachineModelType(ModelType machineModelType) {
-        this.machineModelType = machineModelType;
+    public void setModelType(ModelType modelType) {
+        this.modelType = modelType;
     }
 
     public RegisterState getStatus() {
@@ -106,12 +107,13 @@ public class MachineModel {
 
     @Override
     public String toString() {
-        return "MachineModel{" +
+        return "ComponentModel{" +
                 "id=" + id +
                 ", manufacturer=" + manufacturer +
                 ", model='" + model + '\'' +
                 ", dimensions='" + dimensions + '\'' +
-                ", machineModelType=" + machineModelType +
+                ", modelType=" + modelType +
+                ", status=" + status +
                 '}';
     }
 
@@ -119,7 +121,7 @@ public class MachineModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MachineModel that = (MachineModel) o;
+        ComponentModel that = (ComponentModel) o;
         return Objects.equals(id, that.id);
     }
 

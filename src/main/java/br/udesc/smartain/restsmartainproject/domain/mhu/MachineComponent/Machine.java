@@ -1,10 +1,14 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.ComponentRequest;
+import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 
@@ -12,6 +16,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.TemporalAccessor;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -75,6 +81,14 @@ public class Machine {
     @Column(name = "maqstatus")
     @Comment("Status da máquina (1-Ativo 2-Inativo)")
     private Short status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    private List<Component> components = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    private List<Equipment> equipments = new ArrayList<>();
 
     public Machine() {
 
@@ -198,6 +212,22 @@ public class Machine {
 
     public void setProductionCell(ProductionCell productionCell) {
         this.productionCell = productionCell;
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public void addComponent(Component component) {
+        this.components.add(component);
+    }
+
+    public List<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void addEquipment(Equipment equipment) {
+        this.equipments.add(equipment);
     }
 
     @Override

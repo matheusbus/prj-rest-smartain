@@ -1,6 +1,6 @@
 package br.udesc.smartain.restsmartainproject.domain.types;
 
-public enum DomainMachineModelType {
+public enum DomainModelType {
 
     MACHINE((short)1),
     COMPONENT((short)2),
@@ -8,7 +8,7 @@ public enum DomainMachineModelType {
 
     private Short value;
 
-    private DomainMachineModelType(Short value) {
+    private DomainModelType(Short value) {
         this.value = value;
     }
 
@@ -16,8 +16,8 @@ public enum DomainMachineModelType {
         return this.value;
     }
 
-    public static DomainMachineModelType valueOf(Short value) {
-        for(DomainMachineModelType dom : DomainMachineModelType.values()){
+    public static DomainModelType valueOf(Short value) {
+        for(DomainModelType dom : DomainModelType.values()){
             if(dom.getValue() == value){
                 return dom;
             }

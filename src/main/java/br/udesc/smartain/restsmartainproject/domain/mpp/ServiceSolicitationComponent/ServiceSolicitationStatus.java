@@ -1,7 +1,5 @@
 package br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
-
 public enum ServiceSolicitationStatus {
 
     OPENED((short)1),

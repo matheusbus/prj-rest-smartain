@@ -1,8 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
-import br.udesc.smartain.restsmartainproject.domain.types.DomainMachineModelType;
+import br.udesc.smartain.restsmartainproject.domain.types.DomainModelType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(schema = "mhu", name = "tbtipomodelomaquina")
-@Comment("Tabela dos tipos de máquinas")
-public class MachineModelType {
+@Table(schema = "mhu", name = "tbmodelo")
+@Comment("Tabela de cadastro dos modelos")
+public class ModelType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tmmcodigo")
-    @Comment("Código sequencial do tipo de máquina")
+    @Comment("Código sequencial do modelo")
     private Integer id;
 
     @Column(name = "tmmdescricao", length = 250, nullable = false)
-    @Size(min = 3, max = 250, message = "A descrição do tipo de máquina deve conter entre 3 e 250 caracteres.")
-    @Comment("Descrição do tipo de máquina")
+    @Size(min = 3, max = 250, message = "A descrição do tipo de modelo deve conter entre 3 e 250 caracteres.")
+    @Comment("Descrição do tipo de modelo")
     private String description;
 
     @Column(name = "tmmtipo", nullable = false)
@@ -42,13 +42,13 @@ public class MachineModelType {
     @OneToMany(mappedBy = "machineModelType", fetch = FetchType.LAZY)
     private List<MachineModel> machineModels = new ArrayList<>();
 
-    public MachineModelType() {
+    public ModelType() {
     }
 
-    public MachineModelType(Integer id, String description, Short domainType, RegisterState status) {
+    public ModelType(Integer id, String description, DomainModelType domainType, RegisterState status) {
         this.id = id;
         this.description = description;
-        this.domainType = domainType;
+        this.domainType = domainType.getValue();
         this.status = status.getValue();
     }
 
@@ -68,11 +68,11 @@ public class MachineModelType {
         this.description = description;
     }
 
-    public DomainMachineModelType getDomainType() {
-        return DomainMachineModelType.valueOf(domainType);
+    public DomainModelType getDomainType() {
+        return DomainModelType.valueOf(domainType);
     }
 
-    public void setDomainType(DomainMachineModelType domainType) {
+    public void setDomainType(DomainModelType domainType) {
         this.domainType = domainType.getValue();
     }
 
@@ -90,7 +90,7 @@ public class MachineModelType {
 
     @Override
     public String toString() {
-        return "MachineModelType{" +
+        return "ModelType{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", domainType=" + domainType +
@@ -101,7 +101,7 @@ public class MachineModelType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MachineModelType that = (MachineModelType) o;
+        ModelType that = (ModelType) o;
         return Objects.equals(id, that.id);
     }
 

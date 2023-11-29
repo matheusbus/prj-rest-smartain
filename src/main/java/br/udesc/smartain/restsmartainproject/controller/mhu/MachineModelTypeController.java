@@ -1,8 +1,8 @@
 package br.udesc.smartain.restsmartainproject.controller.mhu;
 
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelTypeService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelTypeComponent.MachineModelType;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +18,11 @@ import java.util.Optional;
 public class MachineModelTypeController {
     
     @Autowired
-    private MachineModelTypeService machineModelTypeService;
+    private ModelTypeService modelTypeService;
 
     @GetMapping
-    public ResponseEntity<List<MachineModelType>> findAll() {
-        List<MachineModelType> machineModelTypes = machineModelTypeService.findAll();
+    public ResponseEntity<List<ModelType>> findAll() {
+        List<ModelType> machineModelTypes = modelTypeService.findAll();
 
         if(machineModelTypes.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -32,8 +32,8 @@ public class MachineModelTypeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MachineModelType> findById(@PathVariable Integer id) {
-        Optional<MachineModelType> machineModelType = machineModelTypeService.findById(id);
+    public ResponseEntity<ModelType> findById(@PathVariable Integer id) {
+        Optional<ModelType> machineModelType = modelTypeService.findById(id);
 
         if(machineModelType.isEmpty()) {
             throw new NotFoundException("MachineModelType id not found - " + id);
@@ -43,11 +43,11 @@ public class MachineModelTypeController {
     }
 
     @GetMapping(params = "status")
-    public ResponseEntity<List<MachineModelType>> findAllByStatys(@RequestParam(name = "status") Short status) {
+    public ResponseEntity<List<ModelType>> findAllByStatys(@RequestParam(name = "status") Short status) {
         if(status != 1 && status != 2) {
             throw new NotFoundException("Status code not found - " + status);
         }
-        List<MachineModelType> machineModelTypes = machineModelTypeService.findAllByStatus(status);
+        List<ModelType> machineModelTypes = modelTypeService.findAllByStatus(status);
         if(machineModelTypes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -55,8 +55,8 @@ public class MachineModelTypeController {
     }
 
     @PostMapping
-    public ResponseEntity<MachineModelType> createMachineModelType(@Valid @RequestBody MachineModelType machineModelType) {
-        MachineModelType newMachineModelType = machineModelTypeService.save(machineModelType);
+    public ResponseEntity<ModelType> createMachineModelType(@Valid @RequestBody ModelType machineModelType) {
+        ModelType newMachineModelType = modelTypeService.save(machineModelType);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(newMachineModelType.getId())
@@ -65,8 +65,8 @@ public class MachineModelTypeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MachineModelType> updateMachineModelType(@Valid @RequestBody MachineModelType newMachineModelType, @PathVariable Integer id) {
-        Optional<MachineModelType> machineModelTypeToUpdate = machineModelTypeService.findById(id);
+    public ResponseEntity<ModelType> updateMachineModelType(@Valid @RequestBody ModelType newMachineModelType, @PathVariable Integer id) {
+        Optional<ModelType> machineModelTypeToUpdate = modelTypeService.findById(id);
 
         if(machineModelTypeToUpdate.isEmpty()) {
             throw new NotFoundException("MachineModelType id not found - " + id);
@@ -84,12 +84,12 @@ public class MachineModelTypeController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable Integer id) {
-        Optional<MachineModelType> machineModelType = machineModelTypeService.findById(id);
+        Optional<ModelType> machineModelType = modelTypeService.findById(id);
 
         if(machineModelType.isEmpty()) {
             throw new NotFoundException("MachineModelType id not found - " + id);
         }
-        return ResponseEntity.ok(machineModelTypeService.inactiveMachineModelType(machineModelType.get()));
+        return ResponseEntity.ok(modelTypeService.inactiveMachineModelType(machineModelType.get()));
     }
     
     

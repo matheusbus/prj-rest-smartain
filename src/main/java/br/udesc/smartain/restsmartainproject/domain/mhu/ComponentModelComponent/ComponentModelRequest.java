@@ -1,8 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 
-public class MachineModelRequest {
+public class ComponentModelRequest {
 
     private Integer id;
 

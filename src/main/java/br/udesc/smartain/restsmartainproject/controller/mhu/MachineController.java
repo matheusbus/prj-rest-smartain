@@ -3,6 +3,8 @@ package br.udesc.smartain.restsmartainproject.controller.mhu;
 import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundException;
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
+import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
@@ -64,6 +66,28 @@ public class MachineController {
         }
 
         return ResponseEntity.ok(Machine.get());
+    }
+
+    @GetMapping("/{id}/components")
+    public ResponseEntity<List<Component>> getComponentsByMachineId(@PathVariable Integer id) {
+        Optional<Machine> Machine = machineService.findById(id);
+
+        if(Machine.isEmpty()) {
+            throw new NotFoundException("Machine id not found - " + id);
+        }
+
+        return ResponseEntity.ok(Machine.get().getComponents());
+    }
+
+    @GetMapping("/{id}/equipments")
+    public ResponseEntity<List<Equipment>> getEquipmentsByMachineId(@PathVariable Integer id) {
+        Optional<Machine> Machine = machineService.findById(id);
+
+        if(Machine.isEmpty()) {
+            throw new NotFoundException("Machine id not found - " + id);
+        }
+
+        return ResponseEntity.ok(Machine.get().getEquipments());
     }
 
     @GetMapping(params = "status")

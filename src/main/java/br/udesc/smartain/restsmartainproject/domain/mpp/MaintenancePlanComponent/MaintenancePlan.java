@@ -5,6 +5,7 @@ import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,11 @@ public class MaintenancePlan {
     @Column(name = "plmcodigo")
     @Comment("Código sequencial do plano de manutenção")
     private Integer id;
+
+    @Column(name = "plmnome")
+    @Size(min = 3)
+    @Comment("Nome do Plano")
+    private String nome;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "unfcodigo")
@@ -50,8 +56,9 @@ public class MaintenancePlan {
 
     }
 
-    public MaintenancePlan(Integer id, ManufacturingUnit unit, MaintenancePlanStatus status, User user, LocalDateTime createdDate) {
+    public MaintenancePlan(Integer id, String nome, ManufacturingUnit unit, MaintenancePlanStatus status, User user, LocalDateTime createdDate) {
         this.id = id;
+        this.nome = nome;
         this.unit = unit;
         this.status = status.getValue();
         this.user = user;
@@ -64,6 +71,14 @@ public class MaintenancePlan {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public ManufacturingUnit getUnit() {
@@ -111,6 +126,7 @@ public class MaintenancePlan {
     public String toString() {
         return "MaintenancePlan{" +
                 "id=" + id +
+                ", nome=" + nome +
                 ", unit=" + unit +
                 ", status=" + status +
                 ", user=" + user +

@@ -91,6 +91,7 @@ public class MaintenancePlanController {
         ManufacturingUnit unit = manufacturingUnitService.findById(request.getUnitId()).get();
 
         maintenancePlan.setCreatedDate(request.getCreatedDate());
+        maintenancePlan.setNome(request.getNome());
         maintenancePlan.setUser(user);
         maintenancePlan.setUnit(unit);
         maintenancePlan.setStatus(MaintenancePlanStatus.NOT_STARTED);
@@ -138,6 +139,7 @@ public class MaintenancePlanController {
 
         maintenancePlanToUpdate = maintenancePlanToUpdate.map((maintenancePlanUpdated) -> {
             maintenancePlanUpdated.setUser(user);
+            maintenancePlanUpdated.setNome(request.getNome());
             maintenancePlanUpdated.setCreatedDate(request.getCreatedDate());
             maintenancePlanUpdated.setStatus(MaintenancePlanStatus.valueOf(request.getStatus()));
             maintenancePlanUpdated.setUnit(unit);

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class MaintenancePlanRequest {
 
     private Integer id;
+    private String nome;
     private Integer unitId;
     private Short status;
     private Integer userId;
@@ -16,6 +17,14 @@ public class MaintenancePlanRequest {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Integer getUnitId() {

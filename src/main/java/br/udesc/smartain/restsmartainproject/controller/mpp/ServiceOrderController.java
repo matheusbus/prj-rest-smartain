@@ -110,7 +110,7 @@ public class ServiceOrderController {
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).orElse(null);
         User user = userService.findById(request.getUserId()).orElse(null);
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).orElse(null);
-        ServiceCause cause = serviceCauseService.findById(request.getServiceCauseId()).orElse(null);
+        ServiceCause cause = serviceCauseService.findById((request.getServiceCauseId() != null) ? request.getServiceCauseId() : 0).orElse(null);
         Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId() != null ? request.getSolicitationId() : 0);
         OrderGenerationType orderGenerationType = orderGenerationTypeService.findById(request.getGenerationTypeId()).orElse(null);
 
@@ -144,27 +144,27 @@ public class ServiceOrderController {
             throw new NotFoundException("Service Order id not found - " + id);
         }
 
-        ManufacturingUnit unit = manufacturingUnitService.findById(request.getUnitId()).orElse(null);
+
         Machine machine = machineService.findById(request.getMachineId()).orElse(null);
+        ManufacturingUnit unit = manufacturingUnitService.findById(machine.getUnit().getId()).orElse(null);
         ServicePriority priority = servicePriorityService.findById(request.getPriorityId()).orElse(null);
-        User user = userService.findById(request.getUserId()).orElse(null);
         MaintenanceType maintenanceType = maintenanceTypeService.findById(request.getMaintenanceTypeId()).orElse(null);
-        ServiceCause cause = serviceCauseService.findById(request.getServiceCauseId()).orElse(null);
-        Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId());
+        ServiceCause cause = serviceCauseService.findById((request.getServiceCauseId() != null) ? request.getServiceCauseId() : 0).orElse(null);
+        Optional<ServiceSolicitation> solicitation = serviceSolicitationService.findById(request.getSolicitationId() != null ? request.getSolicitationId() : 0);
         OrderGenerationType orderGenerationType = orderGenerationTypeService.findById(request.getGenerationTypeId()).orElse(null);
 
         serviceOrderToUpdate = serviceOrderToUpdate.map((serviceOrderUpdated) -> {
             serviceOrderUpdated.setUnit(unit);
             serviceOrderUpdated.setMachine(machine);
-            serviceOrderUpdated.setStatus(ServiceOrderStatus.NOT_STARTED);
+            serviceOrderUpdated.setStatus(ServiceOrderStatus.valueOf(request.getStatus()));
             serviceOrderUpdated.setServiceCause(cause);
             serviceOrderUpdated.setEstimatedDuration(request.getEstimatedDuration());
             serviceOrderUpdated.setServiceIntervention(null);
-            serviceOrderUpdated.setOpeningDate(request.getOpeningDate());
+            serviceOrderUpdated.setOpeningDate(serviceOrderUpdated.getOpeningDate());
             serviceOrderUpdated.setPriority(priority);
             serviceOrderUpdated.setMaintenanceType(maintenanceType);
             serviceOrderUpdated.setServiceSolicitation(solicitation.orElse(null));
-            serviceOrderUpdated.setOpeningUser(user);
+            serviceOrderUpdated.setOpeningUser(serviceOrderUpdated.getOpeningUser());
             serviceOrderUpdated.setGenerationType(orderGenerationType);
             serviceOrderUpdated.setMaintenancePlan(serviceOrderUpdated.getMaintenancePlan());
             return serviceOrderUpdated;

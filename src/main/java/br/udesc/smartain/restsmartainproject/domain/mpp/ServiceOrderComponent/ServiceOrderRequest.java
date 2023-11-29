@@ -6,7 +6,6 @@ import java.time.LocalTime;
 public class ServiceOrderRequest {
 
     private Integer id;
-    private Integer unitId;
     private Integer solicitationId;
     private Integer machineId;
     private LocalDateTime openingDate;
@@ -17,6 +16,7 @@ public class ServiceOrderRequest {
     private Integer maintenancePlanId;
     private Integer maintenanceTypeId;
     private Integer serviceCauseId;
+    private Short status;
 
     public Integer getId() {
         return id;
@@ -24,14 +24,6 @@ public class ServiceOrderRequest {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(Integer unitId) {
-        this.unitId = unitId;
     }
 
     public Integer getSolicitationId() {
@@ -112,5 +104,13 @@ public class ServiceOrderRequest {
 
     public void setServiceCauseId(Integer serviceCauseId) {
         this.serviceCauseId = serviceCauseId;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
     }
 }

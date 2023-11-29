@@ -64,7 +64,7 @@ public class ServiceOrder {
     private OrderGenerationType generationType;
 
     @Column(name = "svostatus", nullable = false)
-    @Comment("Status da ordem de serviço (1-Não iniciada, 2-Programada, 3-Em andamento, 4-Suspensa, 5-Encerrada)")
+    @Comment("Status da ordem de serviço (1-Não iniciada, 2-Programada, 3-Em andamento, 4-Suspensa, 5-Completa)")
     private Short status;
 
     @ManyToOne(fetch = FetchType.EAGER)

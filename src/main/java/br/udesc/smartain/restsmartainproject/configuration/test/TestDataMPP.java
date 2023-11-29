@@ -307,7 +307,7 @@ public class TestDataMPP implements CommandLineRunner {
 
         ManufacturingUnit unit = manufacturingUnitService.findById(unitId).get();
         maintenancePlan.setUnit(unit);
-        maintenancePlan.setNome("Plano Inicial");
+        maintenancePlan.setName("Plano Inicial");
         maintenancePlan.setCreatedDate(createdDate);
         maintenancePlan.setStatus(status);
 

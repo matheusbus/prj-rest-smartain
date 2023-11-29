@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class MaintenancePlanRequest {
 
     private Integer id;
-    private String nome;
+    private String name;
     private Integer unitId;
     private Short status;
     private Integer userId;
@@ -19,12 +19,12 @@ public class MaintenancePlanRequest {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getUnitId() {

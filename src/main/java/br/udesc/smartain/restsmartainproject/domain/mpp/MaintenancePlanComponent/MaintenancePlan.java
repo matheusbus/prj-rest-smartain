@@ -27,7 +27,7 @@ public class MaintenancePlan {
     @Column(name = "plmnome")
     @Size(min = 3)
     @Comment("Nome do Plano")
-    private String nome;
+    private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "unfcodigo")
@@ -56,9 +56,9 @@ public class MaintenancePlan {
 
     }
 
-    public MaintenancePlan(Integer id, String nome, ManufacturingUnit unit, MaintenancePlanStatus status, User user, LocalDateTime createdDate) {
+    public MaintenancePlan(Integer id, String name, ManufacturingUnit unit, MaintenancePlanStatus status, User user, LocalDateTime createdDate) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.unit = unit;
         this.status = status.getValue();
         this.user = user;
@@ -73,12 +73,12 @@ public class MaintenancePlan {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ManufacturingUnit getUnit() {
@@ -126,7 +126,7 @@ public class MaintenancePlan {
     public String toString() {
         return "MaintenancePlan{" +
                 "id=" + id +
-                ", nome=" + nome +
+                ", nome=" + name +
                 ", unit=" + unit +
                 ", status=" + status +
                 ", user=" + user +

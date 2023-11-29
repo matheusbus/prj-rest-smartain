@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,7 +91,7 @@ public class MaintenancePlanController {
         User user = userService.findById(request.getUserId()).get();
         ManufacturingUnit unit = manufacturingUnitService.findById(request.getUnitId()).get();
 
-        maintenancePlan.setCreatedDate(request.getCreatedDate());
+        maintenancePlan.setCreatedDate(LocalDateTime.now());
         maintenancePlan.setName(request.getName());
         maintenancePlan.setUser(user);
         maintenancePlan.setUnit(unit);
@@ -140,7 +141,7 @@ public class MaintenancePlanController {
         maintenancePlanToUpdate = maintenancePlanToUpdate.map((maintenancePlanUpdated) -> {
             maintenancePlanUpdated.setUser(user);
             maintenancePlanUpdated.setName(request.getName());
-            maintenancePlanUpdated.setCreatedDate(request.getCreatedDate());
+            maintenancePlanUpdated.setCreatedDate(maintenancePlanUpdated.getCreatedDate());
             maintenancePlanUpdated.setStatus(MaintenancePlanStatus.valueOf(request.getStatus()));
             maintenancePlanUpdated.setUnit(unit);
             return maintenancePlanUpdated;

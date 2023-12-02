@@ -44,7 +44,7 @@ public class Component {
     @Comment("Código do modelo de componente")
     private Model model;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "maqcodigo")
     private Machine machine;
 

@@ -594,9 +594,8 @@ public class TestData implements CommandLineRunner {
             new Component(null, "Rolamento NSK 6003ZZ", "Rolamento de alto desempenho com trabalho em altos temperaturas.", brandService.findById(1).get(), modelService.findById(6).get(), machine, RegisterState.ACTIVE),
             new Component(null, "Rolamento SKF NU 205 ECP", "Rolamento de rolos cilíndricos da SKF, sem flanges no anel externo e interno, com um diâmetro interno de 205 mm e uma jaula de poliamida reforçada com fibra de vidro", brandService.findById(3).get(),  modelService.findById(5).get(), machine, RegisterState.ACTIVE)
         );
-        machine.addComponent(components.get(0));
-        machine.addComponent(components.get(1));
-        machineService.save(machine);
+        componentService.save(components.get(0));
+        componentService.save(components.get(1));
         return components;
     }
 
@@ -608,7 +607,6 @@ public class TestData implements CommandLineRunner {
                     machine,
                     RegisterState.ACTIVE);
 
-        machine.addEquipment(equipment);
-        machineService.save(machine);
+        equipmentService.save(equipment);
     }
 }

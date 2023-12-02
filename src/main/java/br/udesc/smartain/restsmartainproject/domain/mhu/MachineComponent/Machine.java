@@ -80,11 +80,11 @@ public class Machine {
     private Short status;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "machine", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
     private List<Component> components = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "machine", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
     private List<Equipment> equipments = new ArrayList<>();
 
     public Machine() {

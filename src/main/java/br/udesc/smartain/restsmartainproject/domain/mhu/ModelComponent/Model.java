@@ -1,12 +1,19 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent;
 
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
+import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.types.DomainModelType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
+import org.hibernate.validator.constraints.EAN;
 import org.hibernate.validator.constraints.Range;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,7 +27,8 @@ public class Model {
     @Comment("Código sequencial do modelo de máquina")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fabcodigo")
     @Comment("Código do fabricante do modelo")
     private Manufacturer manufacturer;
@@ -42,6 +50,21 @@ public class Model {
     @Comment("Status do Modelo (1-Ativo 2-Inativo)")
     @Range(min = 1, max = 2)
     private Short status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "model", fetch = FetchType.LAZY)
+    private List<Component> components = new ArrayList<>();
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "model", fetch = FetchType.LAZY)
+    private List<Machine> machines = new ArrayList<>();
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "model", fetch = FetchType.LAZY)
+    private List<Equipment> equipments = new ArrayList<>();
+
 
     public Model() {
 
@@ -102,6 +125,18 @@ public class Model {
 
     public void setDomainType(DomainModelType domainType) {
         this.domainType = domainType.getValue();
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
     @Override

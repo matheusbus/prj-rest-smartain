@@ -89,7 +89,6 @@ public class TestDataMPP implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        /*
         makeServiceInterventions();
         makeServiceSymptons();
         makeMaintenanceTypes();
@@ -100,7 +99,6 @@ public class TestDataMPP implements CommandLineRunner {
         makeServiceSolicitations();
         makeServiceOrders();
         makeMaintenancePlan(1, LocalDateTime.now(), MaintenancePlanStatus.NOT_STARTED, 1);
-         */
     }
 
 

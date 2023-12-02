@@ -43,7 +43,7 @@ public class Equipment {
     @Comment("Código do modelo de equipamento")
     private Model model;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "maqcodigo")
     private Machine machine;
 

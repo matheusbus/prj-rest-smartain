@@ -1,8 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent.ComponentModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentModelComponent.EquipmentModel;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import org.hibernate.annotations.Comment;
 
@@ -25,14 +24,12 @@ public class Equipment {
     private Integer id;
 
     @Column(name = "eqpnome", length = 250)
-    @NotBlank
     @Size(min = 3, max = 250, message = "O nome do equipamento deve conter entre 3 e 250 caracteres.")
     @Comment("Nome do equipamento")
     private String name;
 
-    @Column(name = "eqpdadostec", length = 1000)
-    @NotBlank
-    @Size(min = 3, max = 1000, message = "Os dados técnicos do equipamento deve conter entre 3 e 1000 caracteres.")
+    @Column(name = "eqpdadostec")
+    @Size(min = 3, message = "Os dados técnicos do equipamento deve conter entre 3 e 1000 caracteres.")
     @Comment("Dados e especificações técnicas do equipamento")
     private String technicalData;
 
@@ -42,9 +39,9 @@ public class Equipment {
     private Brand brand;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "moecodigo", nullable = false)
+    @JoinColumn(name = "momcodigo", nullable = false)
     @Comment("Código do modelo de equipamento")
-    private EquipmentModel equipmentModel;
+    private Model model;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "maqcodigo")
@@ -58,12 +55,12 @@ public class Equipment {
 
     }
 
-    public Equipment(Integer id, String name, String technicalData, Brand brand, EquipmentModel equipmentModel, Machine machine, RegisterState status) {
+    public Equipment(Integer id, String name, String technicalData, Brand brand, Model model, Machine machine, RegisterState status) {
         this.id = id;
         this.name = name;
         this.technicalData = technicalData;
         this.brand = brand;
-        this.equipmentModel = equipmentModel;
+        this.model = model;
         this.machine = machine;
         this.status = status.getValue();
     }
@@ -100,12 +97,12 @@ public class Equipment {
         this.brand = brand;
     }
 
-    public EquipmentModel getEquipmentModel() {
-        return equipmentModel;
+    public Model getModel() {
+        return model;
     }
 
-    public void setEquipmentModel(EquipmentModel equipmentModel) {
-        this.equipmentModel = equipmentModel;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public Machine getMachine() {
@@ -131,7 +128,7 @@ public class Equipment {
                 ", name='" + name + '\'' +
                 ", technicalData='" + technicalData + '\'' +
                 ", brand=" + brand +
-                ", equipmentModel=" + equipmentModel +
+                ", model=" + model +
                 ", machine=" + machine +
                 ", status=" + status +
                 '}';

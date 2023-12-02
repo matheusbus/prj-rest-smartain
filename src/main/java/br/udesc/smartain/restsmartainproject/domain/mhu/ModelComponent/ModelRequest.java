@@ -1,8 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 
-public class ComponentModelRequest {
+public class ModelRequest {
 
     private Integer id;
 
@@ -12,7 +12,7 @@ public class ComponentModelRequest {
 
     private String dimensions;
 
-    private Integer modelTypeId;
+    private Short modelTypeId;
 
     private RegisterState status;
 
@@ -48,11 +48,11 @@ public class ComponentModelRequest {
         this.dimensions = dimensions;
     }
 
-    public Integer getModelTypeId() {
+    public Short getModelTypeId() {
         return modelTypeId;
     }
 
-    public void setModelTypeId(Integer modelTypeId) {
+    public void setModeTypelId(Short modelTypeId) {
         this.modelTypeId = modelTypeId;
     }
 

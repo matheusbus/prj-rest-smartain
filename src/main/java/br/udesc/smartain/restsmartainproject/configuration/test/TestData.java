@@ -16,12 +16,14 @@ import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.ComponentService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
+import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.EquipmentService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.ModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.ManufacturerService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
@@ -41,7 +43,9 @@ import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroupService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
 import br.udesc.smartain.restsmartainproject.domain.types.DomainModelType;
+import org.atteo.evo.inflector.English;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -91,19 +95,22 @@ public class TestData implements CommandLineRunner {
     private ManufacturerService manufacturerService;
 
     @Autowired
-    private ModelTypeService modelTypeService;
-
-    @Autowired
     private ServiceSymptomService serviceSymptomService;
 
     @Autowired
-    private MachineModelService machineModelService;
+    private ModelService modelService;
 
     @Autowired
     private ProductionCellService productionCellService;
 
     @Autowired
     private MachineService machineService;
+
+    @Autowired
+    private ComponentService componentService;
+
+    @Autowired
+    private EquipmentService equipmentService;
 
     @Autowired
     private ProfessionalService professionalService;
@@ -138,9 +145,7 @@ public class TestData implements CommandLineRunner {
 
     private List<Manufacturer> manufacturers = new ArrayList<>();
 
-    private List<ModelType>  machineModelsTypes = new ArrayList<>();
-
-    private List<MachineModel>  machineModels = new ArrayList<>();
+    private List<Model> models = new ArrayList<>();
 
     private List<ProductionCell>  productionCells = new ArrayList<>();
 
@@ -163,11 +168,13 @@ public class TestData implements CommandLineRunner {
         makeBrands();
         makeManufacturers();
 
-        makeMachineModelTypes();
-        makeMachineModels();
+
         makeProductionsCells();
 
+        makeModels();
         makeMachines();
+        makeComponents();
+        makeEquipments();
     }
 
     public void associateUnits() {
@@ -501,45 +508,14 @@ public class TestData implements CommandLineRunner {
     public List<Brand> makeBrands() {
         this.brands = Arrays.asList(
                 new Brand(null, "WEG", LocalDate.now(), userService.findAllUsers().get().get(0), RegisterState.ACTIVE),
-                new Brand(null, "NSK", LocalDate.now(), userService.findAllUsers().get().get(0), RegisterState.ACTIVE)
+                new Brand(null, "NSK", LocalDate.now(), userService.findAllUsers().get().get(0), RegisterState.ACTIVE),
+                new Brand(null, "SFK", LocalDate.now(), userService.findAllUsers().get().get(0),  RegisterState.ACTIVE),
+                new Brand(null, "Kollmorgen", LocalDate.now(), userService.findAllUsers().get().get(0),  RegisterState.ACTIVE)
         );
         for(Brand brand : brands) {
             brandService.save(brand);
         }
         return brands;
-    }
-
-    public List<Manufacturer> makeManufacturers() {
-        this.manufacturers = Arrays.asList(
-                new Manufacturer(null, "Industrial Pagé LTDA", "92412168000122", "482882012", "page@comercial.com.br",  RegisterState.ACTIVE),
-                new Manufacturer(null, "WEG S.A.", "84429695000111", "5130262026", "weg@comercial.com.br",  RegisterState.ACTIVE)
-        );
-        for(Manufacturer manufacturer : this.manufacturers) {
-            manufacturerService.save(manufacturer);
-        }
-        return manufacturers;
-    }
-
-    public List<ModelType> makeMachineModelTypes() {
-        this.machineModelsTypes = Arrays.asList(
-                new ModelType((Integer) null, "CNC", DomainModelType.MACHINE, RegisterState.ACTIVE),
-                new ModelType((Integer) null, "Manual", DomainModelType.MACHINE, RegisterState.ACTIVE)
-        );
-        for(ModelType machineModelType : machineModelsTypes) {
-            modelTypeService.save(machineModelType);
-        }
-        return machineModelsTypes;
-    }
-
-    public List<MachineModel> makeMachineModels() {
-        this.machineModels = Arrays.asList(
-                new MachineModel((Integer) null, this.manufacturers.get(1), "CNC de Cabeçote Fixo", "Largura: 3.2m, Comprimento: 5.0m", machineModelsTypes.get(0), RegisterState.ACTIVE),
-                new MachineModel((Integer) null, this.manufacturers.get(1) , "Torno Manual", "Largura: 2.0m, Comprimento: 3.3m", machineModelsTypes.get(0), RegisterState.ACTIVE)
-        );
-        for(MachineModel machineModel : machineModels) {
-            machineModelService.save(machineModel);
-        }
-        return machineModels;
     }
 
     public List<ProductionCell> makeProductionsCells() {
@@ -552,10 +528,42 @@ public class TestData implements CommandLineRunner {
         return productionCells;
     }
 
+
+    public List<Manufacturer> makeManufacturers() {
+        this.manufacturers = Arrays.asList(
+                new Manufacturer(null, "Industrial Pagé LTDA", "92412168000122", "482882012", "page@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "WEG S.A.", "84429695000111", "5130262026", "weg@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "Siemens", "01292130123818", "3895139482", "siemens@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "NSK Indústria", "39402395285192", "3924230492", "nsk@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "SFK Rolamentos Especiais", "02310392130193", "3982930521", "skfrolamentos@comercial.com.br",  RegisterState.ACTIVE),
+                new Manufacturer(null, "Kollmorgen Motores Industriais", "31358193718372", "3910483813", "kollmorgen@comercial.com.br",  RegisterState.ACTIVE)
+        );
+        for(Manufacturer manufacturer : this.manufacturers) {
+            manufacturerService.save(manufacturer);
+        }
+        return manufacturers;
+    }
+
+    public List<Model> makeModels() {
+        this.models = Arrays.asList(
+                new Model((Integer) null, this.manufacturers.get(1), "CNC de Cabeçote Fixo", "Largura: 3.2m, Comprimento: 5.0m", DomainModelType.MACHINE, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(1) , "Torno Manual", "Largura: 2.0m, Comprimento: 3.3m", DomainModelType.MACHINE, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(2), "Siemens SIMOTICS S-1FK7", "80cmx80cm 400kg", DomainModelType.EQUIPAMENT, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(2), "ABB M3BP", "100cmx1000cm 600kg", DomainModelType.EQUIPAMENT, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(3), "Rolamentos de Rolos Cilíndricos de Quatro Carreiras", "1~500cm", DomainModelType.COMPONENT, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(3), "Rolamento de esferas metálicas (Radial)", "1~800cm", DomainModelType.COMPONENT, RegisterState.ACTIVE),
+                new Model((Integer) null, this.manufacturers.get(5), "Motor de Eixo com Freio Integrado Kollmorgen", "214kg", DomainModelType.EQUIPAMENT, RegisterState.ACTIVE)
+        );
+        for(Model model : models) {
+            modelService.save(model);
+        }
+        return models;
+    }
+
     public List<Machine> makeMachines() {
         Machine machine = new Machine();
         ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
-        MachineModel machineModel = machineModelService.findById(1).get();
+        Model model = modelService.findById(1).get();
         Sector sector = sectorService.findById(1).get();
         ProductionCell productionCell = productionCellService.findById(1).get();
 
@@ -568,7 +576,7 @@ public class TestData implements CommandLineRunner {
         machine.setTechnicalData("Dados técnicos da máquina: 4000kg.");
         machine.setWarrantyExpDate(LocalDate.of(2025, Month.APRIL, 15));
         machine.setWarranty((short) 1);
-        machine.setMachineModel(machineModel);
+        machine.setModel(model);
         machine.setAcquisitionDate(LocalDate.of(2022, Month.APRIL, 15));
         machine.setCreatedDate(LocalDate.now().atStartOfDay());
 
@@ -578,5 +586,29 @@ public class TestData implements CommandLineRunner {
             machineService.save(machine);
         }
         return this.machines;
+    }
+
+    public List<Component> makeComponents() {
+        Machine machine = machineService.findById(1).get();
+        List<Component> components = Arrays.asList(
+            new Component(null, "Rolamento NSK 6003ZZ", "Rolamento de alto desempenho com trabalho em altos temperaturas.", brandService.findById(1).get(), modelService.findById(6).get(), machine, RegisterState.ACTIVE),
+            new Component(null, "Rolamento SKF NU 205 ECP", "Rolamento de rolos cilíndricos da SKF, sem flanges no anel externo e interno, com um diâmetro interno de 205 mm e uma jaula de poliamida reforçada com fibra de vidro", brandService.findById(3).get(),  modelService.findById(5).get(), machine, RegisterState.ACTIVE)
+        );
+        machine.addComponent(components.get(0));
+        machine.addComponent(components.get(1));
+        machineService.save(machine);
+        return components;
+    }
+
+    public void makeEquipments() {
+        Machine machine = machineService.findById(1).get();
+        Equipment equipment =  new Equipment(null, "Kollmorgen AKM52", "Kollmorgen AKM52. Potência Nominal: 2.5 kW, Tensão Nominal: 230V, Torque Nominal: 15 Nm",
+                    brandService.findById(4).get(),
+                    modelService.findById(7).get(),
+                    machine,
+                    RegisterState.ACTIVE);
+
+        machine.addEquipment(equipment);
+        machineService.save(machine);
     }
 }

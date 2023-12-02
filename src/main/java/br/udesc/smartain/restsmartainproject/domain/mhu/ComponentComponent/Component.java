@@ -1,8 +1,8 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent.ComponentModel;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -40,9 +40,9 @@ public class Component {
     private Brand brand;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "moccodigo", nullable = false)
+    @JoinColumn(name = "momcodigo", nullable = false)
     @Comment("Código do modelo de componente")
-    private ComponentModel componentModel;
+    private Model model;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "maqcodigo")
@@ -56,12 +56,12 @@ public class Component {
 
     }
 
-    public Component(Integer id, String name, String technicalData, Brand brand, ComponentModel componentModel, Machine machine, RegisterState status) {
+    public Component(Integer id, String name, String technicalData, Brand brand, Model model, Machine machine, RegisterState status) {
         this.id = id;
         this.name = name;
         this.technicalData = technicalData;
         this.brand = brand;
-        this.componentModel = componentModel;
+        this.model = model;
         this.machine = machine;
         this.status = status.getValue();
     }
@@ -114,12 +114,12 @@ public class Component {
         this.machine = machine;
     }
 
-    public ComponentModel getComponentModel() {
-        return componentModel;
+    public Model getModel() {
+        return model;
     }
 
-    public void setComponentModel(ComponentModel componentModel) {
-        this.componentModel = componentModel;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class Component {
                 ", name='" + name + '\'' +
                 ", technicalData='" + technicalData + '\'' +
                 ", brand=" + brand +
-                ", componentModel=" + componentModel +
+                ", model=" + model +
                 ", machine=" + machine +
                 ", status=" + status +
                 '}';

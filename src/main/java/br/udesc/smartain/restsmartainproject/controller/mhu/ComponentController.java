@@ -6,10 +6,10 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandServ
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.ComponentRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.ComponentService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent.ComponentModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent.ComponentModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.ModelService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ComponentController {
     private ComponentService componentService;
 
     @Autowired
-    private ComponentModelService componentModelService;
+    private ModelService modelService;
 
     @Autowired
     private MachineService machineService;
@@ -76,11 +76,11 @@ public class ComponentController {
         Component newComponent = new Component();
         Machine machine = machineService.findById(request.getMachineId()).get();
         Brand brand = brandService.findById(request.getBrandId()).get();
-        ComponentModel componentModel = componentModelService.findById(request.getComponentModelId()).get();
+        Model model = modelService.findById(request.getComponentModelId()).get();
 
         newComponent.setName(request.getName());
         newComponent.setMachine(machine);
-        newComponent.setComponentModel(componentModel);
+        newComponent.setModel(model);
         newComponent.setStatus(RegisterState.valueOf(request.getStatus()));
         newComponent.setTechnicalData(request.getTechnicalData());
         newComponent.setBrand(brand);
@@ -98,7 +98,7 @@ public class ComponentController {
         Optional<Component> componentToUpdate = componentService.findById(id);
         Machine machine = machineService.findById(request.getMachineId()).get();
         Brand brand = brandService.findById(request.getBrandId()).get();
-        ComponentModel componentModel = componentModelService.findById(request.getComponentModelId()).get();
+        Model model = modelService.findById(request.getComponentModelId()).get();
 
         if(componentToUpdate.isEmpty()) {
             throw new NotFoundException("Component id not found - " + id);
@@ -109,7 +109,7 @@ public class ComponentController {
             componentUpdated.setMachine(machine);
             componentUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             componentUpdated.setTechnicalData(request.getTechnicalData());
-            componentUpdated.setComponentModel(componentModel);
+            componentUpdated.setModel(model);
             componentUpdated.setBrand(brand);
             return componentUpdated;
         });

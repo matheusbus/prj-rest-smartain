@@ -1,9 +1,8 @@
-package br.udesc.smartain.restsmartainproject.domain.mhu.ComponentModelComponent;
+package br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent.Manufacturer;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ModelTypeComponent.ModelType;
-import br.udesc.smartain.restsmartainproject.domain.mhu.SupplierComponent.Supplier;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import br.udesc.smartain.restsmartainproject.domain.types.DomainModelType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 import org.hibernate.validator.constraints.Range;
@@ -11,14 +10,14 @@ import org.hibernate.validator.constraints.Range;
 import java.util.Objects;
 
 @Entity
-@Table(schema = "mhu", name = "tbmodelocomponente")
-@Comment("Tabela de cadastro dos modelos de componentes")
-public class ComponentModel {
+@Table(schema = "mhu", name = "tbmodelo")
+@Comment("Tabela de cadastros de modelos")
+public class Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "moccodigo")
-    @Comment("Código sequencial do modelo de componente")
+    @Column(name = "momcodigo")
+    @Comment("Código sequencial do modelo de máquina")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -26,34 +25,34 @@ public class ComponentModel {
     @Comment("Código do fabricante do modelo")
     private Manufacturer manufacturer;
 
-    @Column(name = "mocmodelo", length = 250)
-    @Comment("Modelo de componente")
+    @Column(name = "mommodelo", length = 250)
+    @Comment("Modelo da máquina")
     private String model;
 
-    @Column(name = "mocdimensoes", length = 250)
-    @Comment("Dimensões do modelo de componente")
+    @Column(name = "momdimensoes", length = 250)
+    @Comment("Dimensões do modelo de máquina")
     private String dimensions;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tmmcodigo")
-    @Comment("Código do tipo de modelo")
-    private ModelType modelType;
+    @Column(name = "tmmtipo", nullable = false)
+    @Range(min = 1, max = 3, message = "O tipo domínio deve ser um dos valores (1-Máquina, 2-Componente, 3-Equipamento")
+    @Comment("Tipo domínio (1-Máquina, 2-Componente, 3-Equipamento)")
+    private Short domainType;
 
-    @Column(name = "mocstatus")
+    @Column(name = "momstatus")
     @Comment("Status do Modelo (1-Ativo 2-Inativo)")
     @Range(min = 1, max = 2)
     private Short status;
 
-    public ComponentModel() {
+    public Model() {
 
     }
 
-    public ComponentModel(Integer id, Manufacturer manufacturer, String model, String dimensions, ModelType modelType, RegisterState status) {
+    public Model(Integer id, Manufacturer manufacturer, String model, String dimensions, DomainModelType domainType, RegisterState status) {
         this.id = id;
         this.manufacturer = manufacturer;
         this.model = model;
         this.dimensions = dimensions;
-        this.modelType = modelType;
+        this.domainType = domainType.getValue();
         this.status = status.getValue();
     }
 
@@ -89,14 +88,6 @@ public class ComponentModel {
         this.dimensions = dimensions;
     }
 
-    public ModelType getModelType() {
-        return modelType;
-    }
-
-    public void setModelType(ModelType modelType) {
-        this.modelType = modelType;
-    }
-
     public RegisterState getStatus() {
         return RegisterState.valueOf(status);
     }
@@ -105,14 +96,22 @@ public class ComponentModel {
         this.status = status.getValue();
     }
 
+    public DomainModelType getDomainType() {
+        return DomainModelType.valueOf(domainType);
+    }
+
+    public void setDomainType(DomainModelType domainType) {
+        this.domainType = domainType.getValue();
+    }
+
     @Override
     public String toString() {
-        return "ComponentModel{" +
+        return "Model{" +
                 "id=" + id +
                 ", manufacturer=" + manufacturer +
                 ", model='" + model + '\'' +
                 ", dimensions='" + dimensions + '\'' +
-                ", modelType=" + modelType +
+                ", domainType=" + domainType +
                 ", status=" + status +
                 '}';
     }
@@ -121,7 +120,7 @@ public class ComponentModel {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ComponentModel that = (ComponentModel) o;
+        Model that = (Model) o;
         return Objects.equals(id, that.id);
     }
 

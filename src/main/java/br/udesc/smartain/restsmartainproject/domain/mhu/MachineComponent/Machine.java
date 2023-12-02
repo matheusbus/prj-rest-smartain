@@ -2,9 +2,8 @@ package br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.ComponentRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
@@ -14,8 +13,6 @@ import org.hibernate.annotations.Comment;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -53,7 +50,7 @@ public class Machine {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "momcodigo")
     @Comment("Código do modelo de máquina")
-    private MachineModel machineModel;
+    private Model model;
 
     @Column(name = "maqtag", length = 7, nullable = false)
     @Comment("Tag da máquina (Ex.: ABC-001)")
@@ -83,24 +80,24 @@ public class Machine {
     private Short status;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "machine", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Component> components = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "machine", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Equipment> equipments = new ArrayList<>();
 
     public Machine() {
 
     }
 
-    public Machine(Integer id, Sector sector, ProductionCell productionCell, ManufacturingUnit unit, String technicalData, MachineModel machineModel, String tag, LocalDate acquisitionDate, LocalDateTime createdDate, LocalDate warrantyExpDate, RegisterState status) {
+    public Machine(Integer id, Sector sector, ProductionCell productionCell, ManufacturingUnit unit, String technicalData, Model model, String tag, LocalDate acquisitionDate, LocalDateTime createdDate, LocalDate warrantyExpDate, RegisterState status) {
         this.id = id;
         this.sector = sector;
         this.productionCell = productionCell;
         this.unit = unit;
         this.technicalData = technicalData;
-        this.machineModel = machineModel;
+        this.model = model;
         this.tag = tag;
         this.acquisitionDate = acquisitionDate;
         this.createdDate = createdDate;
@@ -146,12 +143,12 @@ public class Machine {
         this.technicalData = technicalData;
     }
 
-    public MachineModel getMachineModel() {
-        return machineModel;
+    public Model getModel() {
+        return model;
     }
 
-    public void setMachineModel(MachineModel machineModel) {
-        this.machineModel = machineModel;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public String getTag() {
@@ -238,7 +235,7 @@ public class Machine {
                 ", productionCell=" + productionCell +
                 ", unit=" + unit +
                 ", technicalData='" + technicalData + '\'' +
-                ", machineModel=" + machineModel +
+                ", model=" + model +
                 ", tag='" + tag + '\'' +
                 ", acquisitionDate=" + acquisitionDate +
                 ", createdDate=" + createdDate +

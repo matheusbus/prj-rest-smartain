@@ -1,6 +1,6 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.ManufacturerComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -50,7 +50,7 @@ public class Manufacturer {
 
     @JsonIgnore
     @OneToMany(mappedBy = "manufacturer", fetch = FetchType.LAZY)
-    private List<MachineModel> machineModels = new ArrayList<>();
+    private List<Model> models = new ArrayList<>();
 
     public Manufacturer() {
 
@@ -113,8 +113,8 @@ public class Manufacturer {
         this.status = status.getValue();
     }
 
-    public List<MachineModel> getMachineModels() {
-        return machineModels;
+    public List<Model> getMachineModels() {
+        return models;
     }
 
     @Override

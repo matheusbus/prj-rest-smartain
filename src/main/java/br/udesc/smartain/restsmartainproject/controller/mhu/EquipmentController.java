@@ -6,10 +6,10 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandServ
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.EquipmentRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.EquipmentService;
-import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentModelComponent.EquipmentModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentModelComponent.EquipmentModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.ModelService;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class EquipmentController {
     private EquipmentService equipmentService;
 
     @Autowired
-    private EquipmentModelService equipmentModelService;
+    private ModelService modelService;
 
     @Autowired
     private MachineService machineService;
@@ -76,11 +76,11 @@ public class EquipmentController {
         Equipment newEquipment = new Equipment();
         Machine machine = machineService.findById(request.getMachineId()).get();
         Brand brand = brandService.findById(request.getBrandId()).get();
-        EquipmentModel equipmentModel = equipmentModelService.findById(request.getEquipmentModelId()).get();
+        Model model = modelService.findById(request.getEquipmentModelId()).get();
 
         newEquipment.setName(request.getName());
         newEquipment.setMachine(machine);
-        newEquipment.setEquipmentModel(equipmentModel);
+        newEquipment.setModel(model);
         newEquipment.setStatus(RegisterState.valueOf(request.getStatus()));
         newEquipment.setTechnicalData(request.getTechnicalData());
         newEquipment.setBrand(brand);
@@ -98,7 +98,7 @@ public class EquipmentController {
         Optional<Equipment> equipmentToUpdate = equipmentService.findById(id);
         Machine machine = machineService.findById(request.getMachineId()).get();
         Brand brand = brandService.findById(request.getBrandId()).get();
-        EquipmentModel equipmentModel = equipmentModelService.findById(request.getEquipmentModelId()).get();
+        Model model = modelService.findById(request.getEquipmentModelId()).get();
 
         if(equipmentToUpdate.isEmpty()) {
             throw new NotFoundException("Equipment id not found - " + id);
@@ -109,7 +109,7 @@ public class EquipmentController {
             equipmentUpdated.setMachine(machine);
             equipmentUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             equipmentUpdated.setTechnicalData(request.getTechnicalData());
-            equipmentUpdated.setEquipmentModel(equipmentModel);
+            equipmentUpdated.setModel(model);
             equipmentUpdated.setBrand(brand);
             return equipmentUpdated;
         });

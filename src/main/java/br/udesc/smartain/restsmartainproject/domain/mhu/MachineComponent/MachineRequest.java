@@ -1,11 +1,6 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent;
 
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
-import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class MachineRequest {
 
@@ -14,7 +9,7 @@ public class MachineRequest {
 
     private String technicalData;
 
-    private Integer machineModelId;
+    private Integer modelId;
 
     private String tag;
 
@@ -48,12 +43,12 @@ public class MachineRequest {
         this.technicalData = technicalData;
     }
 
-    public Integer getMachineModelId() {
-        return machineModelId;
+    public Integer getModelId() {
+        return modelId;
     }
 
-    public void setMachineModelId(Integer machineModel) {
-        this.machineModelId = machineModel;
+    public void setModelId(Integer modelId) {
+        this.modelId = modelId;
     }
 
     public String getTag() {

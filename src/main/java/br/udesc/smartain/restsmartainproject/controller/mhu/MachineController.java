@@ -8,8 +8,8 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equip
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModel;
-import br.udesc.smartain.restsmartainproject.domain.mhu.MachineModelComponent.MachineModelService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
+import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.ModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCellService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
@@ -44,7 +44,7 @@ public class MachineController {
     private ManufacturingUnitService manufacturingUnitService;
 
     @Autowired
-    private MachineModelService machineModelService;
+    private ModelService modelService;
     
     @GetMapping
     public ResponseEntity<List<Machine>> findAll() {
@@ -107,11 +107,11 @@ public class MachineController {
         ProductionCell cell = productionCellService.findById(request.getProductionCellId()).orElse(null);
         Sector sector = sectorService.findById(cell.getSector().getId()).orElse(null);
         ManufacturingUnit unit = manufacturingUnitService.findById(sector.getUnit().getId()).orElse(null);
-        MachineModel model = machineModelService.findById(request.getMachineModelId()).orElse(null);
+        Model model = modelService.findById(request.getModelId()).orElse(null);
 
         Machine newMachine = new Machine();
 
-        newMachine.setMachineModel(model);
+        newMachine.setModel(model);
         newMachine.setUnit(unit);
         newMachine.setSector(sector);
         newMachine.setProductionCell(cell);
@@ -143,7 +143,7 @@ public class MachineController {
         ProductionCell cell = productionCellService.findById(request.getProductionCellId()).orElse(null);
         Sector sector = sectorService.findById(cell.getSector().getId()).orElse(null);
         ManufacturingUnit unit = manufacturingUnitService.findById(sector.getUnit().getId()).orElse(null);
-        MachineModel model = machineModelService.findById(request.getMachineModelId()).orElse(null);
+        Model model = modelService.findById(request.getModelId()).orElse(null);
 
         if(MachineToUpdate.isEmpty()) {
             throw new NotFoundException("Machine id not found - " + id);
@@ -153,7 +153,7 @@ public class MachineController {
             MachineUpdated.setUnit(unit);
             MachineUpdated.setSector(sector);
             MachineUpdated.setProductionCell(cell);
-            MachineUpdated.setMachineModel(model);
+            MachineUpdated.setModel(model);
             MachineUpdated.setCreatedDate(MachineUpdated.getCreatedDate());
             MachineUpdated.setAcquisitionDate(request.getAcquisitionDate());
             MachineUpdated.setTag(request.getTag());

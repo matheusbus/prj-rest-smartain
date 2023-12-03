@@ -38,7 +38,7 @@ public class ServiceOrderRequest {
         return machineId;
     }
 
-    public void setMachineId(Integer machineId) {
+    public void setMachineOrderId(Integer machineId) {
         this.machineId = machineId;
     }
 

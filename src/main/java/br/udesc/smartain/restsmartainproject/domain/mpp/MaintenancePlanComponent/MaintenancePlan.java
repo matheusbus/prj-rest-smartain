@@ -2,6 +2,7 @@ package br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponen
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.Alert;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -51,6 +52,10 @@ public class MaintenancePlan {
     @JsonIgnore
     @OneToMany(mappedBy = "maintenancePlan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ServiceOrder> orders = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "plan", fetch = FetchType.LAZY)
+    private List<Alert> alerts = new ArrayList<>();
 
     public MaintenancePlan() {
 
@@ -120,6 +125,10 @@ public class MaintenancePlan {
     public void addServiceOrder(ServiceOrder serviceOrder) {
         this.orders.add(serviceOrder);
         serviceOrder.setMaintenancePlan(this);
+    }
+
+    public List<Alert> getAlerts() {
+        return alerts;
     }
 
     @Override

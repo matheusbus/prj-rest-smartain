@@ -122,13 +122,6 @@ public class MachineController {
         newMachine.setAcquisitionDate(request.getAcquisitionDate());
         newMachine.setWarrantyExpDate(request.getWarrantyExpDate());
 
-        if (newMachine.getWarrantyExpDate().isAfter(LocalDate.now())) {
-            newMachine.setWarranty((short) 1);
-        }
-        else {
-            newMachine.setWarranty((short) 0);
-        }
-
         Machine savedMachine = machineService.save(newMachine);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -160,13 +153,6 @@ public class MachineController {
             MachineUpdated.setTechnicalData(request.getTechnicalData());
             MachineUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             MachineUpdated.setWarrantyExpDate(request.getWarrantyExpDate());
-
-            if (MachineUpdated.getWarrantyExpDate().isAfter(LocalDate.now())) {
-                MachineUpdated.setWarranty((short) 1);
-            }
-            else {
-                MachineUpdated.setWarranty((short) 0);
-            }
             return MachineUpdated;
         });
 

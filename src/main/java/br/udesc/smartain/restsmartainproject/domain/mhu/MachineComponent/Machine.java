@@ -1,6 +1,7 @@
 package br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnit;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.Alert;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
@@ -87,6 +88,10 @@ public class Machine {
     @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
     private List<Equipment> equipments = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    private List<Alert> alerts = new ArrayList<>();
+
     public Machine() {
 
     }
@@ -103,12 +108,7 @@ public class Machine {
         this.createdDate = createdDate;
         this.status = status.getValue();
         this.warrantyExpDate = warrantyExpDate;
-
-        if(warrantyExpDate.compareTo(LocalDate.now()) < 0) {
-            this.warranty = 0;
-        } else {
-            this.warranty = 1;
-        }
+        this.setWarranty();
     }
 
     public Integer getId() {
@@ -181,13 +181,14 @@ public class Machine {
 
     public void setWarrantyExpDate(LocalDate warrantyExpDate) {
         this.warrantyExpDate = warrantyExpDate;
+        setWarranty();
     }
 
     public Short getWarranty() {
         return warranty;
     }
 
-    public void setWarranty(Short warranty) {
+    private void setWarranty() {
         if(warrantyExpDate.compareTo(LocalDate.now()) < 0) {
             this.warranty = 0;
         } else {
@@ -225,6 +226,10 @@ public class Machine {
 
     public void addEquipment(Equipment equipment) {
         this.equipments.add(equipment);
+    }
+
+    public List<Alert> getAlerts() {
+        return alerts;
     }
 
     @Override

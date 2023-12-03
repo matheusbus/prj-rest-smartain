@@ -14,6 +14,7 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.AlertService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
@@ -130,6 +131,9 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private OrderGenerationTypeService orderGenerationTypeService;
 
+    @Autowired
+    private AlertService alertService;
+
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
@@ -172,9 +176,13 @@ public class TestData implements CommandLineRunner {
         makeProductionsCells();
 
         makeModels();
-        makeMachines();
+        makeMachines("CNC-001", "Peso: 4000kg.", LocalDate.of(2023, Month.DECEMBER, 10), LocalDate.of(2022, Month.DECEMBER, 10));
+        makeMachines("CNC-002", "Peso: 7500kg.", LocalDate.of(2024, Month.JANUARY, 2), LocalDate.of(2019, Month.JANUARY, 2));
+
         makeComponents();
         makeEquipments();
+
+        alertService.checkMachinesWarranties();
     }
 
     public void associateUnits() {
@@ -527,8 +535,7 @@ public class TestData implements CommandLineRunner {
         }
         return productionCells;
     }
-
-
+    
     public List<Manufacturer> makeManufacturers() {
         this.manufacturers = Arrays.asList(
                 new Manufacturer(null, "Industrial Pagé LTDA", "92412168000122", "482882012", "page@comercial.com.br",  RegisterState.ACTIVE),
@@ -560,24 +567,22 @@ public class TestData implements CommandLineRunner {
         return models;
     }
 
-    public List<Machine> makeMachines() {
+    public List<Machine> makeMachines(String tag, String technicalData, LocalDate warrantyExpDate, LocalDate acquisitionDate) {
         Machine machine = new Machine();
         ManufacturingUnit unit = manufacturingUnitService.findById(1).get();
         Model model = modelService.findById(1).get();
         Sector sector = sectorService.findById(1).get();
         ProductionCell productionCell = productionCellService.findById(1).get();
 
-
         machine.setUnit(unit);
         machine.setSector(sector);
         machine.setProductionCell(productionCell);
         machine.setStatus(RegisterState.ACTIVE);
-        machine.setTag("MAQ-001");
-        machine.setTechnicalData("Dados técnicos da máquina: 4000kg.");
-        machine.setWarrantyExpDate(LocalDate.of(2025, Month.APRIL, 15));
-        machine.setWarranty((short) 1);
+        machine.setTag(tag);
+        machine.setTechnicalData(technicalData);
+        machine.setWarrantyExpDate(warrantyExpDate);
         machine.setModel(model);
-        machine.setAcquisitionDate(LocalDate.of(2022, Month.APRIL, 15));
+        machine.setAcquisitionDate(acquisitionDate);
         machine.setCreatedDate(LocalDate.now().atStartOfDay());
 
         this.machines = Arrays.asList(machine);

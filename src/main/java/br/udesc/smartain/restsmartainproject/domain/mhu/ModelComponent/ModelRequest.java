@@ -12,7 +12,7 @@ public class ModelRequest {
 
     private String dimensions;
 
-    private Short modelTypeId;
+    private Short domainType;
 
     private RegisterState status;
 
@@ -48,12 +48,12 @@ public class ModelRequest {
         this.dimensions = dimensions;
     }
 
-    public Short getModelTypeId() {
-        return modelTypeId;
+    public Short getDomainType() {
+        return domainType;
     }
 
-    public void setModeTypelId(Short modelTypeId) {
-        this.modelTypeId = modelTypeId;
+    public void setDomainType(Short domainType) {
+        this.domainType = domainType;
     }
 
     public RegisterState getStatus() {

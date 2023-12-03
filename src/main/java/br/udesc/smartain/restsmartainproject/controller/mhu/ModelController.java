@@ -69,7 +69,7 @@ public class ModelController {
         Model newModel = new Model();
         newModel.setDimensions(request.getDimensions());
         newModel.setModel(request.getModel());
-        newModel.setModel(request.getModel());
+        newModel.setDomainType(DomainModelType.valueOf(request.getDomainType()));
         newModel.setManufacturer(manufacturer);
         newModel.setStatus(RegisterState.valueOf(request.getStatus().getValue()));
 
@@ -95,7 +95,7 @@ public class ModelController {
             MachineModelUpdated.setModel(request.getModel());
             MachineModelUpdated.setManufacturer(manufacturer);
             MachineModelUpdated.setDimensions(request.getDimensions());
-            MachineModelUpdated.setDomainType(DomainModelType.valueOf(request.getModelTypeId()));
+            MachineModelUpdated.setDomainType(DomainModelType.valueOf(request.getDomainType()));
             MachineModelUpdated.setStatus(request.getStatus());
             return MachineModelUpdated;
         });

@@ -176,8 +176,8 @@ public class TestData implements CommandLineRunner {
         makeProductionsCells();
 
         makeModels();
-        makeMachines("CNC-001", "Peso: 4000kg.", LocalDate.of(2023, Month.DECEMBER, 10), LocalDate.of(2022, Month.DECEMBER, 10));
-        makeMachines("CNC-002", "Peso: 7500kg.", LocalDate.of(2024, Month.JANUARY, 2), LocalDate.of(2019, Month.JANUARY, 2));
+        makeMachines("CNC-001", "Peso: 4000kg.", LocalDate.of(2023, Month.DECEMBER, 11), LocalDate.of(2022, Month.DECEMBER, 11));
+        makeMachines("CNC-002", "Peso: 7500kg.", LocalDate.of(2024, Month.JANUARY, 3), LocalDate.of(2019, Month.JANUARY, 3));
 
         makeComponents();
         makeEquipments();

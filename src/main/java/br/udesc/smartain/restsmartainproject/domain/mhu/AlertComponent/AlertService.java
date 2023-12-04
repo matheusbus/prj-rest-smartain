@@ -51,7 +51,7 @@ public class AlertService {
     }
 
     // Método para executar a cada 24 horas
-    //@Scheduled(fixedRate = 24 * 60 * 60 * 1000)
+    @Scheduled(fixedRate = 24 * 60 * 60 * 1000)
     public void checkMachinesWarranties() {
         List<Machine> machines = machineService.findAllByStatus(RegisterState.ACTIVE.getValue());
         machines = machines
@@ -78,12 +78,12 @@ public class AlertService {
         return false;
     }
 
-    private void issueAlert(Machine machine, int dias) {
+    private void issueAlert(Machine machine, int days) {
         Alert newWarrantyAlert = new Alert();
 
         newWarrantyAlert.setId(null);
-        newWarrantyAlert.setTitle("Alerta de Garantia - Máquina: " + machine.getTag() + " - Restam " + dias + " dias.");
-        newWarrantyAlert.setDescription(getWarrantyAlertDescription(machine, dias));
+        newWarrantyAlert.setTitle("Alerta de Garantia - Máquina: " + machine.getTag() + " - Restam " + days + " dias.");
+        newWarrantyAlert.setDescription(getWarrantyAlertDescription(machine, days));
         newWarrantyAlert.setCreatedUser(null);
         newWarrantyAlert.setExpirationDate(LocalDate.now().plusDays(30));
         newWarrantyAlert.setStatus(AlertStatus.PENDING);
@@ -95,13 +95,13 @@ public class AlertService {
         save(newWarrantyAlert);
     }
 
-    private String getWarrantyAlertDescription(Machine machine, int dias) {
+    private String getWarrantyAlertDescription(Machine machine, int days) {
         return new StringBuilder()
                 .append("Atenção! Máquina: " + machine.getTag() + " (Modelo: " + machine.getModel().getModel() + ") ")
                 .append("pertencente à célula " + machine.getProductionCell().getTag() + " (" + machine.getProductionCell().getName() + "), ")
                 .append("setor " + machine.getSector().getTag() + " (" + machine.getSector().getName() + ") e ")
                 .append("unidade fabril " + machine.getSector().getUnit().getTag() + " ")
-                .append("está com período de garantia prestes a vencer! Restam " +dias + " dias de garantia.")
+                .append("está com período de garantia prestes a vencer! Restam " + days + " dias de garantia.")
                 .toString();
     }
 

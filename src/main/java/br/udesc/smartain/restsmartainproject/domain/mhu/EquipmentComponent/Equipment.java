@@ -33,7 +33,7 @@ public class Equipment {
     @Comment("Dados e especificações técnicas do equipamento")
     private String technicalData;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "marcodigo")
     @Comment("Código da marca")
     private Brand brand;

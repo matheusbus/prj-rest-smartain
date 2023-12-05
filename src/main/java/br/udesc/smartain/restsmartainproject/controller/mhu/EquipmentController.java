@@ -75,7 +75,7 @@ public class EquipmentController {
     public ResponseEntity<Equipment> createEquipment(@Valid @RequestBody EquipmentRequest request) {
         Equipment newEquipment = new Equipment();
         Machine machine = machineService.findById(request.getMachineId()).get();
-        Brand brand = brandService.findById(request.getBrandId()).get();
+       // Brand brand = brandService.findById(request.getBrandId()).get();
         Model model = modelService.findById(request.getEquipmentModelId()).get();
 
         newEquipment.setName(request.getName());
@@ -83,7 +83,7 @@ public class EquipmentController {
         newEquipment.setModel(model);
         newEquipment.setStatus(RegisterState.valueOf(request.getStatus()));
         newEquipment.setTechnicalData(request.getTechnicalData());
-        newEquipment.setBrand(brand);
+       // newEquipment.setBrand(brand);
 
         Equipment savedEquipment = equipmentService.save(newEquipment);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -97,7 +97,7 @@ public class EquipmentController {
     public ResponseEntity<Equipment> updateEquipment(@Valid @RequestBody EquipmentRequest request, @PathVariable Integer id) {
         Optional<Equipment> equipmentToUpdate = equipmentService.findById(id);
         Machine machine = machineService.findById(request.getMachineId()).get();
-        Brand brand = brandService.findById(request.getBrandId()).get();
+       // Brand brand = brandService.findById(request.getBrandId()).get();
         Model model = modelService.findById(request.getEquipmentModelId()).get();
 
         if(equipmentToUpdate.isEmpty()) {
@@ -110,7 +110,7 @@ public class EquipmentController {
             equipmentUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             equipmentUpdated.setTechnicalData(request.getTechnicalData());
             equipmentUpdated.setModel(model);
-            equipmentUpdated.setBrand(brand);
+           // equipmentUpdated.setBrand(brand);
             return equipmentUpdated;
         });
 

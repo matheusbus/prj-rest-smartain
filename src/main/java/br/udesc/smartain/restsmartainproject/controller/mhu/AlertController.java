@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,7 +71,7 @@ public class AlertController {
         Alert newAlert = new Alert();
         User user = userService.findById(request.getUserId()).get();
 
-        newAlert.setCreatedDate(request.getCreatedDate());
+        newAlert.setCreatedDate(LocalDateTime.now());
         newAlert.setTitle(request.getTitle());
         newAlert.setDescription(request.getDescription());
         newAlert.setExpirationDate(request.getExpirationDate());
@@ -90,20 +91,19 @@ public class AlertController {
     @PutMapping("/{id}")
     public ResponseEntity<Alert> updateAlert(@Valid @RequestBody AlertRequest request, @PathVariable Integer id) {
         Optional<Alert> alertToUpdate = alertService.findById(id);
-        Optional<User> user = userService.findById(request.getUserId());
-        if(alertToUpdate.isEmpty() || user.isEmpty()) {
+        Optional<User> user = userService.findById((request.getUserId() != null) ? request.getUserId() : 0);
+        if(alertToUpdate.isEmpty()) {
             throw new NotFoundException("Alert or User id not found - " + id);
         }
-
 
         alertToUpdate = alertToUpdate.map((alertUpdated) -> {
             alertUpdated.setTitle(request.getTitle());
             alertUpdated.setDescription(request.getDescription());
             alertUpdated.setType(AlertType.valueOf(request.getType()));
             alertUpdated.setStatus(AlertStatus.valueOf(request.getStatus()));
-            alertUpdated.setCreatedDate(request.getCreatedDate());
+            alertUpdated.setCreatedDate(alertUpdated.getCreatedDate());
             alertUpdated.setExpirationDate(request.getExpirationDate());
-            alertUpdated.setCreatedUser(user.get());
+            alertUpdated.setCreatedUser(user.orElse(null));
             return alertUpdated;
         });
 

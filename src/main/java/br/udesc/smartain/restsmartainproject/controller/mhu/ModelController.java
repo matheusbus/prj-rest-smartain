@@ -39,6 +39,22 @@ public class ModelController {
         return ResponseEntity.ok(models);
     }
 
+    @GetMapping(params = "type")
+    public ResponseEntity<List<Model>> findAllByType(@RequestParam String type) {
+        List<Model> models = switch (type) {
+            case "machine" -> modelService.findAllMachineModels();
+            case "equipment" -> modelService.findAllEquipmentModels();
+            case "component" -> modelService.findAllComponentModels();
+            default -> throw new NotFoundException("Type " + type + " not found.");
+        };
+
+        if(models.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(models);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Model> findById(@PathVariable Integer id) {
         Optional<Model> model = modelService.findById(id);

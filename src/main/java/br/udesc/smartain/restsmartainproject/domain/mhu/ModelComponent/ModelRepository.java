@@ -14,6 +14,12 @@ public interface ModelRepository extends JpaRepository<Model, Integer> {
     )
     public List<Model> findAllByStatus(Short status);
 
+    @Query(
+            value = "SELECT * FROM mhu.tbmodelo WHERE tbmodelo.tmmtipo = ?1",
+            nativeQuery = true
+    )
+    public List<Model> findAllByType(Short type);
+
     @Modifying
     @Query(
             value = "UPDATE mhu.tbmodelo SET tbmodelo.momstatus = 2 WHERE tbmodelo.momcodigo = ?1",

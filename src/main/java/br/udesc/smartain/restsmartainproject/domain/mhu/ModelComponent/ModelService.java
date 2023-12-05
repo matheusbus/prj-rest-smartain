@@ -22,6 +22,18 @@ public class ModelService {
         return ModelRepository.findAllByStatus(status);
     }
 
+    public List<Model> findAllMachineModels() {
+        return ModelRepository.findAllByType((short) 1);
+    }
+
+    public List<Model> findAllComponentModels() {
+        return ModelRepository.findAllByType((short) 2);
+    }
+
+    public List<Model> findAllEquipmentModels() {
+        return ModelRepository.findAllByType((short) 3);
+    }
+
     public Optional<Model> findById(Integer id) {
         return ModelRepository.findById(id);
     }

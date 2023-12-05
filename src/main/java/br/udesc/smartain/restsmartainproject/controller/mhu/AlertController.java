@@ -69,7 +69,7 @@ public class AlertController {
     @PostMapping
     public ResponseEntity<Alert> createAlert(@Valid @RequestBody AlertRequest request) {
         Alert newAlert = new Alert();
-        User user = userService.findById(request.getUserId()).get();
+        User user = userService.findById(request.getUserId()).orElse(null);
 
         newAlert.setCreatedDate(LocalDateTime.now());
         newAlert.setTitle(request.getTitle());

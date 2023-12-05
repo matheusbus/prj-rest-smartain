@@ -4,6 +4,10 @@ import br.udesc.smartain.restsmartainproject.controller.exception.NotFoundExcept
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.*;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlan;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlanService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +28,12 @@ public class AlertController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MaintenancePlanService maintenancePlanService;
+
+    @Autowired
+    private MachineService machineService;
 
     @GetMapping
     public ResponseEntity<List<Alert>> findAll() {
@@ -70,6 +80,8 @@ public class AlertController {
     public ResponseEntity<Alert> createAlert(@Valid @RequestBody AlertRequest request) {
         Alert newAlert = new Alert();
         User user = userService.findById(request.getUserId()).get();
+        MaintenancePlan plan = maintenancePlanService.findById(request.getPlanId() != null ? request.getPlanId() : 0).orElse(null);
+        Machine machine = machineService.findById(request.getMachineId() != null ? request.getMachineId() : 0).orElse(null);
 
         newAlert.setCreatedDate(LocalDateTime.now());
         newAlert.setTitle(request.getTitle());
@@ -78,6 +90,8 @@ public class AlertController {
         newAlert.setStatus(AlertStatus.valueOf(request.getStatus()));
         newAlert.setType(AlertType.valueOf(request.getType()));
         newAlert.setCreatedUser(user);
+        newAlert.setMachine(machine);
+        newAlert.setPlan(plan);
 
         Alert savedAlert = alertService.save(newAlert);
 
@@ -92,6 +106,9 @@ public class AlertController {
     public ResponseEntity<Alert> updateAlert(@Valid @RequestBody AlertRequest request, @PathVariable Integer id) {
         Optional<Alert> alertToUpdate = alertService.findById(id);
         Optional<User> user = userService.findById((request.getUserId() != null) ? request.getUserId() : 0);
+        MaintenancePlan plan = maintenancePlanService.findById(request.getPlanId() != null ? request.getPlanId() : 0).orElse(null);
+        Machine machine = machineService.findById(request.getMachineId() != null ? request.getMachineId() : 0).orElse(null);
+
         if(alertToUpdate.isEmpty()) {
             throw new NotFoundException("Alert or User id not found - " + id);
         }
@@ -104,6 +121,8 @@ public class AlertController {
             alertUpdated.setCreatedDate(alertUpdated.getCreatedDate());
             alertUpdated.setExpirationDate(request.getExpirationDate());
             alertUpdated.setCreatedUser(user.orElse(null));
+            alertUpdated.setMachine(machine);
+            alertUpdated.setPlan(plan);
             return alertUpdated;
         });
 

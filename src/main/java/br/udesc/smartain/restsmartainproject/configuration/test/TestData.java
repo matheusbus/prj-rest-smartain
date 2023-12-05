@@ -14,7 +14,10 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitComponent.ManufacturingUnitService;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.UserGroup;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.Alert;
 import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.AlertService;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.AlertStatus;
+import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.AlertType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.BrandService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
@@ -34,6 +37,7 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.SectorService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitType;
 import br.udesc.smartain.restsmartainproject.domain.mhu.UnitTypeComponent.UnitTypeService;
+import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlanService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent.MaintenanceTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.OrderGenerationTypeComponent.OrderGenerationTypeService;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.ServiceCauseService;
@@ -134,6 +138,9 @@ public class TestData implements CommandLineRunner {
     @Autowired
     private AlertService alertService;
 
+    @Autowired
+    private MaintenancePlanService maintenancePlanService;
+
     private List<Country> countries = new ArrayList<>();
     private List<FederativeUnit> units = new ArrayList<>();
 
@@ -154,6 +161,8 @@ public class TestData implements CommandLineRunner {
     private List<ProductionCell>  productionCells = new ArrayList<>();
 
     private List<Machine> machines = new ArrayList<>();
+
+    private List<Alert> alerts = new ArrayList<>();
 
 
     @Override
@@ -181,6 +190,8 @@ public class TestData implements CommandLineRunner {
 
         makeComponents();
         makeEquipments();
+
+        makeAlerts();
 
         alertService.checkMachinesWarranties();
     }
@@ -613,5 +624,23 @@ public class TestData implements CommandLineRunner {
                     RegisterState.ACTIVE);
 
         equipmentService.save(equipment);
+    }
+
+    public List<Alert> makeAlerts() {
+        this.alerts = Arrays.asList(
+                new Alert((Integer) null, AlertType.ALERT_BY_WARRANTY, "Alerta Teste", "Titulo Alerta Teste", userService.findById(1).orElse(null),
+                        LocalDateTime.now(),  LocalDate.of(2024, 01, 10),
+                        machineService.findById(1).orElse(null), null, AlertStatus.PENDING),
+                new Alert((Integer) null, AlertType.ALERT_BY_USER, "Alerta Teste Plano",
+                        "Titulo Alerta Teste Plano", userService.findById(1).orElse(null),
+                        LocalDateTime.now(),  LocalDate.of(2024, 01, 10),
+                        null, maintenancePlanService.findById(1).orElse(null),
+                        AlertStatus.ATTENDED)
+        );
+        for(Alert alert : alerts) {
+            alertService.save(alert);
+        }
+
+        return alerts;
     }
 }

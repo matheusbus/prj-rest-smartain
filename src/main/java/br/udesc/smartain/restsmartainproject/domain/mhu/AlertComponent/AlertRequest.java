@@ -15,11 +15,16 @@ public class AlertRequest {
 
     private Integer userId;
 
+    private Integer machineId;
+
+    private Integer planId;
+
     private LocalDateTime createdDate;
 
     private LocalDate expirationDate;
 
     private Short status;
+
 
     public Integer getId() {
         return id;
@@ -55,6 +60,22 @@ public class AlertRequest {
 
     public Integer getUserId() {
         return userId;
+    }
+
+    public Integer getMachineId() {
+        return machineId;
+    }
+
+    public void setMachineId(Integer machineId) {
+        this.machineId = machineId;
+    }
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
+        this.planId = planId;
     }
 
     public void setUserId(Integer userId) {

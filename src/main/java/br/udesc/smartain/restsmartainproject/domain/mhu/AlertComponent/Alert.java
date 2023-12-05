@@ -3,6 +3,8 @@ package br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent;
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenancePlanComponent.MaintenancePlan;
+import br.udesc.smartain.restsmartainproject.domain.utils.LocalDateTimeSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
 
@@ -41,6 +43,7 @@ public class Alert {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "aledatcad")
     @Comment("Data da emissão/cadastro do alerta")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createdDate;
 
     @Temporal(TemporalType.DATE)

@@ -8,6 +8,7 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equip
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineRequest;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.MachineService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineManualComponent.MachineManual;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.ModelService;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
@@ -88,6 +89,17 @@ public class MachineController {
         }
 
         return ResponseEntity.ok(Machine.get().getEquipments());
+    }
+
+    @GetMapping("/{id}/manuals")
+    public ResponseEntity<List<MachineManual>> getManualsByMachineId(@PathVariable Integer id) {
+        Optional<Machine> Machine = machineService.findById(id);
+
+        if(Machine.isEmpty()) {
+            throw new NotFoundException("Machine id not found - " + id);
+        }
+
+        return ResponseEntity.ok(Machine.get().getManuals());
     }
 
     @GetMapping(params = "status")

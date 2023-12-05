@@ -4,6 +4,7 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.Alert;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ComponentComponent.Component;
 import br.udesc.smartain.restsmartainproject.domain.mhu.EquipmentComponent.Equipment;
+import br.udesc.smartain.restsmartainproject.domain.mhu.MachineManualComponent.MachineManual;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ProductionCellComponent.ProductionCell;
 import br.udesc.smartain.restsmartainproject.domain.mhu.SectorComponent.Sector;
@@ -91,6 +92,10 @@ public class Machine {
     @JsonIgnore
     @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
     private List<Alert> alerts = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
+    private List<MachineManual> manuals = new ArrayList<>();
 
     public Machine() {
 
@@ -230,6 +235,10 @@ public class Machine {
 
     public List<Alert> getAlerts() {
         return alerts;
+    }
+
+    public List<MachineManual> getManuals() {
+        return manuals;
     }
 
     @Override

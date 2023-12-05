@@ -75,7 +75,7 @@ public class ComponentController {
     public ResponseEntity<Component> createComponent(@Valid @RequestBody ComponentRequest request) {
         Component newComponent = new Component();
         Machine machine = machineService.findById(request.getMachineId()).get();
-        Brand brand = brandService.findById(request.getBrandId()).get();
+       // Brand brand = brandService.findById(request.getBrandId()).get();
         Model model = modelService.findById(request.getComponentModelId()).get();
 
         newComponent.setName(request.getName());
@@ -83,7 +83,7 @@ public class ComponentController {
         newComponent.setModel(model);
         newComponent.setStatus(RegisterState.valueOf(request.getStatus()));
         newComponent.setTechnicalData(request.getTechnicalData());
-        newComponent.setBrand(brand);
+      //  newComponent.setBrand(brand);
 
         Component savedComponent = componentService.save(newComponent);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -97,7 +97,7 @@ public class ComponentController {
     public ResponseEntity<Component> updateComponent(@Valid @RequestBody ComponentRequest request, @PathVariable Integer id) {
         Optional<Component> componentToUpdate = componentService.findById(id);
         Machine machine = machineService.findById(request.getMachineId()).get();
-        Brand brand = brandService.findById(request.getBrandId()).get();
+       // Brand brand = brandService.findById(request.getBrandId()).get();
         Model model = modelService.findById(request.getComponentModelId()).get();
 
         if(componentToUpdate.isEmpty()) {
@@ -110,7 +110,7 @@ public class ComponentController {
             componentUpdated.setStatus(RegisterState.valueOf(request.getStatus()));
             componentUpdated.setTechnicalData(request.getTechnicalData());
             componentUpdated.setModel(model);
-            componentUpdated.setBrand(brand);
+         //  componentUpdated.setBrand(brand);
             return componentUpdated;
         });
 

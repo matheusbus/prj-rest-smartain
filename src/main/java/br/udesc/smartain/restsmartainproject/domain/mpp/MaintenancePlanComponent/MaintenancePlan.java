@@ -4,7 +4,11 @@ import br.udesc.smartain.restsmartainproject.domain.glo.ManufacturingUnitCompone
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.User;
 import br.udesc.smartain.restsmartainproject.domain.mhu.AlertComponent.Alert;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceOrderComponent.ServiceOrder;
+import br.udesc.smartain.restsmartainproject.domain.utils.LocalDateTimeSerializer;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Comment;
@@ -47,6 +51,7 @@ public class MaintenancePlan {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "plmdatcad")
     @Comment("Data de cadastro/geração do plano de manutenção")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime createdDate;
 
     @JsonIgnore

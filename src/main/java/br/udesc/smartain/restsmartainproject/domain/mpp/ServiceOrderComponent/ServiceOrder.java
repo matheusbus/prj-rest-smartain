@@ -10,8 +10,11 @@ import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceCauseComponent.Se
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceInterventionComponent.ServiceIntervention;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSolicitationComponent.ServiceSolicitation;
+import br.udesc.smartain.restsmartainproject.domain.utils.LocalDateTimeSerializer;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -46,6 +49,7 @@ public class ServiceOrder {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "svodatabr")
     @Comment("Data de abertura da ordem de manuteção")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime openingDate;
 
     @ManyToOne(fetch = FetchType.EAGER)

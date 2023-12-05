@@ -8,8 +8,11 @@ import br.udesc.smartain.restsmartainproject.domain.mpp.MaintenanceTypeComponent
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServicePriorityComponent.ServicePriority;
 import br.udesc.smartain.restsmartainproject.domain.mpp.ServiceSymptomComponent.ServiceSymptom;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import br.udesc.smartain.restsmartainproject.domain.utils.LocalDateTimeSerializer;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Comment;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -51,6 +54,7 @@ public class ServiceSolicitation {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "srsdatabr")
     @Comment("Data/hora de abertura da solicitação de serviço")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime openingDate;
 
     @ManyToOne(fetch = FetchType.EAGER)

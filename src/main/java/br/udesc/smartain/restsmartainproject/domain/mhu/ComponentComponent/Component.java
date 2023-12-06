@@ -4,6 +4,7 @@ import br.udesc.smartain.restsmartainproject.domain.mhu.BrandComponent.Brand;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
 import br.udesc.smartain.restsmartainproject.domain.mhu.ModelComponent.Model;
 import br.udesc.smartain.restsmartainproject.domain.states.RegisterState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -34,7 +35,8 @@ public class Component {
     @Comment("Dados e especificações técnicas do componente")
     private String technicalData;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "marcodigo")
     @Comment("Código da marca")
     private Brand brand;
@@ -46,6 +48,7 @@ public class Component {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "maqcodigo")
+    @Comment("Código do máquina")
     private Machine machine;
 
     @Column(name = "comstatus")

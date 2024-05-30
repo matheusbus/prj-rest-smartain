@@ -1,4 +1,4 @@
-package br.udesc.smartain.restsmartainproject.controller;
+package br.udesc.smartain.restsmartainproject.controller.glo;
 
 import br.udesc.smartain.restsmartainproject.domain.glo.UserComponent.*;
 import br.udesc.smartain.restsmartainproject.domain.mhu.MachineComponent.Machine;
